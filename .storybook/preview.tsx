@@ -1,4 +1,5 @@
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from '@mui/material'
+import { theme } from '../src/styles/Theme'
 
 /* import { GlobalStyle, theme } from '../src/styles' */
 
@@ -7,10 +8,9 @@ export const parameters = {
 }
 
 export const decorators = [
-  (Story) => (/* 
-    <ThemeProvider theme={theme}> */
-  
+  (Story) => (
+    <ThemeProvider theme={theme}>
       <Story />
-   /*  </ThemeProvider> */
+    </ThemeProvider>
   ),
 ]

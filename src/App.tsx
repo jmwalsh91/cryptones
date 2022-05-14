@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline'
-import Foundation from './components/layout/Foundation'
 
 import NavBar from './components/Nav/NavBar'
+import Foundation from './components/layout/Foundation'
 import Display from './components/surfaces/Display'
 
 export function App() {
@@ -9,7 +9,7 @@ export function App() {
     <CssBaseline>
       <NavBar />
       <Foundation>
-        <Display /> 
+        <Display />
       </Foundation>
     </CssBaseline>
   )

@@ -1,11 +1,10 @@
 /* eslint-disable import/export */
-
+import { ThemeProvider } from '@mui/material'
 import { RenderOptions, RenderResult, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ReactElement } from 'react'
-import { ThemeProvider } from 'styled-components'
 
-import { theme } from '~/styles'
+import { theme } from '../../styles/Theme'
 
 const customRender = (
   ui: ReactElement,

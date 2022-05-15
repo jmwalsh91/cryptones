@@ -7,7 +7,7 @@ interface sliderProps {
 }
 function SlideSelector({ sliderSize, color }: sliderProps) {
   return (
-    <Box width={300}>
+    <Box width={300} m={2}>
       <Slider
         size={sliderSize}
         color={color}
@@ -15,7 +15,6 @@ function SlideSelector({ sliderSize, color }: sliderProps) {
         aria-label={sliderSize}
         valueLabelDisplay="auto"
       />
-      <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
     </Box>
   )
 }

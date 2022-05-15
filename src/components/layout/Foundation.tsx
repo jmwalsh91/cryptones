@@ -1,6 +1,5 @@
 import Container from '@mui/material/Container'
-import React, { ReactComponentElement, ReactElement, ReactNode } from 'react'
-
+import { ReactElement, ReactNode } from 'react'
 type Props = {
   children: ReactNode
 }

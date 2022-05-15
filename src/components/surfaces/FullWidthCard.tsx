@@ -1,5 +1,4 @@
 import { Paper, Typography } from '@mui/material'
-import React, { ReactNode } from 'react'
 
 type Props = {
   children?: any

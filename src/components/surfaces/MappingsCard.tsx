@@ -1,4 +1,3 @@
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import { StyledOptions } from '@emotion/styled'
 import { Grid, Paper, Typography } from '@mui/material'
 import { ReactNode } from 'react'

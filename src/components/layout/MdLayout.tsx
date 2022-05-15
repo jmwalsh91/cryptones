@@ -1,6 +1,6 @@
 import { Container, Grid } from '@mui/material'
-import React, { ReactNode } from 'react'
 
+//TODO: properly type...
 type Props = {
   main?: any
   cardOne?: any

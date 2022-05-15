@@ -1,4 +1,4 @@
-import { Pause, PlayArrow, Stop, MusicNote } from '@mui/icons-material'
+import { MusicNote, Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper } from '@mui/material'
 import React from 'react'
 

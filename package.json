@@ -1,12 +1,12 @@
 {
-  "name": "boilerplate-react-vite",
-  "description": "A React boilerplate powered by Vite builder",
-  "version": "1.0.0",
-  "author": "Adeonir Kohl",
+  "name": "cryptones",
+  "description": "webapp that converts cryptocurrency price data into audio with tone.js    ",
+  "version": "2.0.0",
+  "author": "Jordan Walsh",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adeonir/boilerplate-react-vite.git"
+    "url": "git+https://github.com/jmwalsh91/cryptones"
   },
   "keywords": [
     "boilerplate",
@@ -45,6 +45,10 @@
     ]
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.7.0",
     "@storybook/addon-actions": "6.4.22",
     "@storybook/addon-essentials": "6.4.22",
     "@storybook/addon-interactions": "6.4.22",

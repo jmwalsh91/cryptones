@@ -23,12 +23,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "import",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "react-hooks", "import", "@typescript-eslint"],
   "rules": {
     "no-undef": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -57,10 +52,7 @@
           "builtin",
           "external",
           "internal",
-          [
-            "parent",
-            "sibling"
-          ],
+          ["parent", "sibling"],
           "index",
           "object",
           "type"
@@ -131,9 +123,7 @@
             "group": "internal"
           }
         ],
-        "pathGroupsExcludedImportTypes": [
-          "builtin"
-        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
         "alphabetize": {
           "order": "asc"
         }
@@ -148,11 +138,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "src/pages/*",
-        "src/styles/*",
-        "src/**/*.stories.tsx"
-      ],
+      "files": ["src/pages/*", "src/styles/*", "src/**/*.stories.tsx"],
       "rules": {
         "import/no-default-export": "off"
       }

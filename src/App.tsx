@@ -1,16 +1,20 @@
-import { BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from '@mui/material'
+import CssBaseline from '@mui/material/CssBaseline'
 
-import { AppRoutes } from '~/routes'
-import { GlobalStyle, theme } from '~/styles'
+import NavBar from './components/Nav/NavBar'
+import Foundation from './components/layout/Foundation'
+import Display from './components/surfaces/Display'
+import { theme } from './styles/Theme'
 
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <GlobalStyle />
-        <AppRoutes />
-      </BrowserRouter>
-    </ThemeProvider>
+    <CssBaseline>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <Foundation>
+          <Display />
+        </Foundation>
+      </ThemeProvider>
+    </CssBaseline>
   )
 }

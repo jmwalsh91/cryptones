@@ -9,11 +9,13 @@ import * as React from 'react'
 export interface selectorProps {
   label: string
   values: Array<string>
+  helperText: string
 }
 
 export default function InputSelect({
   label,
   values,
+  helperText
 }: selectorProps): ReactJSXElement {
   const [val, setVal] = React.useState('')
 
@@ -30,7 +32,7 @@ export default function InputSelect({
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -40,7 +42,7 @@ export default function InputSelect({
         >
           {dropdownValues}
         </Select>
-        <FormHelperText>With label + helper text</FormHelperText>
+        <FormHelperText>{helperText}</FormHelperText>
       </FormControl>
     </div>
   )

@@ -14,7 +14,6 @@ function Display() {
     <Paper
       sx={{ width: '90vw', height: '80vh', bgcolor: 'beige', margin: '2rem' }}
     >
-    
       <MdLayout
         main={mock.main}
         cardOne={mock.cardOne}

@@ -2,11 +2,13 @@ import { Paper } from '@mui/material'
 
 import MdLayout from '../layout/MdLayout'
 import FullWidthCard from './FullWidthCard'
+import MappingsCard from './MappingsCard'
+import ToneCard from './ToneCard'
 
 const mock = {
   main: <FullWidthCard key="0" />,
-  cardOne: <FullWidthCard key="1" />,
-  cardTwo: <FullWidthCard key="2" />,
+  cardOne: <MappingsCard />,
+  cardTwo: <ToneCard data={['mock', 12, 34, 53, 45]} />,
 }
 //TODO: layout breakpoints with absolute values, bring in correct cards and pass to MdLayout
 function Display() {

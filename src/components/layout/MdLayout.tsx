@@ -2,9 +2,9 @@ import { Container, Grid } from '@mui/material'
 import React, { ReactNode } from 'react'
 
 type Props = {
-  main?: ReactNode
-  cardOne?: ReactNode
-  cardTwo?: ReactNode
+  main?: any
+  cardOne?: any
+  cardTwo?: any
 }
 
 function MdLayout({ main, cardOne, cardTwo }: Props) {

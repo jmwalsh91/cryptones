@@ -1,6 +1,7 @@
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from '@mui/material'
+import { theme } from '../src/styles/Theme'
 
-import { GlobalStyle, theme } from '../src/styles'
+/* import { GlobalStyle, theme } from '../src/styles' */
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -9,7 +10,6 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
       <Story />
     </ThemeProvider>
   ),

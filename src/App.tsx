@@ -1,16 +1,20 @@
+import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
-import Foundation from './components/layout/Foundation'
 
 import NavBar from './components/Nav/NavBar'
+import Foundation from './components/layout/Foundation'
 import Display from './components/surfaces/Display'
+import { theme } from './styles/Theme'
 
 export function App() {
   return (
     <CssBaseline>
-      <NavBar />
-      <Foundation>
-        <Display /> 
-      </Foundation>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <Foundation>
+          <Display />
+        </Foundation>
+      </ThemeProvider>
     </CssBaseline>
   )
 }

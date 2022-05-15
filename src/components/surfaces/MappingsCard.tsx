@@ -14,7 +14,7 @@ function MappingsCard(props: Props) {
   return (
     <Paper sx={{ width: '66vw', height: '33vh' }} {...props}>
       <Typography variant="h5">Mappings:</Typography>
-      <Grid container>
+      <Grid container sx={{ justifyContent: 'space-evenly' }}>
         <Grid item xs={5}>
           <InputSelect
             label={'Src'}

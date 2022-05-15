@@ -1,5 +1,6 @@
 import { Paper, Stack, Typography } from '@mui/material'
-import React from 'react'
+
+import PlaybackControls from '../toneControls/PlaybackControls'
 
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
@@ -8,8 +9,10 @@ type Props = { data?: object }
 function ToneCard({ data }: Props) {
   return (
     <Paper sx={{ width: '66vw', height: '33vh' }} {...data}>
-      <Stack>
+      <Stack spacing={2} alignItems={'center'}>
         <Typography variant="h5">Output:</Typography>
+        <Typography variant="body1">This is some placeholder text.</Typography>
+        <PlaybackControls iconSize="large" color="secondary" />
       </Stack>
     </Paper>
   )

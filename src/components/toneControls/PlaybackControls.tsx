@@ -1,5 +1,5 @@
 import { Pause, Stop, PlayArrow, MusicNote } from '@mui/icons-material'
-import { IconButton, Paper, ButtonGroup } from '@mui/material'
+import { IconButton, Paper, ButtonGroup, Stack } from '@mui/material'
 import React from 'react'
 
 interface playbackProps {

@@ -15,20 +15,19 @@ export interface apiDataFromOhclv {
 }
 
 export interface apiResponseArray {
-  [propName: string]: Array<string> | Array<number> | Array<Array<string>>
+  [propName: string]: string[] | number[] | Array<Array<string>>
 }
 
 export interface ohclvInterceptorReturn {
   res: Array<Array<any>>
 }
+//TODO: correct typing
 cryptonesApi.interceptors.response.use(
-  (
-    response: AxiosResponse<apiResponseArray, apiResponseArray>
-  ): apiDataFromOhclv => {
+  (response: AxiosResponse<apiResponseArray, any>): apiDataFromOhclv | any => {
     const data = response.data
     const formattedOhcl = data.formattedOhcl
     const volumeArray = data.volumeArray
-    const res: apiDataFromOhclv = {
+    const res = {
       formattedOhcl: formattedOhcl,
       volumeArray: volumeArray,
     }

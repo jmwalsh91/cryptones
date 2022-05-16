@@ -1,4 +1,8 @@
 import { Container, Grid } from '@mui/material'
+import { useEffect, useState } from 'react'
+
+import { cryptonesApi } from '~/services/Axios'
+import { ohlcvData, volumeData } from '~/types/interfaces'
 
 //TODO: properly type...
 type Props = {
@@ -8,6 +12,17 @@ type Props = {
 }
 
 function MdLayout({ main, cardOne, cardTwo }: Props) {
+  const [dataOHLC, setDataOHLC] = useState<ohlcvData>()
+  const [volumeArr, setVolumeArr] = useState<volumeData>()
+
+  useEffect(() => {
+    cryptonesApi.get('/api/ohlcv').then((response) => {
+      setVolumeArr(response.data.volArr)
+      setDataOHLC(response.data.resFormatted)
+      return console.log(dataOHLC)
+    })
+  }, [])
+
   return (
     <Container>
       <Grid container spacing={2}>

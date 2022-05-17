@@ -6,7 +6,7 @@ import MappingsCard from './MappingsCard'
 import ToneCard from './ToneCard'
 
 const mock = {
-  main: <FullWidthCard key="0" />,
+  main: <FullWidthCard />,
   cardOne: <MappingsCard />,
   cardTwo: <ToneCard data={['mock', 12, 34, 53, 45]} />,
 }

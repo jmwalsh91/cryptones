@@ -21,7 +21,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest --maxWorkers=50%",
+    "test": "jest --passWithNoTests --maxWorkers=50%",
     "test:watch": "jest --maxWorkers=50% --watch",
     "test:ci": "jest --runInBand",
     "lint": "eslint src --ext ts,tsx --max-warnings=0",

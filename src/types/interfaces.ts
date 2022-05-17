@@ -1,15 +1,7 @@
-/* export interface ohlcvData {
-  data: Array<object>
-}
+export type formattedOhlc = any[][]
+export type volumeArray = number[]
 
-export interface volumeData {
-  data: Array<string>
+export interface ohlcvResponse {
+  formattedOhlc: formattedOhlc
+  volumeArray: volumeArray
 }
- */
-
-export type formattedOhcl = []
-export interface ohlcvData {
-  formattedOhcl: formattedOhcl | []
-}
-
-export type volumeData = number[] | string[][]

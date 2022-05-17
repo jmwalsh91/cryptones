@@ -1,12 +1,9 @@
 import { Container, Grid } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
-import {
-  apiDataFromOhclv,
-  apiResponseArray,
-  cryptonesApi,
-  ohclvInterceptorReturn,
-} from '~/services/Axios'
+import FullWidthCard from '../surfaces/FullWidthCard'
+
+import { apiDataFromOhclv, cryptonesApi } from '~/services/Axios'
 import { ohlcvData, volumeData } from '~/types/interfaces'
 
 //TODO: properly type...
@@ -41,7 +38,9 @@ function MdLayout({ main, cardOne, cardTwo }: Props) {
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          {main}
+          <Suspense fallback="fallback here">
+            <FullWidthCard ohlcvData={dataOHLC} />
+          </Suspense>
         </Grid>
         <Grid item xs={12} sm={6} md={7}>
           {cardOne}

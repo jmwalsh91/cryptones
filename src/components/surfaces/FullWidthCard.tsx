@@ -3,7 +3,7 @@ import { Paper, Typography } from '@mui/material'
 import { ohlcvData } from '~/types/interfaces'
 
 type Props = {
-  ohlcvData: ohlcvData
+  ohlcvData: ohlcvData | [] | undefined
 }
 
 function FullWidthCard({ ohlcvData }: Props) {

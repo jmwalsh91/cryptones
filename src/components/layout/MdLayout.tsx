@@ -3,8 +3,8 @@ import { Suspense, useEffect, useState } from 'react'
 
 import FullWidthCard from '../surfaces/FullWidthCard'
 
-import { apiDataFromOhclv, cryptonesApi } from '~/services/Axios'
-import { ohlcvData, volumeData } from '~/types/interfaces'
+import { cryptonesApi } from '~/services/Axios'
+import { ohlcvResponse } from '~/types/interfaces'
 
 //TODO: properly type...
 type Props = {
@@ -14,19 +14,19 @@ type Props = {
 }
 
 function MdLayout({ main, cardOne, cardTwo }: Props) {
-  const [dataOHLC, setDataOHLC] = useState<ohlcvData | []>()
-  const [volumeArr, setVolumeArr] = useState<volumeData>()
+  const [dataOHLC, setDataOHLC] = useState()
+  const [volumeArr, setVolumeArr] = useState()
 
-  const getOhlcv = async () => {
-    const { volumeArray, formattedOhcl }: apiDataFromOhclv = await cryptonesApi
+  const getOhlcv = async (): Promise<ohlcvResponse> => {
+    const response: any = await cryptonesApi
       .get('/api/ohlcv')
-      .then((response): apiDataFromOhclv => {
+      .then((response) => {
         //TODO: Fix typing
-        const responseObject: apiDataFromOhclv | any = response
-        return responseObject
+        return response
       })
     setVolumeArr(volumeArray)
-    setDataOHLC(formattedOhcl)
+    setDataOHLC(formattedOhlc)
+    return { formattedOhlc, volumeArray }
   }
   useEffect(() => {
     getOhlcv()

@@ -1,10 +1,10 @@
 import { Container, Grid } from '@mui/material'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import FullWidthCard from '../surfaces/FullWidthCard'
 
 import { cryptonesApi } from '~/services/Axios'
-import { ohlcvResponse } from '~/types/interfaces'
+import { formattedOhlc, ohlcvResponse, volumeArray } from '~/types/interfaces'
 
 //TODO: properly type...
 type Props = {
@@ -13,20 +13,24 @@ type Props = {
   cardTwo?: any
 }
 
-function MdLayout({ main, cardOne, cardTwo }: Props) {
-  const [dataOHLC, setDataOHLC] = useState()
-  const [volumeArr, setVolumeArr] = useState()
+function MdLayout({ cardOne, cardTwo }: Props) {
+  const [dataOHLC, setDataOHLC] = useState<formattedOhlc>()
+  const [volumeArr, setVolumeArr] = useState<volumeArray>()
 
-  const getOhlcv = async (): Promise<ohlcvResponse> => {
-    const response: any = await cryptonesApi
+  const getOhlcv = async () => {
+    let ohlcvResponse: ohlcvResponse = await cryptonesApi
       .get('/api/ohlcv')
       .then((response) => {
-        //TODO: Fix typing
-        return response
+        const res: ohlcvResponse = {
+          formattedOhlc: response.data.data.formattedOhlc,
+          volumeArray: response.data.data.volumeArray,
+        }
+        console.log(res)
+        return (ohlcvResponse = res)
       })
-    setVolumeArr(volumeArray)
-    setDataOHLC(formattedOhlc)
-    return { formattedOhlc, volumeArray }
+    setVolumeArr(ohlcvResponse.volumeArray)
+    setDataOHLC(ohlcvResponse.formattedOhlc)
+    return { ohlcvResponse }
   }
   useEffect(() => {
     getOhlcv()
@@ -38,9 +42,7 @@ function MdLayout({ main, cardOne, cardTwo }: Props) {
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Suspense fallback="fallback here">
-            <FullWidthCard ohlcvData={dataOHLC} />
-          </Suspense>
+          <FullWidthCard ohlcvData={dataOHLC} />
         </Grid>
         <Grid item xs={12} sm={6} md={7}>
           {cardOne}

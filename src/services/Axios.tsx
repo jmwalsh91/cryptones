@@ -1,6 +1,7 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-import { ohlcvData, volumeData } from '~/types/interfaces'
+import { formattedOhlc, ohlcvResponse, volumeArray } from '~/types/interfaces'
+
 const cryptonesURL = import.meta.env.VITE_CRYPTONESURL
 
 export const cryptonesApi: AxiosInstance = axios.create({
@@ -9,28 +10,15 @@ export const cryptonesApi: AxiosInstance = axios.create({
 })
 
 console.log(cryptonesURL)
-export interface apiDataFromOhclv {
-  formattedOhcl: ohlcvData['formattedOhcl']
-  volumeArray: volumeData
-}
 
-export interface apiResponseArray {
-  [propName: string]: string[] | number[] | Array<Array<string>>
-}
-
-export interface ohclvInterceptorReturn {
-  res: Array<Array<any>>
-}
 //TODO: correct typing
-cryptonesApi.interceptors.response.use(
-  (response: AxiosResponse<apiResponseArray, any>): apiDataFromOhclv | any => {
-    const data = response.data
-    const formattedOhcl = data.formattedOhcl
-    const volumeArray = data.volumeArray
-    const res = {
-      formattedOhcl: formattedOhcl,
-      volumeArray: volumeArray,
-    }
-    return res
+cryptonesApi.interceptors.response.use((response) => {
+  const data = response.data
+  const formattedOhlc: formattedOhlc = data.formattedOhcl
+  const volumeArray: volumeArray = data.volumeArray
+  const res: ohlcvResponse = {
+    formattedOhlc: formattedOhlc,
+    volumeArray: volumeArray,
   }
-)
+  return res
+})

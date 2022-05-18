@@ -1,7 +1,15 @@
+import { ApexOptions } from 'apexcharts'
 import ReactApexChart from 'react-apexcharts'
+import useSWR from 'swr'
 
-export default function ApexChart(props: any) {
-  const options = {
+import { cryptonesApi } from '~/services/Axios'
+
+const fetcherOhlcv = (url: string) =>
+  cryptonesApi.get(url).then((res) => res.data)
+
+export default function ChartComponent() {
+  const { data } = useSWR('/api/ohlcv', fetcherOhlcv)
+  const options: ApexOptions = {
     chart: {
       height: 350,
       type: 'candlestick',
@@ -39,12 +47,14 @@ export default function ApexChart(props: any) {
   }
   return (
     <div id="chart">
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="candlestick"
-        height={350}
-      />
+      {data ? (
+        <ReactApexChart
+          options={options}
+          series={data.data[0]}
+          type="candlestick"
+          height={350}
+        />
+      ) : null}
     </div>
   )
 }

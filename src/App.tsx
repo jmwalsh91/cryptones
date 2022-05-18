@@ -21,6 +21,16 @@ export function App() {
               })
             },
             suspense: true,
+            onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+              // Never retry on 404.
+              if (error.status === 404) return
+
+              // Only retry up to 2 times.
+              if (retryCount >= 2) return
+
+              // Retry after 5 seconds.
+              setTimeout(() => revalidate({ retryCount }), 5000)
+            },
           }}
         >
           <NavBar />

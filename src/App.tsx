@@ -15,8 +15,12 @@ export function App() {
         <SWRConfig
           value={{
             fetcher: (endpoint, config?) => {
-              return cryptonesApi.get(endpoint, config).then((res) => res)
+              return cryptonesApi.get(endpoint, config).then((res) => {
+                console.log(res)
+                return res
+              })
             },
+            suspense: true,
           }}
         >
           <NavBar />

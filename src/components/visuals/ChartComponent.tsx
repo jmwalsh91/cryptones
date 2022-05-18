@@ -50,7 +50,7 @@ export default function ChartComponent() {
       {data ? (
         <ReactApexChart
           options={options}
-          series={data.data[0]}
+          series={data}
           type="candlestick"
           height={350}
         />

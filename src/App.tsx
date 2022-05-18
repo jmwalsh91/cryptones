@@ -25,8 +25,8 @@ export function App() {
               // Never retry on 404.
               if (error.status === 404) return
 
-              // Only retry up to 2 times.
-              if (retryCount >= 2) return
+              // Only retry up to _ times.
+              if (retryCount >= 1) return
 
               // Retry after 5 seconds.
               setTimeout(() => revalidate({ retryCount }), 5000)

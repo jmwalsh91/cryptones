@@ -13,6 +13,7 @@ export const cryptonesApi: AxiosInstance = axios.create({
 //intercepts response from API and returns correct shape, returns to axios getter for route.
 cryptonesApi.interceptors.response.use(
   (response: AxiosResponse<ohlcvResponse>): ohlcvResponse | Promise<any> => {
+    console.log('response is')
     //unpack and reassign
     const formattedOhlc: formattedOhlc = response.data.formattedOhlc
     const volumeArray: volumeArray = response.data.volumeArray
@@ -21,7 +22,8 @@ cryptonesApi.interceptors.response.use(
       formattedOhlc: formattedOhlc,
       volumeArray: volumeArray,
     }
-    //return to axios instance for route ohlcv
+    //return to cryptonesApi instance, which returns to SWR
+    console.log(res)
     return res
   },
   (error) => {

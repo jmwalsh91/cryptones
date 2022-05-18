@@ -2,14 +2,10 @@ import { Paper, Typography } from '@mui/material'
 import { Suspense } from 'react'
 import useSWR from 'swr'
 
-import { formattedOhlc } from '~/types/interfaces'
-
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
-type Props = {
-  ohlcvData?: formattedOhlc | [] | undefined
-}
+
 //TODO: Chart component
-function FullWidthCard({ ohlcvData }: Props) {
+function FullWidthCard() {
   const { data } = useSWR('/api/ohlcv')
 
   return (

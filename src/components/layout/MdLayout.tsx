@@ -1,16 +1,10 @@
 import { Container, Grid } from '@mui/material'
-import { ReactNode } from 'react'
 
 import FullWidthCard from '../surfaces/FullWidthCard'
 import MappingsCard from '../surfaces/MappingsCard'
 import ToneCard from '../surfaces/ToneCard'
 
-//TODO: properly type...
-type Props = {
-  children?: ReactNode
-}
-
-function MdLayout({ children }: Props) {
+function MdLayout() {
   return (
     <Container>
       <Grid container spacing={2}>

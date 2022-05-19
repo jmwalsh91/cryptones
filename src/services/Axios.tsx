@@ -1,6 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios'
-
-import { formattedOhlc, ohlcvResponse, volumeArray } from '~/types/interfaces'
+import axios, { AxiosInstance } from 'axios'
 
 const cryptonesURL = import.meta.env.VITE_CRYPTONESURL
 

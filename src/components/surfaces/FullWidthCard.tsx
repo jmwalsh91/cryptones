@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material'
-import { lazy, Suspense, useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import useSWR from 'swr'
 
 const ChartComponent = lazy(() => import('../visuals/ChartComponent'))

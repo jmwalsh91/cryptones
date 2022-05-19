@@ -1,16 +1,23 @@
 import { Paper } from '@mui/material'
-import { Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
+import useSWR from 'swr'
 
-import ChartComponent from '../visuals/ChartComponent'
-
+const ChartComponent = lazy(() => import('../visuals/ChartComponent'))
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
 
 //TODO: Chart component
 function FullWidthCard() {
+  const { data } = useSWR('api/ohlcv', {
+    suspense: true,
+  })
+
+  useEffect(() => {
+    console.log(data.formattedOhlc)
+  })
   return (
     <Paper sx={{ width: '100%', height: '100%', backgroundColor: 'black' }}>
       <Suspense fallback="fallback">
-        <ChartComponent />
+        <ChartComponent data={data.formattedOhlc} />
       </Suspense>
     </Paper>
   )

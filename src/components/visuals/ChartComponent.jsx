@@ -1,13 +1,4 @@
-import { FaceRetouchingOffRounded } from '@mui/icons-material'
-import { ApexOptions } from 'apexcharts'
-import { Suspense } from 'react'
 import ReactApexChart from 'react-apexcharts'
-import useSWR from 'swr'
-
-import { cryptonesApi } from '~/services/Axios'
-/* 
-const fetcherOhlcv = (url: string) =>
-  cryptonesApi.get(url).then((res) => res.data) */
 
 export default function ChartComponent({ data }) {
   let chartParams = {

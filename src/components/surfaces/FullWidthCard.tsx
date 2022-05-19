@@ -1,20 +1,24 @@
-import { Paper, Typography } from '@mui/material'
+import { Paper } from '@mui/material'
+import { Suspense, lazy, useEffect } from 'react'
+import useSWR from 'swr'
 
-import { formattedOhlc } from '~/types/interfaces'
+const ChartComponent = lazy(() => import('../visuals/ChartComponent'))
+//TODO: Clean up component props, adding SWR may have made them irrelevant.
 
-//TODO: Axios doesn't have good support for Suspense with data fetching, pivot to SWR.
-type Props = {
-  ohlcvData?: formattedOhlc | [] | undefined
-}
+//TODO: Chart component
+function FullWidthCard() {
+  const { data } = useSWR('api/ohlcv', {
+    suspense: true,
+  })
 
-function FullWidthCard({ ohlcvData }: Props) {
+  useEffect(() => {
+    console.log(data.formattedOhlc)
+  })
   return (
     <Paper sx={{ width: '100%', height: '100%', backgroundColor: 'black' }}>
-      {ohlcvData ? (
-        <Typography variant="h1">hi</Typography>
-      ) : (
-        <Typography variant="h1">no.</Typography>
-      )}
+      <Suspense fallback="fallback">
+        <ChartComponent data={data.formattedOhlc} />
+      </Suspense>
     </Paper>
   )
 }

@@ -2,7 +2,7 @@ import { Paper } from '@mui/material'
 import { Suspense, lazy, useEffect } from 'react'
 import useSWR from 'swr'
 
-const ChartComponent = lazy(() => import('../visuals/ChartComponent'))
+const ChartComponent = lazy(() => import('./ChartComponent'))
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
 
 //TODO: Chart component

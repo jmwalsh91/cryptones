@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import ToneCard from '../main-view/ToneCard'
+import ToneCard from '../main-view/tone/ToneCard'
 
 const meta: Meta = {
   title: 'Tone Card',

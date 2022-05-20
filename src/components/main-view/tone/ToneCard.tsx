@@ -1,6 +1,6 @@
 import { Paper, Stack, Typography } from '@mui/material'
 
-import PlaybackControls from '../toneControls/PlaybackControls'
+import PlaybackControls from './toneControls/PlaybackControls'
 
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import Display from '../surfaces/Display'
+import Display from '../Display/Display'
 
 const meta: Meta = {
   title: 'display',

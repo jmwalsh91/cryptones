@@ -2,8 +2,8 @@ import { StyledOptions } from '@emotion/styled'
 import { Grid, Paper, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 
-import InputSelect from '../formComponents/InputSelect'
-import SlideSelector from '../formComponents/SlideSelector'
+import InputSelect from '../../formComponents/InputSelect'
+import SlideSelector from '../../formComponents/SlideSelector'
 
 interface Props {
   children?: ReactNode

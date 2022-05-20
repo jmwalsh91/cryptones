@@ -1,7 +1,7 @@
 import { Container, Grid } from '@mui/material'
 import { ErrorBoundary } from 'react-error-boundary'
 
-import ErrorFallback from '../ErrorFallback'
+import ErrorFallback from '../err-and-feedback/ErrorFallback'
 import FullWidthCard from '../main-view/chart/FullWidthCard'
 import MappingsCard from '../main-view/map/MappingsCard'
 import ToneCard from '../main-view/tone/ToneCard'

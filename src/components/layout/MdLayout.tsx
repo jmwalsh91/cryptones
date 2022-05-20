@@ -2,9 +2,9 @@ import { Container, Grid } from '@mui/material'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import ErrorFallback from '../ErrorFallback'
-import FullWidthCard from '../surfaces/FullWidthCard'
-import MappingsCard from '../surfaces/MappingsCard'
-import ToneCard from '../surfaces/ToneCard'
+import FullWidthCard from '../main-view/FullWidthCard'
+import MappingsCard from '../main-view/MappingsCard'
+import ToneCard from '../main-view/ToneCard'
 
 function MdLayout() {
   return (

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import MappingsCard from '../surfaces/MappingsCard'
+import MappingsCard from '../main-view/map/MappingsCard'
 
 const meta: Meta = {
   title: 'Mappings Card',

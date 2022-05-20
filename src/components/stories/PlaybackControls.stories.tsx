@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import PlaybackControls from '../toneControls/PlaybackControls'
+import PlaybackControls from '../main-view/tone/toneControls/PlaybackControls'
 
 const meta: Meta = {
   title: 'Playback Controls',

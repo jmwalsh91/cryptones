@@ -1,9 +1,12 @@
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { ReactNode, SyntheticEvent } from 'react'
+import { mutate } from 'swr'
 
 import InputSelect from '../../formComponents/InputSelect'
 import SlideSelector from '../../formComponents/SlideSelector'
+
+import { cryptonesApi } from '~/services/Axios'
 
 interface Props {
   children?: ReactNode
@@ -11,6 +14,19 @@ interface Props {
 }
 
 function MappingsCard(props: Props) {
+  const obj = {
+    keyi: 'value',
+  }
+  const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
+    e.preventDefault()
+    const cachedMapping = await cryptonesApi
+      .post('/api/cache', cacheMapping)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => console.error(error))
+    return mutate('mapping', cachedMapping)
+  }
   return (
     <>
       <Paper
@@ -48,7 +64,9 @@ function MappingsCard(props: Props) {
             />
           </Grid>
           <Grid item container justifyContent={'end'}>
-            <Button variant="outlined">MAP</Button>
+            <Button variant="outlined" onClick={(e) => handleSubmit(e, obj)}>
+              MAP
+            </Button>
           </Grid>
         </Grid>
       </Paper>

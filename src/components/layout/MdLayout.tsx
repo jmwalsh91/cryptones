@@ -9,19 +9,19 @@ import ToneCard from '../main-view/tone/ToneCard'
 function MdLayout() {
   return (
     <Container>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
             <FullWidthCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={7}>
-            <MappingsCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={5}>
-            <ToneCard />
-          </Grid>
+          </ErrorBoundary>
         </Grid>
-      </ErrorBoundary>
+        <Grid item xs={12} sm={6} md={7}>
+          <MappingsCard />
+        </Grid>
+        <Grid item xs={12} sm={6} md={5}>
+          <ToneCard />
+        </Grid>
+      </Grid>
     </Container>
   )
 }

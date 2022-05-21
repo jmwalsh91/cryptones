@@ -7,8 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   background-color: black;
+  background: fixed;
 }
-
+html {
+  overflow-x: hidden;
+  background-color: black;
+  background: fixed;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

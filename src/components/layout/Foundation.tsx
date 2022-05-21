@@ -6,7 +6,16 @@ type Props = {
 
 function Foundation({ children }: Props): ReactElement {
   return (
-    <Container sx={{ width: '100vw', justifyContent: 'center' }}>
+    <Container
+      sx={{
+        width: '100vw',
+        height: '100vh',
+        msOverflowY: 'hidden',
+        justifyContent: 'center',
+        margin: 0,
+        bgcolor: 'black',
+      }}
+    >
       {children}
     </Container>
   )

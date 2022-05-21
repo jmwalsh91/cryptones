@@ -6,7 +6,7 @@ import { Fragment, ReactNode, SyntheticEvent } from 'react'
 import { mutate } from 'swr'
 
 import { cryptonesApi } from '../../../services/Axios'
-import { raised } from '../../../styles/raised'
+import { depressed, raised } from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SlideSelector from '../../formComponents/SlideSelector'
 
@@ -37,8 +37,8 @@ function MappingsCard(props: Props) {
         sx={{ width: '100%', height: '100%', justifyContent: 'center' }}
         {...props}
       >
-        <Typography variant="h3" marginY={'1rem'} textAlign={'center'}>
-          Mappings:
+        <Typography variant="h5" marginY={'1rem'} textAlign={'center'}>
+          map
         </Typography>
         <Grid
           container
@@ -56,6 +56,9 @@ function MappingsCard(props: Props) {
             sm={3}
             container
             sx={{ justifyContent: 'center', alignContent: 'baseline' }}
+            css={css`
+              ${raised}
+            `}
           >
             <Typography variant="h6">Sensitivity</Typography>
             <SlideSelector sliderSize="small" color="primary" />
@@ -68,7 +71,14 @@ function MappingsCard(props: Props) {
             />
           </Grid>
           <Grid item container justifyContent={'end'}>
-            <Button variant="outlined" onClick={(e) => handleSubmit(e, obj)}>
+            <Button
+              variant="outlined"
+              sx={{ mt: '2rem', mr: '1rem' }}
+              onClick={(e) => handleSubmit(e, obj)}
+              css={css`
+                ${raised}}
+              `}
+            >
               MAP
             </Button>
           </Grid>

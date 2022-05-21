@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import * as React from 'react'
 
-import { raised } from '../../styles/raised'
+import { raised } from '../../styles/neu'
 
 //Valid props for InputSelect
 export interface selectorProps {

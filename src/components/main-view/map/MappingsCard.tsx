@@ -13,23 +13,34 @@ interface Props {
 function MappingsCard(props: Props) {
   return (
     <>
-      <Paper sx={{ width: '100%', height: '100%' }} {...props}>
-        <Typography variant="h3" marginX={'1rem'}>
+      <Paper
+        sx={{ width: '100%', height: '100%', justifyContent: 'center' }}
+        {...props}
+      >
+        <Typography variant="h3" marginY={'1rem'} textAlign={'center'}>
           Mappings:
         </Typography>
-        <Grid container sx={{ justifyContent: 'space-between' }}>
-          <Grid item xs={4} container justifyContent={'center'}>
+        <Grid
+          container
+          sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
+        >
+          <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect
               label={'Src'}
               values={['difference']}
               helperText={'Select source'}
             />
           </Grid>
-          <Grid item sm={4} container sx={{ justifyContent: 'center' }}>
+          <Grid
+            item
+            sm={3}
+            container
+            sx={{ justifyContent: 'center', alignContent: 'baseline' }}
+          >
             <Typography variant="h6">Sensitivity</Typography>
             <SlideSelector sliderSize="small" color="primary" />
           </Grid>
-          <Grid item xs={4} container justifyContent={'center'}>
+          <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect
               label={'Target'}
               values={['Note value']}

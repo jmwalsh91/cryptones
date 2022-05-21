@@ -1,9 +1,10 @@
 import { Paper } from '@mui/material'
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
 
-import ErrorFallback from '~/components/err-and-feedback/ErrorFallback'
+import ErrorFallback from '../../err-and-feedback/ErrorFallback'
+
 const ChartComponent = lazy(() => import('./ChartComponent'))
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
 
@@ -13,16 +14,14 @@ function FullWidthCard() {
     suspense: true,
   })
 
-  useEffect(() => {
-    console.log(data.formattedOhlc)
-  })
   return (
-    <Paper sx={{ width: '100%', height: '100%', backgroundColor: 'black' }}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+    <Paper sx={{ width: '100%' }}>
+      <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
         <Suspense fallback="fallback">
           <ChartComponent data={data.formattedOhlc} />
         </Suspense>
       </ErrorBoundary>
+      <span>hello</span>
     </Paper>
   )
 }

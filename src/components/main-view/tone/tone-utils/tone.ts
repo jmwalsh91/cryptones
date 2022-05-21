@@ -8,7 +8,6 @@ const pluckedSynth: Tone.Synth<Tone.SynthOptions> =
 //apply mappings
 // apply src to init array, get note value
 // put switch on sensitivity
-// apply sensitivity to src 
+// apply sensitivity to src
 // translate to note values
 //submit
-

@@ -41,6 +41,7 @@ export default function InputSelect({
           value={val}
           label={label}
           onChange={handleChange}
+          size="small"
         >
           {dropdownValues}
         </Select>

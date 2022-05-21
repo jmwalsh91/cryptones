@@ -5,9 +5,7 @@ import MdLayout from '../layout/MdLayout'
 //TODO: layout breakpoints with absolute values
 function Display() {
   return (
-    <Paper
-      sx={{ width: '90vw', height: '80vh', bgcolor: 'beige', margin: '2rem' }}
-    >
+    <Paper sx={{ height: '80vh', bgcolor: 'beige', marginTop: '2rem' }}>
       <MdLayout />
     </Paper>
   )

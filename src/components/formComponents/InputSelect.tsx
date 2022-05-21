@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react'
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
@@ -5,6 +7,8 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import * as React from 'react'
+
+import { raised } from '../../styles/raised'
 
 //Valid props for InputSelect
 export interface selectorProps {
@@ -32,7 +36,11 @@ export default function InputSelect({
     )
   })
   return (
-    <div>
+    <div
+      css={css`
+        ${raised}
+      `}
+    >
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
         <Select

@@ -10,7 +10,7 @@ import { theme } from './styles/Theme'
 
 //TODO: For some reason, removing this seems to trigger re-fetches until alphavantage rejects incoming requests. Evaluate and implement "isPaused" in SWRConfig
 const isClient = typeof window !== 'undefined'
-
+//TODO: set up cache provider
 export function App(): ReactJSXElement {
   return (
     <ThemeProvider theme={theme}>
@@ -23,6 +23,7 @@ export function App(): ReactJSXElement {
                 ? cryptonesApi(endpoint).then((res) => res.data)
                 : new Promise(() => 0)
             },
+            provider: () => new Map(),
             suspense: true,
             revalidateOnMount: false,
             revalidateIfStale: false,

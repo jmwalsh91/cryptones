@@ -20,7 +20,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Bitter',
+    fontFamily: 'Montserrat Alternates',
     h1: {
       fontWeight: 800,
       lineHeight: 0.8,

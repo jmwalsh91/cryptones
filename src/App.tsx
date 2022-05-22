@@ -7,14 +7,15 @@ import Display from './components/Display/Display'
 import NavBar from './components/Nav/NavBar'
 import { cryptonesApi } from './services/Axios'
 import { theme } from './styles/Theme'
+import './index.css'
 
 //TODO: For some reason, removing this seems to trigger re-fetches until alphavantage rejects incoming requests. Evaluate and implement "isPaused" in SWRConfig
 const isClient = typeof window !== 'undefined'
-//TODO: set up cache provider
-export function App(): ReactJSXElement {
+
+export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline>
+    <CssBaseline>
+      <ThemeProvider theme={theme}>
         <NavBar />
         <SWRConfig
           value={{
@@ -23,7 +24,6 @@ export function App(): ReactJSXElement {
                 ? cryptonesApi(endpoint).then((res) => res.data)
                 : new Promise(() => 0)
             },
-            provider: () => new Map(),
             suspense: true,
             revalidateOnMount: false,
             revalidateIfStale: false,
@@ -40,9 +40,18 @@ export function App(): ReactJSXElement {
             },
           }}
         >
+<<<<<<< HEAD
           <Display />
         </SWRConfig>
       </CssBaseline>
     </ThemeProvider>
+=======
+          <Foundation>
+            <Display />
+          </Foundation>
+        </SWRConfig>
+      </ThemeProvider>
+    </CssBaseline>
+>>>>>>> parent of f597f2c (inline styles on body in index html)
   )
 }

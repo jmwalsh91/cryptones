@@ -41,10 +41,10 @@ export default function InputSelect({
         ${raised}
       `}
     >
-      <FormControl sx={{ m: 1, minWidth: 100 }}>
-        <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
+      <FormControl sx={{ m: 1, p: 1, minWidth: 100 }}>
+        <InputLabel id={label}>{label}</InputLabel>
         <Select
-          labelId="demo-simple-select-helper-label"
+          labelId={`{$label}Select`}
           id="demo-simple-select-helper"
           value={val}
           label={label}

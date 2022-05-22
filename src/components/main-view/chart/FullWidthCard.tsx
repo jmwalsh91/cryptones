@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react'
-
-import { Paper } from '@mui/material'
+import { css } from '@emotion/react'
+import { Grid, Paper } from '@mui/material'
 import { Suspense, lazy } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
-import * as neu from '../../../styles/neu'
 
+import * as neu from '../../../styles/neu'
 import ErrorFallback from '../../err-and-feedback/ErrorFallback'
+import TokenCard from './TokenCard'
 
 const ChartComponent = lazy(() => import('./ChartComponent'))
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
@@ -25,11 +25,19 @@ function FullWidthCard() {
         ${neu.depressed}
       `}
     >
-      <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
-        <Suspense fallback="fallback">
-          <ChartComponent data={data.formattedOhlc} />
-        </Suspense>
-      </ErrorBoundary>
+      <Grid container justifyContent={'space-between'}>
+        <Grid item md={3} sm={12}>
+          <TokenCard />
+        </Grid>
+
+        <Grid item sm={12} md={8}>
+          <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
+            <Suspense fallback="fallback">
+              <ChartComponent data={data.formattedOhlc} />
+            </Suspense>
+          </ErrorBoundary>
+        </Grid>
+      </Grid>
     </Paper>
   )
 }

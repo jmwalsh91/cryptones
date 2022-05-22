@@ -10,5 +10,5 @@ const meta: Meta = {
 export default meta
 
 export const Default = () => (
-  <PlaybackControls iconSize="medium" color="secondary" />
+  <PlaybackControls iconSize="large" color="secondary" />
 )

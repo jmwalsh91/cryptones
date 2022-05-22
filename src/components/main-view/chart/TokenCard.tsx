@@ -14,8 +14,13 @@ function TokenCard() {
         ${neu.depressed}
       `}
       sx={{
-        width: '100%',
-        height: '100%',
+        xs: {
+          height: '3rem',
+        },
+        lg: {
+          width: '100%',
+          height: '100%',
+        },
         justifyContent: 'center',
         px: '1rem',
         py: '.5rem',
@@ -28,7 +33,11 @@ function TokenCard() {
         py: '.5rem',
       }} */
     >
-      <Stack justifyContent="space-around" p={7}>
+      <Stack
+        justifyContent="space-around"
+        p={7}
+        sx={{ flexDirection: { xs: 'row', md: 'column' } }}
+      >
         <TokenLogo logo={SolanaLogo} />
         <InputSelect
           label="token"

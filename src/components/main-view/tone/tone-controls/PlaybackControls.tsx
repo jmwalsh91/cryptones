@@ -1,6 +1,9 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { MusicNote, Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper } from '@mui/material'
-import React from 'react'
+
+import * as neu from '../../../../styles/neu'
 
 interface playbackProps {
   color: 'primary' | 'secondary'
@@ -9,19 +12,24 @@ interface playbackProps {
 
 function PlaybackControls({ color, iconSize }: playbackProps) {
   return (
-    <Paper variant="outlined">
+    <Paper
+      variant="outlined"
+      css={css`
+        ${neu.depressed}
+      `}
+    >
       <ButtonGroup>
         <IconButton aria-label="MusicNote" color={color} size={iconSize}>
-          <MusicNote />
+          <MusicNote fontSize="large" />
         </IconButton>
         <IconButton aria-label="PlayArrow" color={color} size={iconSize}>
-          <PlayArrow />
+          <PlayArrow fontSize="large" />
         </IconButton>
         <IconButton aria-label="Pause" color={color} size={iconSize}>
-          <Pause />
+          <Pause fontSize="large" />
         </IconButton>
         <IconButton aria-label="Stop" color={color} size={iconSize}>
-          <Stop />
+          <Stop fontSize="large" />
         </IconButton>
       </ButtonGroup>
     </Paper>

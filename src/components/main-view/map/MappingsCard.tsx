@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react'
+import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
 import { ReactNode, SyntheticEvent } from 'react'
@@ -47,7 +47,7 @@ function MappingsCard(props: Props) {
         {...props}
       >
         <Typography variant="h4" marginY={'.5rem'} textAlign={'left'}>
-        MAP:
+          MAP:
         </Typography>
         <Grid
           container

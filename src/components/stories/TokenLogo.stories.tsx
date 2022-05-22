@@ -6,10 +6,10 @@ const meta: Meta = {
   title: 'Token Logo',
   component: TokenLogo,
 }
-
+/* 
 const mockProps = {
   logo: SolanaLogo,
-}
+} */
 
 export default meta
 

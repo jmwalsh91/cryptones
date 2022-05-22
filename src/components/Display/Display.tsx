@@ -1,5 +1,3 @@
-import { Paper } from '@mui/material'
-
 import MdLayout from '../layout/MdLayout'
 
 //TODO: layout breakpoints with absolute values

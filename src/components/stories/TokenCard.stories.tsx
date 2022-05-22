@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react'
 
-import SolanaLogo from '../../public/solana-sol-logo.svg'
+/* import SolanaLogo from '../../public/solana-sol-logo.svg' */
 import TokenCard from '../main-view/chart/TokenCard'
 const meta: Meta = {
   title: 'Token Card',

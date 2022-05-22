@@ -1,9 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react'
 import { Box, Slider } from '@mui/material'
-import React from 'react'
 
-import { raised } from '../../styles/neu'
 //Valid props for SlideSelector
 interface sliderProps {
   sliderSize: 'small' | 'medium'

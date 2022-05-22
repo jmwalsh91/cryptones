@@ -8,7 +8,7 @@ import ToneCard from '../main-view/tone/ToneCard'
 
 function MdLayout() {
   return (
-    <Container>
+    <Container sx={{ my: '1rem' }}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

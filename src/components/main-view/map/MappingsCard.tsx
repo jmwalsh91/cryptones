@@ -2,11 +2,11 @@
 import { jsx, css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
-import { Fragment, ReactNode, SyntheticEvent } from 'react'
+import { ReactNode, SyntheticEvent } from 'react'
 import { mutate } from 'swr'
 
 import { cryptonesApi } from '../../../services/Axios'
-import { depressed, raised } from '../../../styles/neu'
+import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SlideSelector from '../../formComponents/SlideSelector'
 
@@ -17,7 +17,7 @@ interface Props {
 
 function MappingsCard(props: Props) {
   //TODO: DATA FROM INPUT FIELDS
-  //TODO: RAISED CSS
+
   const obj = {
     keyi: 'value',
   }
@@ -32,13 +32,22 @@ function MappingsCard(props: Props) {
     return mutate('mapping', cachedMapping)
   }
   return (
-    <Fragment>
+    <>
       <Paper
-        sx={{ width: '100%', height: '100%', justifyContent: 'center' }}
+        css={css`
+          ${neu.depressed}
+        `}
+        sx={{
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          px: '1rem',
+          py: '.5rem',
+        }}
         {...props}
       >
-        <Typography variant="h5" marginY={'1rem'} textAlign={'center'}>
-          map
+        <Typography variant="h4" marginY={'.5rem'} textAlign={'left'}>
+        MAP:
         </Typography>
         <Grid
           container
@@ -57,7 +66,7 @@ function MappingsCard(props: Props) {
             container
             sx={{ justifyContent: 'center', alignContent: 'baseline' }}
             css={css`
-              ${raised}
+              ${neu.raised}
             `}
           >
             <Typography variant="h6">Sensitivity</Typography>
@@ -72,19 +81,20 @@ function MappingsCard(props: Props) {
           </Grid>
           <Grid item container justifyContent={'end'}>
             <Button
-              variant="outlined"
-              sx={{ mt: '2rem', mr: '1rem' }}
+              variant="contained"
+              size="large"
+              sx={{ m: '2rem', mr: '1rem' }}
               onClick={(e) => handleSubmit(e, obj)}
               css={css`
-                ${raised}}
+                ${neu.raised}}
               `}
             >
-              MAP
+              Submit
             </Button>
           </Grid>
         </Grid>
       </Paper>
-    </Fragment>
+    </>
   )
 }
 

@@ -20,21 +20,14 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Montserrat Alternates',
-    h1: {
-      fontWeight: 800,
-      lineHeight: 0.8,
-      fontSize: '5rem',
-    },
-    h2: {
-      fontSize: '3.6rem',
-    },
-    fontSize: 20,
-    h3: {
-      fontSize: '2.9rem',
-    },
-    body1: {
-      fontSize: '1.1rem',
+    fontFamily: "'Montserrat', sans-serif;",
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        fontFamily: "'Montserrat', sans-serif;",
+      },
     },
   },
+
 })

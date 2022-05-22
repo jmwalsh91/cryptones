@@ -12,7 +12,7 @@ function TokenLogo({ logo }: Props) {
         backgroundRepeat: 'no-repeat',
         backgroundOrigin: 'content-box',
         paddingTop: '1.2rem',
-        margin: '1rem',
+        marginBottom: '1rem',
       }}
       css={css`
         ${neu.token};

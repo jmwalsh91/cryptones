@@ -30,7 +30,6 @@ function FullWidthCard() {
           <ChartComponent data={data.formattedOhlc} />
         </Suspense>
       </ErrorBoundary>
-      <span>hello</span>
     </Paper>
   )
 }

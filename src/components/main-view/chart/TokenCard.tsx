@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { Paper } from '@mui/material'
+import { Paper, Stack } from '@mui/material'
 
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
 import * as neu from '../../../styles/neu'
@@ -20,12 +20,14 @@ function TokenCard() {
         py: '.5rem',
       }}
     >
-      <TokenLogo logo={SolanaLogo} />
-      <InputSelect
-        label="token"
-        values={tokenChoices}
-        helperText="choose token"
-      />
+      <Stack justifyContent="space-around" p={8}>
+        <TokenLogo logo={SolanaLogo} />
+        <InputSelect
+          label="token"
+          values={tokenChoices}
+          helperText="choose token"
+        />
+      </Stack>
     </Paper>
   )
 }

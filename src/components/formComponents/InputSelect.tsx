@@ -41,7 +41,7 @@ export default function InputSelect({
         ${raised}
       `}
     >
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ m: 1, minWidth: 100 }}>
         <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"

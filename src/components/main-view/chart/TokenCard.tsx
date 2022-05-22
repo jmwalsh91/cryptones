@@ -1,9 +1,9 @@
 import { css } from '@emotion/react'
 import { Paper } from '@mui/material'
 
-import * as neu from '../../../styles/neu'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
-import InputSelect from '~/components/formComponents/InputSelect'
+import * as neu from '../../../styles/neu'
+import InputSelect from '../../formComponents/InputSelect'
 import TokenLogo from './TokenLogo'
 const tokenChoices = ['BTC', 'SOLANA', 'ETHEREUM', 'POLKADOT', 'ALGORAND']
 function TokenCard() {

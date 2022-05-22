@@ -8,7 +8,7 @@ function TokenLogo({ logo }: Props) {
   return (
     <img
       css={css`
-        ${neu.raised}
+        ${neu.token}
       `}
       src={logo}
       width="100"

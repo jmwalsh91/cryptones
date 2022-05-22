@@ -6,13 +6,20 @@ type Props = { logo: string }
 
 function TokenLogo({ logo }: Props) {
   return (
-    <img
+    <div
+      style={{
+        backgroundImage: `url(${logo})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundOrigin: 'content-box',
+        paddingTop: '1.2rem',
+        margin: '1rem',
+      }}
       css={css`
-        ${neu.token}
+        ${neu.token};
       `}
-      src={logo}
-      width="100"
-    />
+    >
+      {/*  <img src={logo} /> */}
+    </div>
   )
 }
 

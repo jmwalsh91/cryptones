@@ -14,8 +14,8 @@ const isClient = typeof window !== 'undefined'
 
 export function App() {
   return (
-    <CssBaseline>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
         <NavBar />
         <SWRConfig
           value={{
@@ -40,18 +40,9 @@ export function App() {
             },
           }}
         >
-<<<<<<< HEAD
           <Display />
         </SWRConfig>
       </CssBaseline>
     </ThemeProvider>
-=======
-          <Foundation>
-            <Display />
-          </Foundation>
-        </SWRConfig>
-      </ThemeProvider>
-    </CssBaseline>
->>>>>>> parent of f597f2c (inline styles on body in index html)
   )
 }

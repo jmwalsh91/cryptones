@@ -9,4 +9,4 @@ const meta: Meta = {
 
 export default meta
 
-export const Default = () => <MappingsCard>ß </MappingsCard>
+export const Default = () => <MappingsCard> </MappingsCard>

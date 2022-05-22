@@ -4,16 +4,17 @@ import { SWRConfig } from 'swr'
 
 import Display from './components/Display/Display'
 import NavBar from './components/Nav/NavBar'
-import Foundation from './components/layout/Foundation'
 import { cryptonesApi } from './services/Axios'
 import { theme } from './styles/Theme'
+import './index.css'
+
 //TODO: For some reason, removing this seems to trigger re-fetches until alphavantage rejects incoming requests. Evaluate and implement "isPaused" in SWRConfig
 const isClient = typeof window !== 'undefined'
 
 export function App() {
   return (
-    <CssBaseline>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
         <NavBar />
         <SWRConfig
           value={{
@@ -38,11 +39,9 @@ export function App() {
             },
           }}
         >
-          <Foundation>
-            <Display />
-          </Foundation>
+          <Display />
         </SWRConfig>
-      </ThemeProvider>
-    </CssBaseline>
+      </CssBaseline>
+    </ThemeProvider>
   )
 }

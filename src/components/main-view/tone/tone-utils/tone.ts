@@ -7,6 +7,7 @@ export const newSynth = () => {
   const pluckedSynth: Tone.Synth<Tone.SynthOptions> = new Tone.Synth()
     .connect(filter)
     .toDestination()
+  return pluckedSynth
 }
 //apply mappings
 // apply src to init array, get note value

@@ -27,7 +27,8 @@ function ToneCard({ data }: Props) {
       synth.triggerAttackRelease(note, '16n', time)
       console.log(note)
     }, notes).start(0)
-    return Tone.Transport.start(now)
+    if (ArraySeq) return Tone.Transport.start(now)
+    if (!ArraySeq) return Error
   }
   return (
     <Paper

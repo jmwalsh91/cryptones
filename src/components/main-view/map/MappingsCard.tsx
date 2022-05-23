@@ -2,10 +2,10 @@
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
-import { AxiosResponse } from 'axios'
+/* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent } from 'react'
 import { mutate } from 'swr'
-import * as Tone from 'tone'
+/* import * as Tone from 'tone' */
 
 import { cryptonesApi } from '../../../services/Axios'
 import * as neu from '../../../styles/neu'

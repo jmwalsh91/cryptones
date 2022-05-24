@@ -56,7 +56,7 @@ export default function Modal({ isOpen }: Props) {
               </DialogContentText>
             </DialogContent>
 
-            <CircleButtonBase>Continue</CircleButtonBase>
+            <CircleButtonBase handler={handleClose}>Continue</CircleButtonBase>
           </Stack>
         </DialogActions>
       </Dialog>

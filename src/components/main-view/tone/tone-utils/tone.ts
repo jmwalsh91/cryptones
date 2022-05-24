@@ -27,5 +27,6 @@ export function differenceArray(data: Array<any>) {
       return difArray.push(Math.abs(Math.trunc(dif)))
     }
   }, 0)
+  console.log(arr)
   return difArray
 }

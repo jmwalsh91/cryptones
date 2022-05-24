@@ -18,7 +18,7 @@ export const newSynth = () => {
 //TODO: add typings, Partial<something<something,something>>
 export function differenceArray(data: Array<any>) {
   console.log('props data is ' + data)
-  const difArray = []
+  const difArray: any = []
   const arr = data.reduce((_previousValue, _currentValue, _ind) => {
     if (data[_ind][1][3] === data[0][1][3]) {
       return console.log('first pos')
@@ -27,5 +27,5 @@ export function differenceArray(data: Array<any>) {
       return difArray.push(Math.abs(Math.trunc(dif)))
     }
   }, 0)
-  return arr
+  return difArray
 }

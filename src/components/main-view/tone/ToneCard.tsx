@@ -22,13 +22,12 @@ function ToneCard({ data }: Props) {
   const playSynth = async () => {
     await Tone.start()
     const diff = differenceArray(mockOhlc)
-    setNotes(diff)
-    const ArraySeq = new Tone.Sequence((time, note) => {
-      synth.triggerAttackRelease(note, '16n', time)
+    await setNotes(diff)
+    await new Tone.Sequence((time, note) => {
+      synth.triggerAttackRelease(note, '8n', time)
       console.log(note)
     }, notes).start(0)
-    if (ArraySeq) return Tone.Transport.start(now)
-    if (!ArraySeq) return Error
+    Tone.Transport.start(now)
   }
   return (
     <Paper

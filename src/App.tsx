@@ -7,6 +7,7 @@ import NavBar from './components/Nav/NavBar'
 import { cryptonesApi } from './services/Axios'
 import { theme } from './styles/Theme'
 import './index.css'
+import Modal from './components/layout/Modal'
 
 //TODO: For some reason, removing this seems to trigger re-fetches until alphavantage rejects incoming requests. Evaluate and implement "isPaused" in SWRConfig
 const isClient = typeof window !== 'undefined'
@@ -39,6 +40,7 @@ export function App() {
             },
           }}
         >
+          <Modal isOpen={true} />
           <Display />
         </SWRConfig>
       </CssBaseline>

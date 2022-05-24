@@ -1,11 +1,20 @@
-import { DialogContent, DialogContentText, Typography } from '@mui/material'
+import {
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  Typography,
+} from '@mui/material'
 import Button from '@mui/material/Button'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
 
-export default function Modal() {
-  const [open, setOpen] = useState(true)
+type Props = {
+  isOpen: boolean
+}
+export default function Modal({ isOpen }: Props) {
+  const [open, setOpen] = useState(isOpen)
 
   const handleOpen = () => {
     setOpen(true)
@@ -24,17 +33,22 @@ export default function Modal() {
         onClose={handleClose}
         sx={{
           bgcolor: 'black',
-          opacity: '.6',
-          backgroundBlendMode: 'hard-light',
+          opacity: '.90',
+          backgroundBlendMode: 'luminosity',
         }}
       >
         <DialogActions>
-          <DialogContent>
-            <DialogContentText>
-              <Typography variant="h1">Text</Typography>
-            </DialogContentText>
-          </DialogContent>
-          <Button onClick={handleClose}>Close</Button>
+          <Stack>
+            <DialogTitle variant="h1">Welcome to crypTones</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                <Typography variant="p1" color={'primary'}>
+                  Text
+                </Typography>
+              </DialogContentText>
+            </DialogContent>
+            <Button onClick={handleClose}>Close</Button>
+          </Stack>
         </DialogActions>
       </Dialog>
     </>

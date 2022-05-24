@@ -9,4 +9,4 @@ const meta: Meta = {
 
 export default meta
 
-export const Default = () => <Modal />
+export const Default = () => <Modal isOpen={true} />

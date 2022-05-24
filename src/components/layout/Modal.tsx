@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Switch from '@mui/material/Switch'
 import { useState } from 'react'
 
-export default function MaxWidthDialog() {
+export default function Modal() {
   const [open, setOpen] = useState(false)
   const [fullWidth, setFullWidth] = useState(true)
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('sm')
@@ -28,8 +28,8 @@ export default function MaxWidthDialog() {
   return (
     <>
       <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
+        fullWidth
+        maxWidth={xl}
         open={open}
         onClose={handleClose}
       >

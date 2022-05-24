@@ -1,15 +1,6 @@
-import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import Switch from '@mui/material/Switch'
 import { useState } from 'react'
 
 export default function Modal() {
@@ -27,12 +18,7 @@ export default function Modal() {
 
   return (
     <>
-      <Dialog
-        fullWidth
-        maxWidth={xl}
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog fullWidth maxWidth="lg" open={open} onClose={handleClose}>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>

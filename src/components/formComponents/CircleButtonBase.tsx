@@ -1,8 +1,19 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { Button, ButtonBase } from '@mui/material'
-import React from 'react'
+
+import * as neu from '../../styles/neu'
 
 function CircleButtonBase() {
-  return <ButtonBase>Click</ButtonBase>
+  return (
+    <Button
+      css={css`
+        ${neu.circleAction}
+      `}
+    >
+      Click
+    </Button>
+  )
 }
 
 export default CircleButtonBase

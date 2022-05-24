@@ -13,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
 
 import * as neu from '../../styles/neu'
+import CircleButtonBase from '../formComponents/CircleButtonBase'
 
 type Props = {
   isOpen: boolean
@@ -54,16 +55,8 @@ export default function Modal({ isOpen }: Props) {
                 tenetur porro perferendis sint.
               </DialogContentText>
             </DialogContent>
-            <Button
-              css={css`
-                ${neu.raised}
-              `}
-              sx={{ width: '5rem', alignSelf: 'center' }}
-              onClick={handleClose}
-              size="large"
-            >
-              Close
-            </Button>
+
+            <CircleButtonBase>Continue</CircleButtonBase>
           </Stack>
         </DialogActions>
       </Dialog>

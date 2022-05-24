@@ -19,7 +19,7 @@ export interface selectorProps {
 }
 //InputSelect is used for both SOURCE and TARGET : Determines what source is routed to what target
 //EXAMPLE: 'difference' routed to 'notevalue' translates the difference between sequential values (across time) to note values that can be 'played' by tone.JS
-export default function InputSelect({
+export default function TokenSelect({
   label,
   values,
   helperText,
@@ -29,7 +29,7 @@ export default function InputSelect({
 
   const handleChange = (event: SelectChangeEvent) => {
     setVal(event.target.value)
-    return handler(val)
+    return handler(event.target.value)
   }
   const dropdownValues = values.map((option) => {
     return (

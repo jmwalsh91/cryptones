@@ -8,7 +8,8 @@ function CircleButtonBase() {
   return (
     <Button
       css={css`
-        ${neu.circleAction}
+        ${neu.circleAction};
+        ${neu.actionHover};
       `}
     >
       Click

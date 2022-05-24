@@ -34,11 +34,19 @@ export const circleAction = css`
   background: #d9d9d9;
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
 `
+
+export const actionHover = css`
+  &:hover {
+    border-radius: 100px;
+    background: #d9d9d9;
+    box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
+  }
+`
 export const actionHoverPrimary = css`
   &:hover {
     border-radius: 100px;
     background: #d9d9d9;
     box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8,
-      inset 6px 6px 15px 3px #65abba;
+      inset -3px 3px 15px 3px #65abba;
   }
 `

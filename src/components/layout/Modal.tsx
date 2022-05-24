@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import {
   DialogContent,
   DialogContentText,
@@ -9,6 +11,8 @@ import Button from '@mui/material/Button'
 import Dialog, { DialogProps } from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
+
+import * as neu from '../../styles/neu'
 
 type Props = {
   isOpen: boolean
@@ -38,16 +42,28 @@ export default function Modal({ isOpen }: Props) {
         }}
       >
         <DialogActions>
-          <Stack>
-            <DialogTitle variant="h1">Welcome to crypTones</DialogTitle>
+          <Stack justifyContent={'center'}>
+            <DialogTitle variant="h1" textAlign={'center'}>
+              Welcome to crypTones
+            </DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                <Typography variant="p1" color={'primary'}>
-                  Text
-                </Typography>
+              <DialogContentText variant="body1" textAlign={'center'}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto
+                veritatis ullam adipisci itaque quae, molestiae modi, unde
+                sapiente laudantium cum iste, esse sequi quisquam dolores nulla
+                tenetur porro perferendis sint.
               </DialogContentText>
             </DialogContent>
-            <Button onClick={handleClose}>Close</Button>
+            <Button
+              css={css`
+                ${neu.raised}
+              `}
+              sx={{ width: '5rem', alignSelf: 'center' }}
+              onClick={handleClose}
+              size="large"
+            >
+              Close
+            </Button>
           </Stack>
         </DialogActions>
       </Dialog>

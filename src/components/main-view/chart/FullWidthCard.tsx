@@ -33,7 +33,11 @@ function FullWidthCard() {
         <Grid item sm={12} md={8}>
           <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
             <Suspense fallback="fallback">
-              <ChartComponent data={data.formattedOhlc} />
+              <ChartComponent
+                data={data.formattedOhlc}
+                name={data.tokenName}
+                interval={data.interval}
+              />
             </Suspense>
           </ErrorBoundary>
         </Grid>

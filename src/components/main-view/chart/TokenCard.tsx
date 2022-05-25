@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack } from '@mui/material'
-import { useState } from 'react'
+import { Button, Paper, Stack } from '@mui/material'
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
 
 import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
@@ -29,19 +29,35 @@ const tokens: Array<tokenObject> = [
   { name: 'DOT', logo: PolkadotLogo },
   { name: 'ALGO', logo: AlgorandLogo },
 ]
-function TokenCard() {
-  const [selectedToken, setSelectedToken] = useState<tokenObject>()
+interface Props {
+  setEndpoint: Dispatch<SetStateAction<string>>
+}
+function TokenCard({ setEndpoint }: Props) {
+  const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
-    const token: tokenObject | undefined = tokens.find(
+    const tokenItem: tokenObject | undefined = tokens.find(
       (tokens) => tokens.name === val
     )
-    setSelectedToken(token)
-    return token
-    /*     if (!token) console.error(Error)
-     */
+    if (tokenItem) {
+      const token: tokenObject = tokenItem
+      setSelectedToken(token)
+      return token
+    }
+    if (!tokenItem) {
+      return undefined
+    }
   }
 
+  const updateData = (e: SyntheticEvent) => {
+    e.preventDefault()
+    if (selectedToken.name) {
+      return setEndpoint(selectedToken.name)
+    }
+    if (!selectedToken.name) {
+      return Error
+    }
+  }
   return (
     <Paper
       css={css`
@@ -79,6 +95,11 @@ function TokenCard() {
           helperText="choose token"
           handler={handleTokenSelect}
         />
+        <Button
+          onClick={(e: SyntheticEvent) => {
+            updateData(e)
+          }}
+        ></Button>
       </Stack>
     </Paper>
   )

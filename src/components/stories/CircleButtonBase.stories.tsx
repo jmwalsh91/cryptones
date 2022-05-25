@@ -9,4 +9,9 @@ const meta: Meta = {
 
 export default meta
 
-export const Default = () => <CircleButtonBase />
+const demoHandler = () => {
+  console.log('demo')
+}
+export const Default = () => (
+  <CircleButtonBase handler={demoHandler}> Lorem </CircleButtonBase>
+)

@@ -37,8 +37,9 @@ function TokenCard() {
       (tokens) => tokens.name === val
     )
     setSelectedToken(token)
-    if (token) return token
-    if (!token) console.error(Error)
+    return token
+    /*     if (!token) console.error(Error)
+     */
   }
 
   return (
@@ -71,7 +72,7 @@ function TokenCard() {
         p={7}
         sx={{ flexDirection: { xs: 'row', md: 'column' } }}
       >
-        <TokenLogo token={selectedToken} />
+        <TokenLogo tokenLogo={selectedToken?.logo} />
         <TokenSelect
           label="token"
           values={tokenChoices}

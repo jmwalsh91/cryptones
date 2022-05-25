@@ -5,11 +5,14 @@ import * as neu from '../../../styles/neu'
 
 import * as interfaces from '~/types/interfaces'
 
-function TokenLogo(token: interfaces.tokenObject) {
+type Props = {
+  tokenLogo: interfaces.tokenObject['logo'] | undefined
+}
+function TokenLogo({ tokenLogo }: Props) {
   return (
     <div
       style={{
-        backgroundImage: `url(${token.logo})`,
+        backgroundImage: `url(${tokenLogo})`,
         backgroundRepeat: 'no-repeat',
         backgroundOrigin: 'content-box',
         paddingTop: '1.2rem',

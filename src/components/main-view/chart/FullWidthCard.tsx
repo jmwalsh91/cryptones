@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Grid, Paper } from '@mui/material'
-import { Suspense, lazy, useState } from 'react'
+import { Suspense, lazy, useState, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
 
@@ -15,6 +15,7 @@ const ChartComponent = lazy(() => import('./ChartComponent'))
 //TODO: Chart component
 function FullWidthCard() {
   const [endpoint, setEndpoint] = useState<string>('api/ohlcv')
+  const [isUpdating, startUpdate] = useTransition()
   const { data } = useSWR(endpoint, {
     suspense: true,
   })
@@ -30,7 +31,7 @@ function FullWidthCard() {
         <Suspense fallback="fallback2">
           <Grid container justifyContent={'space-between'}>
             <Grid item md={3} sm={12}>
-              <TokenCard setEndpoint={setEndpoint} />
+              <TokenCard setEndpoint={setEndpoint} startUpdate={startUpdate} />
             </Grid>
 
             <Grid item sm={12} md={8}>

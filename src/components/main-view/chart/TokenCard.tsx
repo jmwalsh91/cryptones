@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Button, Paper, Stack } from '@mui/material'
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
+import { Dispatch, SetStateAction, SyntheticEvent, TransitionStartFunction, useState } from 'react'
 
 import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
@@ -31,8 +31,9 @@ const tokens: Array<tokenObject> = [
 ]
 interface Props {
   setEndpoint: Dispatch<SetStateAction<string>>
+  startUpdate: TransitionStartFunction
 }
-function TokenCard({ setEndpoint }: Props) {
+function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {

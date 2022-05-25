@@ -50,3 +50,7 @@ export const actionHoverPrimary = css`
       inset -3px 3px 15px 3px #65abba;
   }
 `
+
+export const pendingSection = css`
+  opacity: 0.6;
+`

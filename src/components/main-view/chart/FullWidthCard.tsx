@@ -29,7 +29,17 @@ function FullWidthCard() {
     >
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback="fallback2">
-          <Grid container justifyContent={'space-between'}>
+          <Grid
+            container
+            justifyContent={'space-between'}
+            css={
+              isUpdating
+                ? css`
+                    ${neu.pendingSection}
+                  `
+                : null
+            }
+          >
             <Grid item md={3} sm={12}>
               <TokenCard setEndpoint={setEndpoint} startUpdate={startUpdate} />
             </Grid>

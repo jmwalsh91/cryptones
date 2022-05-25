@@ -26,23 +26,27 @@ function FullWidthCard() {
         ${neu.depressed}
       `}
     >
-      <Grid container justifyContent={'space-between'}>
-        <Grid item md={3} sm={12}>
-          <TokenCard setEndpoint={setEndpoint} />
-        </Grid>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Suspense fallback="fallback2">
+          <Grid container justifyContent={'space-between'}>
+            <Grid item md={3} sm={12}>
+              <TokenCard setEndpoint={setEndpoint} />
+            </Grid>
 
-        <Grid item sm={12} md={8}>
-          <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
-            <Suspense fallback="fallback">
-              <ChartComponent
-                data={data.formattedOhlc}
-                name={data.tokenName}
-                interval={data.interval}
-              />
-            </Suspense>
-          </ErrorBoundary>
-        </Grid>
-      </Grid>
+            <Grid item sm={12} md={8}>
+              <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
+                <Suspense fallback="fallback">
+                  <ChartComponent
+                    data={data.formattedOhlc}
+                    name={data.tokenName}
+                    interval={data.interval}
+                  />
+                </Suspense>
+              </ErrorBoundary>
+            </Grid>
+          </Grid>
+        </Suspense>
+      </ErrorBoundary>
     </Paper>
   )
 }

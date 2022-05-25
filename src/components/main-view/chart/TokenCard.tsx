@@ -52,7 +52,8 @@ function TokenCard({ setEndpoint }: Props) {
   const updateData = (e: SyntheticEvent) => {
     e.preventDefault()
     if (selectedToken.name) {
-      return setEndpoint(selectedToken.name)
+      const params = `/api/ohlcv/${selectedToken.name}/15min`
+      return setEndpoint(params)
     }
     if (!selectedToken.name) {
       return Error
@@ -99,7 +100,9 @@ function TokenCard({ setEndpoint }: Props) {
           onClick={(e: SyntheticEvent) => {
             updateData(e)
           }}
-        ></Button>
+        >
+          Submit
+        </Button>
       </Stack>
     </Paper>
   )

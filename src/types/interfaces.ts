@@ -5,3 +5,8 @@ export interface ohlcvResponse {
   formattedOhlc: formattedOhlc
   volumeArray: volumeArray
 }
+
+export interface tokenObject {
+  name: string
+  logo: string
+}

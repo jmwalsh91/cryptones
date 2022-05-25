@@ -1,16 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack } from '@mui/material'
-import {
-  createRef,
-  ExoticComponent,
-  lazy,
-  MutableRefObject,
-  RefObject,
-  SetStateAction,
-  useRef,
-  useState,
-} from 'react'
+import { useState } from 'react'
 
 import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
@@ -20,6 +11,8 @@ import SolanaLogo from '../../../public/solana-sol-logo.svg'
 import * as neu from '../../../styles/neu'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
+
+import { tokenObject } from '~/types/interfaces'
 const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
 
 /*TODO: LAZY LOAD, FIGURE OUT TYPES 
@@ -29,23 +22,23 @@ const BitcoinLogo: Promise<typeof SVGElement> = lazy(
       return BitcoinLogo
     })
 ) */
-const logos = [
-  { name: 'SOL', component: SolanaLogo },
-  { name: 'BTC', component: BitcoinLogo },
-  { name: 'ETH', component: EthereumLogo },
-  { name: 'DOT', component: PolkadotLogo },
-  { name: 'ALGO', component: AlgorandLogo },
+const tokens: Array<tokenObject> = [
+  { name: 'SOL', logo: SolanaLogo },
+  { name: 'BTC', logo: BitcoinLogo },
+  { name: 'ETH', logo: EthereumLogo },
+  { name: 'DOT', logo: PolkadotLogo },
+  { name: 'ALGO', logo: AlgorandLogo },
 ]
 function TokenCard() {
-  const logoRef: RefObject<unknown> = useRef()
-  const [selectedToken, setSelectedToken] = useState()
+  const [selectedToken, setSelectedToken] = useState<tokenObject>()
 
-  const handleTokenSelect = (val): SetStateAction<undefined> => {
-    const { name, component } = logos.find((logos) => logos.name === val)
-    console.log(name)
-    console.log(component)
-    setSelectedToken(component)
-    return val
+  const handleTokenSelect = (val: string): tokenObject | undefined => {
+    const token: tokenObject | undefined = tokens.find(
+      (tokens) => tokens.name === val
+    )
+    setSelectedToken(token)
+    if (token) return token
+    if (!token) console.error(Error)
   }
 
   return (
@@ -78,7 +71,7 @@ function TokenCard() {
         p={7}
         sx={{ flexDirection: { xs: 'row', md: 'column' } }}
       >
-        <TokenLogo logo={selectedToken} />
+        <TokenLogo token={selectedToken} />
         <TokenSelect
           label="token"
           values={tokenChoices}

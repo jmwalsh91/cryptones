@@ -1,18 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import {
   DialogContent,
   DialogContentText,
   DialogTitle,
   Stack,
-  Typography,
 } from '@mui/material'
-import Button from '@mui/material/Button'
-import Dialog, { DialogProps } from '@mui/material/Dialog'
+import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
 
-import * as neu from '../../styles/neu'
+/* import * as neu from '../../styles/neu' */
 import CircleButtonBase from '../formComponents/CircleButtonBase'
 
 type Props = {
@@ -20,10 +17,6 @@ type Props = {
 }
 export default function Modal({ isOpen }: Props) {
   const [open, setOpen] = useState(isOpen)
-
-  const handleOpen = () => {
-    setOpen(true)
-  }
 
   const handleClose = () => {
     setOpen(false)

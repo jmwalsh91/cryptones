@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Button, ButtonBase } from '@mui/material'
-import { EventHandler, ReactNode } from 'react'
+import { Button } from '@mui/material'
+import { ReactNode } from 'react'
 
 import * as neu from '../../styles/neu'
 

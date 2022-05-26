@@ -4,7 +4,7 @@ import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent } from 'react'
-import { mutate } from 'swr'
+import useSWR, { mutate, useSWRConfig } from 'swr'
 /* import * as Tone from 'tone' */
 
 import { cryptonesApi } from '../../../services/Axios'
@@ -19,9 +19,11 @@ interface Props {
 
 function MappingsCard(props: Props) {
   //TODO: DATA FROM INPUT FIELDS
-
+  const fetcher = (endpoint: string) =>
+    cryptonesApi(endpoint).then((res) => res.data)
+  const { data } = useSWR('/api/ohlcv/', fetcher)
   const obj = {
-    keyi: 'value',
+    keyi: data,
   }
   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
     e.preventDefault()

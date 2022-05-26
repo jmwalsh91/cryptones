@@ -55,7 +55,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       return undefined
     }
   }
-
+  //TODO: Interval button
   const updateData = (e: SyntheticEvent) => {
     e.preventDefault()
     if (selectedToken.name) {

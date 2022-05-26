@@ -2,8 +2,10 @@
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
+import { ApexOptions } from 'apexcharts'
+import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
-import { ReactNode, SyntheticEvent } from 'react'
+import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR, { mutate, useSWRConfig } from 'swr'
 /* import * as Tone from 'tone' */
 
@@ -19,17 +21,23 @@ interface Props {
 
 function MappingsCard(props: Props) {
   //TODO: DATA FROM INPUT FIELDS
+  //TODO: UPDATE INITIAL STATE TO BE __ARRAY[0]
+  const [source, setSource] = useState<string>('difference')
+  /*   const [sensitivity, setSensitivity] = useState<number>(50) */
+  const [target, setTarget] = useState<string>('Note value')
+
   const fetcher = (endpoint: string) =>
     cryptonesApi(endpoint).then((res) => res.data)
-  const { data } = useSWR('/api/ohlcv/', fetcher)
+
   const obj = {
-    keyi: data,
+    2: source,
+    4: target,
   }
   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
     e.preventDefault()
     const cachedMapping = await cryptonesApi
       .post('/api/cache', cacheMapping)
-      .then((response) => {
+      .then((response: AxiosResponse<any, any>) => {
         console.log(response)
       })
       .catch((error) => console.error(error))
@@ -63,6 +71,7 @@ function MappingsCard(props: Props) {
               label={'Src'}
               values={['difference']}
               helperText={'Select source'}
+              handler={setSource}
             />
           </Grid>
           <Grid
@@ -82,6 +91,7 @@ function MappingsCard(props: Props) {
               label={'Target'}
               values={['Note value']}
               helperText={'Select target'}
+              handler={setTarget}
             />
           </Grid>
           <Grid item container justifyContent={'end'}>

@@ -36,25 +36,24 @@ export default function InputSelect({
     )
   })
   return (
-    <div
+    <FormControl
+      sx={{ m: 1, p: 1, minWidth: 100 }}
       css={css`
         ${raised}
       `}
     >
-      <FormControl sx={{ m: 1, p: 1, minWidth: 100 }}>
-        <InputLabel id={label}>{label}</InputLabel>
-        <Select
-          labelId={`{$label}Select`}
-          id="demo-simple-select-helper"
-          value={val}
-          label={label}
-          onChange={handleChange}
-          size="small"
-        >
-          {dropdownValues}
-        </Select>
-        <FormHelperText>{helperText}</FormHelperText>
-      </FormControl>
-    </div>
+      <InputLabel id={label}>{label}</InputLabel>
+      <Select
+        labelId={`{$label}Select`}
+        id="demo-simple-select-helper"
+        value={val}
+        label={label}
+        onChange={handleChange}
+        size="small"
+      >
+        {dropdownValues}
+      </Select>
+      <FormHelperText>{helperText}</FormHelperText>
+    </FormControl>
   )
 }

@@ -1,6 +1,6 @@
 import ReactApexChart from 'react-apexcharts'
 
-export default function ChartComponent({ data }) {
+export default function ChartComponent({ data, name, interval }) {
   let chartParams = {
     series: [
       {
@@ -19,8 +19,8 @@ export default function ChartComponent({ data }) {
         enabled: false,
       },
       title: {
-        text: 'BTC PRICE',
-        align: 'left',
+        text: `${name} price, ${interval}`,
+        align: 'center',
       },
       markers: {
         strokeColors: '#08c9c9',

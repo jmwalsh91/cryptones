@@ -6,7 +6,12 @@ const meta: Meta = {
   title: 'Chart Component',
   component: ChartComponent,
 }
-
+const mock = {
+  name: 'token',
+  interval: '5min',
+}
 export default meta
 
-export const Default = () => <ChartComponent data={mockOhlc} />
+export const Default = () => (
+  <ChartComponent data={mockOhlc} name={mock.name} interval={mock.interval} />
+)

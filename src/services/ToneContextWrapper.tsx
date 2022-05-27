@@ -8,9 +8,11 @@ const defaultToneData = {
   sensitivity: 100,
   target: 'Note value',
 }
-const ToneData = createContext(defaultToneData)
+export const ToneData = createContext(defaultToneData)
 function ToneContextWrapper({ children }: Props) {
-  return children
+  return (
+    <ToneData.Provider value={defaultToneData}>{children}</ToneData.Provider>
+  )
 }
 
 export default ToneContextWrapper

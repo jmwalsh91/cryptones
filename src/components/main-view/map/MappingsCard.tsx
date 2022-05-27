@@ -6,7 +6,8 @@ import { ApexOptions } from 'apexcharts'
 import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
-import useSWR, { mutate, useSWRConfig } from 'swr'
+import useSWR, { mutate, SWRConfig, useSWRConfig } from 'swr'
+
 /* import * as Tone from 'tone' */
 
 import { cryptonesApi } from '../../../services/Axios'
@@ -26,23 +27,23 @@ function MappingsCard(props: Props) {
   /*   const [sensitivity, setSensitivity] = useState<number>(50) */
   const [target, setTarget] = useState<string>('Note value')
 
-  const fetcher = (endpoint: string) =>
-    cryptonesApi(endpoint).then((res) => res.data)
+  const fetcher = (endpoint: string, object: object) =>
+    cryptonesApi.post(endpoint, object).then((res) => res.data)
 
   const obj = {
-    2: source,
-    4: target,
+    source: source,
+    target: target,
   }
   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
     e.preventDefault()
-    const cachedMapping = await cryptonesApi
-      .post('/api/cache', cacheMapping)
+    const cachedMapping = await fetcher('/api/cache', cacheMapping)
       .then((response: AxiosResponse<any, any>) => {
         console.log(response)
+        return response.data
       })
       .catch((error) => console.error(error))
 
-    return mutate('mapping', cachedMapping)
+    return cachedMapping
   }
   return (
     <>

@@ -1,4 +1,9 @@
-import React, { createContext, ReactNode, useContext } from 'React'
+import React, {
+  createContext,
+  PropsWithChildren,
+  ReactNode,
+  useContext,
+} from 'React'
 
 interface toneContext {
   source: string
@@ -16,10 +21,10 @@ const defaultToneContext: toneContext = {
 
 const toneContext = createContext(defaultToneContext)
 
-function ToneContext(children: ReactNode) {
+function ToneContext({ children }: any) {
   return (
     <toneContext.Provider value={defaultToneContext}>
-      children
+      {children}
     </toneContext.Provider>
   )
 }

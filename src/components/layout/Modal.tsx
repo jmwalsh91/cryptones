@@ -8,6 +8,7 @@ import {
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
+import * as Tone from 'tone'
 
 /* import * as neu from '../../styles/neu' */
 import CircleButtonBase from '../formComponents/CircleButtonBase'
@@ -18,7 +19,8 @@ type Props = {
 export default function Modal({ isOpen }: Props) {
   const [open, setOpen] = useState(isOpen)
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    await Tone.start()
     setOpen(false)
   }
 

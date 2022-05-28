@@ -6,7 +6,7 @@ import { ApexOptions } from 'apexcharts'
 import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
-import useSWR, { mutate, SWRConfig, useSWRConfig } from 'swr'
+import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr'
 
 /* import * as Tone from 'tone' */
 

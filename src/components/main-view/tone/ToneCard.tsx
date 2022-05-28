@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
-import { useState, useContext } from 'react'
+import { useContext, useState } from 'react'
 import * as Tone from 'tone'
-import { ToneData } from '~/services/ToneContextWrapper'
 
 import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { differenceArray } from './tone-utils/tone'
 import { newSynth } from './tone-utils/tone'
+
+import { ToneData } from '~/services/ToneContextWrapper'
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
 

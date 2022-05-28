@@ -1,9 +1,10 @@
 import { Container, Grid } from '@mui/material'
-import ToneContextWrapper from '~/services/ToneContextWrapper'
 
 import FullWidthCard from '../main-view/chart/FullWidthCard'
 import MappingsCard from '../main-view/map/MappingsCard'
 import ToneCard from '../main-view/tone/ToneCard'
+
+import ToneContextWrapper from '~/services/ToneContextWrapper'
 
 function MdLayout() {
   return (

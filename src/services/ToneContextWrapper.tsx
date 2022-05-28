@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 type Props = {
   children: any
@@ -49,3 +55,6 @@ function ToneDataProvider({ children }: Props) {
 }
 
 export default ToneDataProvider
+
+export const useDispatch = () => useContext(ToneDataDispatch)
+export const useToneContext = () => useContext(ToneDataContext)

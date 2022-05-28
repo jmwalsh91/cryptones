@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useMemo, useState } from 'react'
 
 type Props = {
   children: any
@@ -8,11 +8,21 @@ const defaultToneData = {
   sensitivity: 100,
   target: 'Note value',
 }
-export const ToneData = createContext(defaultToneData)
-function ToneContextWrapper({ children }: Props) {
+export const ToneDataContext = createContext()
+function ToneDataProvider({ children }: Props) {
+  const [toneData, setToneData] = useState()
+  const value = useMemo(
+    () => ({
+      toneData,
+      setToneData,
+    }),
+    [setToneData]
+  )
   return (
-    <ToneData.Provider value={defaultToneData}>{children}</ToneData.Provider>
+    <ToneDataContext.Provider value={value}>
+      {children}
+    </ToneDataContext.Provider>
   )
 }
 
-export default ToneContextWrapper
+export default ToneDataProvider

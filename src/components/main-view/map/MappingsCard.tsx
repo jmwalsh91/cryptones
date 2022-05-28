@@ -70,7 +70,7 @@ function MappingsCard(props: Props) {
           <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect
               label={'Src'}
-              values={['difference']}
+              values={['difference', 'absolute']}
               helperText={'Select source'}
               handler={setSource}
             />

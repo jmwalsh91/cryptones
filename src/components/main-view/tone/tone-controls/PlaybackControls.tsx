@@ -23,13 +23,23 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
         {/*         <IconButton aria-label="MusicNote" color={color} size={iconSize}>
           <MusicNote fontSize="large" />
         </IconButton> */}
-        <IconButton aria-label="PlayArrow" color={color} size={iconSize}>
+        <IconButton
+          aria-label="PlayArrow"
+          color={color}
+          size={iconSize}
+          onClick={(e) => controls.playSynth(e)}
+        >
           <PlayArrow fontSize="large" />
         </IconButton>
         <IconButton aria-label="Pause" color={color} size={iconSize}>
           <Pause fontSize="large" />
         </IconButton>
-        <IconButton aria-label="Stop" color={color} size={iconSize}>
+        <IconButton
+          aria-label="Stop"
+          color={color}
+          size={iconSize}
+          onClick={controls.stopPlayback()}
+        >
           <Stop fontSize="large" />
         </IconButton>
       </ButtonGroup>

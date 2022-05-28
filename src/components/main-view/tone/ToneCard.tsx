@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
 import { useContext, useState } from 'react'
 import * as Tone from 'tone'
+import { ToneDataContext } from '~/services/ToneContextWrapper'
 
 import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
@@ -10,7 +11,6 @@ import PlaybackControls from './tone-controls/PlaybackControls'
 import { differenceArray } from './tone-utils/tone'
 import { newSynth } from './tone-utils/tone'
 
-import { ToneData } from '~/services/ToneContextWrapper'
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
 
@@ -19,7 +19,7 @@ function ToneCard({ data }: Props) {
   const [notes, setNotes] = useState<any>()
   const now = Tone.now()
   const synth: Tone.PluckSynth = newSynth()
-  const { source, target, sensitivity } = useContext(ToneData)
+  const { source, target, sensitivity } = useContext(ToneDataContext)
 
   //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
   const playSynth = async () => {

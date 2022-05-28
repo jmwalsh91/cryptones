@@ -3,11 +3,18 @@ import React, { createContext, useEffect, useMemo, useState } from 'react'
 type Props = {
   children: any
 }
+type dispatchToneDataString = React.Dispatch<
+  React.SetStateAction<string | undefined>
+>
+type dispatchToneDataNumber = React.Dispatch<
+  React.SetStateAction<number | undefined>
+>
+
 export const ToneDataContext = createContext({})
 function ToneDataProvider({ children }: Props) {
-  const [source, setSource] = useState()
-  const [sensitivity, setSensitivity] = useState()
-  const [target, setTarget] = useState()
+  const [source, setSource] = useState<string>()
+  const [sensitivity, setSensitivity] = useState<number>()
+  const [target, setTarget] = useState<string>()
 
   const toneData = {
     source: source,

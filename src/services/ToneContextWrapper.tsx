@@ -1,23 +1,33 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 
 type Props = {
   children: any
 }
-const defaultToneData = {
-  source: 'difference',
-  sensitivity: 100,
-  target: 'Note value',
-}
-export const ToneDataContext = createContext()
+export const ToneDataContext = createContext({})
 function ToneDataProvider({ children }: Props) {
-  const [toneData, setToneData] = useState()
+  const [source, setSource] = useState()
+  const [sensitivity, setSensitivity] = useState()
+  const [target, setTarget] = useState()
+
+  const toneData = {
+    source: source,
+    sensitivity: sensitivity,
+    target: target,
+  }
+
+  const dispatchToneData = {
+    setSource: setSource,
+    setSensitivity: setSensitivity,
+    setTarget: setTarget,
+  }
   const value = useMemo(
     () => ({
       toneData,
-      setToneData,
+      dispatchToneData,
     }),
-    [setToneData]
+    [dispatchToneData]
   )
+
   return (
     <ToneDataContext.Provider value={value}>
       {children}

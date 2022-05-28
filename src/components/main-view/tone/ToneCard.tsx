@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
 import { useContext, useState } from 'react'
 import * as Tone from 'tone'
-import { ToneDataContext } from '~/services/ToneContextWrapper'
+import { useToneContext } from '~/services/ToneContextWrapper'
 
 import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
@@ -19,7 +19,7 @@ function ToneCard({ data }: Props) {
   const [notes, setNotes] = useState<any>()
   const now = Tone.now()
   const synth: Tone.PluckSynth = newSynth()
-  const { source, target, sensitivity } = useContext(ToneDataContext)
+  const toneContext = useToneContext()
 
   //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
   const playSynth = async () => {
@@ -48,7 +48,8 @@ function ToneCard({ data }: Props) {
       <Stack spacing={2} alignItems={'center'}>
         <Typography variant="h5">Output:</Typography>
         <Typography variant="body1">
-          {data ? 'data' : 'Placeholder'} {source} {target}
+          {data ? 'data' : 'Placeholder'} {toneContext?.source}{' '}
+          {toneContext?.target}
         </Typography>
         <button onClick={() => playSynth()}></button>
         <PlaybackControls iconSize="large" color="secondary" />

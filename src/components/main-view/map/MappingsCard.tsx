@@ -7,6 +7,7 @@ import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr'
+import { useDispatch } from '~/services/ToneContextWrapper'
 
 /* import * as Tone from 'tone' */
 
@@ -26,6 +27,7 @@ function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
   /*   const [sensitivity, setSensitivity] = useState<number>(50) */
   const [target, setTarget] = useState<string>('Note value')
+  const dispatchToneData = useDispatch()
 
   const fetcher = (endpoint: string, object: object) =>
     cryptonesApi.post(endpoint, object).then((res) => res.data)
@@ -39,6 +41,8 @@ function MappingsCard(props: Props) {
     const cachedMapping = await fetcher('/api/cache', cacheMapping)
       .then((response: AxiosResponse<any, any>) => {
         console.log(response)
+        dispatchToneData?.setSource(source)
+        dispatchToneData?.setTarget(target)
         return response.data
       })
       .catch((error) => console.error(error))

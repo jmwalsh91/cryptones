@@ -8,9 +8,10 @@ import * as neu from '../../../../styles/neu'
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
+  controls: any
 }
 
-function PlaybackControls({ color, iconSize }: playbackProps) {
+function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   return (
     <Paper
       variant="outlined"
@@ -19,9 +20,9 @@ function PlaybackControls({ color, iconSize }: playbackProps) {
       `}
     >
       <ButtonGroup>
-        <IconButton aria-label="MusicNote" color={color} size={iconSize}>
+        {/*         <IconButton aria-label="MusicNote" color={color} size={iconSize}>
           <MusicNote fontSize="large" />
-        </IconButton>
+        </IconButton> */}
         <IconButton aria-label="PlayArrow" color={color} size={iconSize}>
           <PlayArrow fontSize="large" />
         </IconButton>

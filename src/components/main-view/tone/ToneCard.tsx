@@ -9,7 +9,7 @@ import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { differenceArray } from './tone-utils/tone'
-import { newSynth } from './tone-utils/tone'
+import { newSynth, stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
@@ -18,12 +18,13 @@ type Props = { data?: object }
 function ToneCard({ data }: Props) {
   const [notes, setNotes] = useState<any>()
   const now = Tone.now()
-  const synth: Tone.PluckSynth = newSynth()
+  const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
 
+  //TODO: Hook up to slider.
+  Tone.Transport.bpm.value = 60
   //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
   const playSynth = async () => {
-    await Tone.start()
     const diff = differenceArray(mockOhlc)
     await setNotes(diff)
     await new Tone.Sequence((time, note) => {
@@ -31,6 +32,10 @@ function ToneCard({ data }: Props) {
       console.log(note)
     }, notes).start(0)
     Tone.Transport.start(now)
+  }
+  const controls = {
+    stopPlayback: stopPlayback,
+    startPlayback: playSynth,
   }
   return (
     <Paper
@@ -51,8 +56,11 @@ function ToneCard({ data }: Props) {
           {data ? 'data' : 'Placeholder'} {toneContext?.source}{' '}
           {toneContext?.target}
         </Typography>
-        <button onClick={() => playSynth()}></button>
-        <PlaybackControls iconSize="large" color="secondary" />
+        <PlaybackControls
+          iconSize="large"
+          color="secondary"
+          controls={controls}
+        />
       </Stack>
     </Paper>
   )

@@ -2,10 +2,18 @@ import * as Tone from 'tone'
 
 export const newSynth = () => {
   //filter for fun
-
   //default synth
-  const pluckedSynth: Tone.PluckSynth = new Tone.PluckSynth().toDestination()
-  return pluckedSynth
+  /*   const pluckedSynth: Tone.PluckSynth = new Tone.PluckSynth().toDestination()
+  return pluckedSynth */
+  const fmSynth: Tone.FMSynth = new Tone.FMSynth().toDestination()
+  return fmSynth
+}
+
+export const stopPlayback = (/*callback?*/) => {
+  console.log(Tone.Transport.disposed)
+  Tone.Transport.stop()
+  Tone.Transport.dispose()
+  console.log(Tone.Transport.disposed)
 }
 //apply mappings
 // apply src to init array, get note value

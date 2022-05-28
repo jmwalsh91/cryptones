@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as Tone from 'tone'
 import { useToneContext } from '~/services/ToneContextWrapper'
+import { audioControls } from '~/types/interfaces'
 
 import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
@@ -17,23 +18,32 @@ type Props = { data?: object }
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
 function ToneCard({ data }: Props) {
   const [notes, setNotes] = useState<any>()
-  const now = Tone.now()
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
+  const now = Tone.now()
 
   //TODO: Hook up to slider.
   Tone.Transport.bpm.value = 60
   //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
-  const playSynth = async () => {
+
+  useEffect(() => {
     const diff = differenceArray(mockOhlc)
-    await setNotes(diff)
-    await new Tone.Sequence((time, note) => {
-      synth.triggerAttackRelease(note, '8n', time)
-      console.log(note)
-    }, notes).start(0)
+    const initTone = async () => {
+      await setNotes(diff)
+      await new Tone.Sequence((time, note) => {
+        console.log('new tone sequence')
+        synth.triggerAttackRelease(note, '8n', time)
+        console.log(note)
+      }, notes).start(0)
+    }
+    initTone()
+  }, [])
+
+  const playSynth = () => {
+    console.log('play synth!')
     Tone.Transport.start(now)
   }
-  const controls = {
+  const controls: audioControls = {
     stopPlayback: stopPlayback,
     startPlayback: playSynth,
   }
@@ -60,6 +70,7 @@ function ToneCard({ data }: Props) {
           iconSize="large"
           color="secondary"
           controls={controls}
+          now={now}
         />
       </Stack>
     </Paper>

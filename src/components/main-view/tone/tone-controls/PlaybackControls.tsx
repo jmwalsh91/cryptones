@@ -1,17 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MusicNote, Pause, PlayArrow, Stop } from '@mui/icons-material'
+import { Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper } from '@mui/material'
 
 import * as neu from '../../../../styles/neu'
 
+import { audioControls } from '~/types/interfaces'
+
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
-  controls: any
+  controls: audioControls
 }
 
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
+
+  const handlePlay = () => {
+    controls.startPlayback()
+  }
   return (
     <Paper
       variant="outlined"
@@ -27,7 +33,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="PlayArrow"
           color={color}
           size={iconSize}
-          onClick={(e) => controls.playSynth(e)}
+          onClick={handlePlay}
         >
           <PlayArrow fontSize="large" />
         </IconButton>
@@ -38,7 +44,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="Stop"
           color={color}
           size={iconSize}
-          onClick={controls.stopPlayback()}
+          onClick={() => controls.stopPlayback}
         >
           <Stop fontSize="large" />
         </IconButton>

@@ -12,8 +12,6 @@ export const newSynth = () => {
 export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop()
-  Tone.Transport.dispose()
-  console.log(Tone.Transport.disposed)
 }
 //apply mappings
 // apply src to init array, get note value

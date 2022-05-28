@@ -12,5 +12,6 @@ export interface tokenObject {
 }
 
 export interface audioControls {
-  stop?: any
+  stopPlayback: () => void
+  startPlayback: () => void
 }

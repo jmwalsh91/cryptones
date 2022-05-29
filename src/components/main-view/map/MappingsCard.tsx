@@ -2,16 +2,17 @@
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography } from '@mui/material'
-import { ApexOptions } from 'apexcharts'
 import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
-import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr'
-import { useDispatch } from '~/services/ToneContextWrapper'
+
+/* import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr' */
+import * as Axios from '../../../services/Axios'
+// eslint-disable-next-line import/order
+import { useDispatch } from '../../../services/ToneContextWrapper'
 
 /* import * as Tone from 'tone' */
 
-import { cryptonesApi } from '../../../services/Axios'
 import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SlideSelector from '../../formComponents/SlideSelector'
@@ -28,7 +29,7 @@ function MappingsCard(props: Props) {
   const dispatchToneData = useDispatch()
 
   const fetcher = (endpoint: string, object: object) =>
-    cryptonesApi.post(endpoint, object).then((res) => res.data)
+    Axios.cryptonesApi.post(endpoint, object).then((res) => res.data)
 
   const obj = {
     source: source,

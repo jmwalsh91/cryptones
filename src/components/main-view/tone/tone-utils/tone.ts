@@ -29,9 +29,18 @@ export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
 // translate to note values
 //submit
 
-//function from v1 for find difference
+// apply sensitivity (multiply by %) to input value
+// so that a wide variety of input values can be transformed to values which are audible, perceptibly different, or pleasant.
+export const applySensitivity = (
+  sensitivity: number,
+  value: number
+): number => {
+  return sensitivity * value
+}
+//Local Stack
+
 //TODO: add typings, Partial<something<something,something>>
-export function differenceArray(data: Array<any>) {
+export function differenceArray(data: Array<any>): number[] {
   console.log('props data is ' + data)
   const difArray: number[] = []
   const arr: number[] = data.reduce(

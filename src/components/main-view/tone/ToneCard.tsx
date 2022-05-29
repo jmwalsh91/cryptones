@@ -10,7 +10,7 @@ import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
 import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { differenceArray } from './tone-utils/tone'
+import { differenceArray, mapDataToSequence } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
@@ -25,12 +25,22 @@ function ToneCard() {
   Tone.Transport.bpm.value = 60
 
   useEffect(() => {
-    console.log(data.formattedOhlc)
-    if (toneContext?.source && toneContext.source === 'difference') {
+    if (
+      data?.formattedOhlc &&
+      toneContext?.source &&
+      toneContext.source === 'difference'
+    ) {
+      console.log(data.formattedOhlc)
       setNotes(differenceArray(data.formattedOhlc, toneContext.sensitivity))
       console.log(notes)
+      mapDataToSequence(synth, notes)
     }
-  }, [toneContext?.source, toneContext?.sensitivity, toneContext?.target, data])
+  }, [
+    toneContext?.source,
+    toneContext?.sensitivity,
+    toneContext?.target,
+    data?.formattedOhlc,
+  ])
 
   const playSynth = () => {
     console.log('play synth!')

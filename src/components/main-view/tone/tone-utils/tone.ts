@@ -1,4 +1,5 @@
 import * as Tone from 'tone'
+import { Synth } from 'tone'
 
 export const newSynth = () => {
   //filter for fun
@@ -13,6 +14,14 @@ export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop()
 }
+//TODO: update to accept types of each synth subclass that will be available to user
+export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
+  const seq = new Tone.Sequence((time, note) => {
+    synth.triggerAttackRelease(note, 0.5, time)
+  }, notes).start(0)
+  return seq
+}
+
 //apply mappings
 // apply src to init array, get note value
 // put switch on sensitivity

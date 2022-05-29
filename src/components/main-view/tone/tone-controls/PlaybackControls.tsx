@@ -6,11 +6,13 @@ import { ButtonGroup, IconButton, Paper } from '@mui/material'
 import * as neu from '../../../../styles/neu'
 
 import { audioControls } from '~/types/interfaces'
+import { Tone } from 'tone/build/esm/core/Tone'
 
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
   controls: audioControls
+  now: Tone.Transport.now
 }
 
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
@@ -33,7 +35,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="PlayArrow"
           color={color}
           size={iconSize}
-          onClick={handlePlay}
+          onClick={() => handlePlay()}
         >
           <PlayArrow fontSize="large" />
         </IconButton>
@@ -44,7 +46,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="Stop"
           color={color}
           size={iconSize}
-          onClick={() => controls.stopPlayback}
+          onClick={() => controls.stopPlayback()}
         >
           <Stop fontSize="large" />
         </IconButton>

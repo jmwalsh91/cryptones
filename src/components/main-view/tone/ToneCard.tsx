@@ -3,14 +3,15 @@ import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import * as Tone from 'tone'
-import { useToneContext } from '~/services/ToneContextWrapper'
-import { audioControls } from '~/types/interfaces'
 
 import * as neu from '../../../styles/neu'
 import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { differenceArray } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
+
+import { useToneContext } from '~/services/ToneContextWrapper'
+import { audioControls } from '~/types/interfaces'
 
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
@@ -30,7 +31,7 @@ function ToneCard({ data }: Props) {
     const diff = differenceArray(mockOhlc)
     const initTone = async () => {
       await setNotes(diff)
-      await new Tone.Sequence((time, note) => {
+      const seq = new Tone.Sequence((time, note) => {
         console.log('new tone sequence')
         synth.triggerAttackRelease(note, '8n', time)
         console.log(note)
@@ -41,7 +42,8 @@ function ToneCard({ data }: Props) {
 
   const playSynth = () => {
     console.log('play synth!')
-    Tone.Transport.start(now)
+    console.log(Tone.context)
+    Tone.Transport.start(1)
   }
   const controls: audioControls = {
     stopPlayback: stopPlayback,

@@ -22,8 +22,6 @@ interface Props {
 }
 
 function MappingsCard(props: Props) {
-  //TODO: DATA FROM INPUT FIELDS
-  //TODO: UPDATE INITIAL STATE TO BE __ARRAY[0]
   const [source, setSource] = useState<string>('difference')
   /*   const [sensitivity, setSensitivity] = useState<number>(50) */
   const [target, setTarget] = useState<string>('Note value')
@@ -36,6 +34,7 @@ function MappingsCard(props: Props) {
     source: source,
     target: target,
   }
+  //
   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
     e.preventDefault()
     const cachedMapping = await fetcher('/api/cache', cacheMapping)

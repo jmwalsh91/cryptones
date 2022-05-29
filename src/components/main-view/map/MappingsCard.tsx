@@ -15,7 +15,7 @@ import { useDispatch } from '../../../services/ToneContextWrapper'
 
 import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
-import SlideSelector from '../../formComponents/SlideSelector'
+import SensitivitySlider from '../../formComponents/SensitivitySlider'
 
 interface Props {
   children?: ReactNode
@@ -89,7 +89,7 @@ function MappingsCard(props: Props) {
             `}
           >
             <Typography variant="h6">Sensitivity</Typography>
-            <SlideSelector sliderSize="small" color="primary" />
+            <SensitivitySlider sliderSize="small" color="primary" />
           </Grid>
           <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect

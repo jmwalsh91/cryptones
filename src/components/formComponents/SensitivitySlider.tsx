@@ -9,9 +9,7 @@ interface sliderProps {
   color: 'primary' | 'secondary'
 }
 
-//TODO: Make 'target' props to determine MODULATION or VOLUME so that this can be reusable, and update story.
-//TODO: Modulation, Volume AND 'select range' ?
-function SlideSelector({ sliderSize, color }: sliderProps) {
+function SensitivitySlider({ sliderSize, color }: sliderProps) {
   return (
     <Box width={300} m={2}>
       <Slider
@@ -20,9 +18,13 @@ function SlideSelector({ sliderSize, color }: sliderProps) {
         defaultValue={70}
         aria-label={sliderSize}
         valueLabelDisplay="auto"
+        step={0.1}
+        marks
+        min={0.1}
+        max={2}
       />
     </Box>
   )
 }
 
-export default SlideSelector
+export default SensitivitySlider

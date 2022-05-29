@@ -4,14 +4,13 @@ import { Paper, Stack, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import * as Tone from 'tone'
 
+import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
+import { audioControls } from '../../../types/interfaces'
 import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { differenceArray } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
-
-import { useToneContext } from '~/services/ToneContextWrapper'
-import { audioControls } from '~/types/interfaces'
 
 //TODO: interface for data useable by tone.JS
 type Props = { data?: object }
@@ -23,22 +22,7 @@ function ToneCard({ data }: Props) {
   const toneContext = useToneContext()
   const now = Tone.now()
 
-  //TODO: Hook up to slider.
   Tone.Transport.bpm.value = 60
-  //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
-
-  useEffect(() => {
-    const diff = differenceArray(mockOhlc)
-    const initTone = async () => {
-      await setNotes(diff)
-      const seq = new Tone.Sequence((time, note) => {
-        console.log('new tone sequence')
-        synth.triggerAttackRelease(note, '8n', time)
-        console.log(note)
-      }, notes).start(0)
-    }
-    initTone()
-  }, [])
 
   const playSynth = () => {
     console.log('play synth!')

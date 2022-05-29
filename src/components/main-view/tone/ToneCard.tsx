@@ -2,6 +2,7 @@
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
+import useSWR from 'swr'
 import * as Tone from 'tone'
 
 import { useToneContext } from '../../../services/ToneContextWrapper'
@@ -13,19 +14,27 @@ import { differenceArray } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
-type Props = { data?: object }
 
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
-function ToneCard({ data }: Props) {
+function ToneCard() {
   const [notes, setNotes] = useState<any>()
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
+  const { data } = useSWR('/api/ohlcv', { suspense: false })
   const now = Tone.now()
-
   Tone.Transport.bpm.value = 60
+
+  useEffect(() => {
+    console.log(data.formattedOhlc)
+    if (toneContext?.source && toneContext.source === 'difference') {
+      setNotes(differenceArray(data.formattedOhlc, toneContext.sensitivity))
+      console.log(notes)
+    }
+  }, [toneContext?.source, toneContext?.sensitivity, toneContext?.target, data])
 
   const playSynth = () => {
     console.log('play synth!')
+    console.log(notes)
     console.log(Tone.context)
     Tone.Transport.start(1)
   }

@@ -2,10 +2,6 @@ import * as Tone from 'tone'
 import { Synth } from 'tone'
 
 export const newSynth = () => {
-  //filter for fun
-  //default synth
-  /*   const pluckedSynth: Tone.PluckSynth = new Tone.PluckSynth().toDestination()
-  return pluckedSynth */
   const fmSynth: Tone.FMSynth = new Tone.FMSynth().toDestination()
   return fmSynth
 }
@@ -31,7 +27,7 @@ export const applySensitivity = (
   return sensitivity * value
 }
 
-//TODO: add typings, Partial<something<something,something>>
+//TODO: strengthen data typing: Partial<something<something,something>>
 export function differenceArray(
   data: Array<any>,
   sensitivity: number

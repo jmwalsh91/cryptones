@@ -93,7 +93,11 @@ function MappingsCard(props: Props) {
             `}
           >
             <Typography variant="h6">Sensitivity</Typography>
-            <SensitivitySlider sliderSize="small" color="primary" handler={setSensitivity} />
+            <SensitivitySlider
+              sliderSize="small"
+              color="primary"
+              handler={setSensitivity}
+            />
           </Grid>
           <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect

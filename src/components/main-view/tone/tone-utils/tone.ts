@@ -22,13 +22,6 @@ export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
   return seq
 }
 
-//apply mappings
-// apply src to init array, get note value
-// put switch on sensitivity
-// apply sensitivity to src
-// translate to note values
-//submit
-
 // apply sensitivity (multiply by %) to input value
 // so that a wide variety of input values can be transformed to values which are audible, perceptibly different, or pleasant.
 export const applySensitivity = (
@@ -37,22 +30,23 @@ export const applySensitivity = (
 ): number => {
   return sensitivity * value
 }
-//Local Stack
 
 //TODO: add typings, Partial<something<something,something>>
-export function differenceArray(data: Array<any>): number[] {
+export function differenceArray(
+  data: Array<any>,
+  sensitivity: number
+): number[] {
   console.log('props data is ' + data)
   const difArray: number[] = []
-  const arr: number[] = data.reduce(
-    (_previousValue: number, _currentValue: number, _ind: number) => {
-      if (data[_ind][1][3] === data[0][1][3]) {
-        return
-      } else {
-        const dif = data[_ind][1][3] - data[_ind - 1][1][3]
-        return difArray.push(Math.abs(Math.trunc(dif)))
-      }
-    },
-    0
-  )
+  data.reduce((_previousValue: number, _currentValue: number, _ind: number) => {
+    if (data[_ind][1][3] === data[0][1][3]) {
+      return
+    } else {
+      const difValue = data[_ind][1][3] - data[_ind - 1][1][3]
+      return difArray.push(
+        Math.abs(Math.trunc(applySensitivity(sensitivity, difValue)))
+      )
+    }
+  }, 0)
   return difArray
 }

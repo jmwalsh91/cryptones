@@ -15,3 +15,11 @@ export interface audioControls {
   stopPlayback: () => void
   startPlayback: () => void
 }
+
+export interface sensitivitySliderValues {
+  defaultValue: number
+  step: number
+  marks: boolean
+  min: number
+  max: number
+}

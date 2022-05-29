@@ -24,7 +24,7 @@ interface Props {
 
 function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
-  /*   const [sensitivity, setSensitivity] = useState<number>(50) */
+  const [sensitivity, setSensitivity] = useState<number>(1)
   const [target, setTarget] = useState<string>('Note value')
   const dispatchToneData = useDispatch()
 
@@ -33,6 +33,7 @@ function MappingsCard(props: Props) {
 
   const obj = {
     source: source,
+    sensitivity: sensitivity,
     target: target,
   }
   //
@@ -41,7 +42,10 @@ function MappingsCard(props: Props) {
     const cachedMapping = await fetcher('/api/cache', cacheMapping)
       .then((response: AxiosResponse<any, any>) => {
         console.log(response)
+        //TODO: likely best to set object properties and memoize the setter, though I believe React Fiber will hold off on update until it hits the return here...
+        //TODO: consider startTransition here, change styling of submit button?
         dispatchToneData?.setSource(source)
+        dispatchToneData?.setSensitivity(sensitivity)
         dispatchToneData?.setTarget(target)
         return response.data
       })
@@ -89,7 +93,7 @@ function MappingsCard(props: Props) {
             `}
           >
             <Typography variant="h6">Sensitivity</Typography>
-            <SensitivitySlider sliderSize="small" color="primary" />
+            <SensitivitySlider sliderSize="small" color="primary" handler={setSensitivity} />
           </Grid>
           <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect

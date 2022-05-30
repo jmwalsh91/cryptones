@@ -16,6 +16,7 @@ import { newSynth, stopPlayback } from './tone-utils/tone'
 //TODO: interface for data useable by tone.JS
 interface Props {
   startUpdateToneContext: TransitionStartFunction
+  isToneContextUpdating: boolean
 }
 
 const endpoints = [
@@ -26,7 +27,7 @@ const endpoints = [
   '/api/ohlcv/SOL/15min',
 ]
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
-function ToneCard({ startUpdateToneContext }: Props) {
+function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const [notes, setNotes] = useState<any>()
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
@@ -48,12 +49,11 @@ function ToneCard({ startUpdateToneContext }: Props) {
       startUpdateToneContext(() => {
         console.log(data.formattedOhlc)
         setNotes(differenceArray(data.formattedOhlc, toneContext.sensitivity))
-        console.log(notes)
-        sequence = mapDataToSequence(synth, notes)
         Tone.Transport.start(1)
       })
     }
-  }, [])
+    sequence = mapDataToSequence(synth, notes)
+  }, [toneContext, data])
 
   const playSynth = () => {
     console.log('play synth')
@@ -76,7 +76,17 @@ function ToneCard({ startUpdateToneContext }: Props) {
         py: '.5rem',
       }}
     >
-      <Stack spacing={2} alignItems={'center'}>
+      <Stack
+        spacing={2}
+        alignItems={'center'}
+        css={
+          isToneContextUpdating
+            ? css`
+                ${neu.pendingSection}
+              `
+            : null
+        }
+      >
         <Typography variant="h5">Output:</Typography>
         <Typography variant="body1">
           {data ? 'data' : 'Placeholder'} {toneContext?.source}{' '}

@@ -33,17 +33,23 @@ function ToneDataProvider({ children }: Props) {
   const [sensitivity, setSensitivity] = useState<number>(100)
   const [target, setTarget] = useState<string>('default')
 
-  const toneDataContext = {
-    source: source,
-    sensitivity: sensitivity,
-    target: target,
-  }
+  const toneDataContext = useMemo(
+    () => ({
+      source: source,
+      sensitivity: sensitivity,
+      target: target,
+    }),
+    [source, sensitivity, target]
+  )
 
-  const dispatchToneData = {
-    setSource: setSource,
-    setSensitivity: setSensitivity,
-    setTarget: setTarget,
-  }
+  const dispatchToneData = useMemo(
+    () => ({
+      setSource: setSource,
+      setSensitivity: setSensitivity,
+      setTarget: setTarget,
+    }),
+    [setSource, setSensitivity, setTarget]
+  )
 
   return (
     <ToneDataDispatch.Provider value={dispatchToneData}>

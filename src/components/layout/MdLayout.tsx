@@ -20,7 +20,10 @@ function MdLayout() {
             <MappingsCard />
           </Grid>
           <Grid item xs={12} sm={6} md={5}>
-            <ToneCard startUpdateToneContext={startUpdateToneContext} />
+            <ToneCard
+              startUpdateToneContext={startUpdateToneContext}
+              isToneContextUpdating={isToneContextUpdating}
+            />
           </Grid>
         </ToneContextWrapper>
       </Grid>

@@ -41,7 +41,7 @@ function ToneDataProvider({ children }: Props) {
   const [dispatchedEndpoint, setDispatchedEndpoint] =
     useState<string>('/api/ohlcv/')
 
-  const toneDataContext: toneDataContext = useMemo(
+  /*   const toneDataContext: toneDataContext = useMemo(
     () => ({
       source: source,
       sensitivity: sensitivity,
@@ -50,8 +50,23 @@ function ToneDataProvider({ children }: Props) {
     }),
     [source, sensitivity, target, dispatchedEndpoint]
   )
+ */
+  const toneDataContext = {
+    source: source,
+    sensitivity: sensitivity,
+    target: target,
+    dispatchedEndpoint: dispatchedEndpoint,
+  }
+  const dispatchToneData = {
+    setSource: setSource,
+    setSensitivity: setSensitivity,
+    setTarget: setTarget,
+  }
 
-  const dispatchToneData = useMemo(
+  const dispatchChartData = {
+    setDispatchedEndpoint: setDispatchedEndpoint,
+  }
+  /*   const dispatchToneData = useMemo(
     () => ({
       setSource: setSource,
       setSensitivity: setSensitivity,
@@ -65,7 +80,7 @@ function ToneDataProvider({ children }: Props) {
       setDispatchedEndpoint: setDispatchedEndpoint,
     }),
     [setDispatchedEndpoint]
-  )
+  ) */
 
   return (
     <ToneDataDispatch.Provider value={dispatchToneData}>

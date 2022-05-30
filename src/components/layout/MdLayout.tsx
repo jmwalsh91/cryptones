@@ -7,16 +7,15 @@ import MappingsCard from '../main-view/map/MappingsCard'
 import ToneCard from '../main-view/tone/ToneCard'
 
 function MdLayout() {
-  const [endpoint, setEndpoint] = useState<string>('api/ohlcv')
   //TODO: see if transition causes MdLayout rerender
   const [isToneContextUpdating, startUpdateToneContext] = useTransition()
   return (
     <Container sx={{ my: '1rem' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FullWidthCard endpoint={endpoint} setEndpoint={setEndpoint} />
-        </Grid>
-        <ToneContextWrapper>
+      <ToneContextWrapper>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <FullWidthCard />
+          </Grid>
           <Grid item xs={12} sm={6} md={7}>
             <MappingsCard />
           </Grid>
@@ -26,8 +25,8 @@ function MdLayout() {
               isToneContextUpdating={isToneContextUpdating}
             />
           </Grid>
-        </ToneContextWrapper>
-      </Grid>
+        </Grid>
+      </ToneContextWrapper>
     </Container>
   )
 }

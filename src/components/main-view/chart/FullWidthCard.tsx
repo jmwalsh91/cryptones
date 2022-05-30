@@ -11,12 +11,10 @@ import TokenCard from './TokenCard'
 
 const ChartComponent = lazy(() => import('./ChartComponent'))
 //TODO: Clean up component props, adding SWR may have made them irrelevant.
-type Props = {
-  endpoint: string
-  setEndpoint: any
-}
+
 //TODO: Chart component
-function FullWidthCard({ endpoint, setEndpoint }: Props) {
+function FullWidthCard() {
+  const [endpoint, setEndpoint] = useState<string>('api/ohlcv')
   const [isUpdating, startUpdate] = useTransition()
   const { data } = useSWR(endpoint, {
     suspense: true,

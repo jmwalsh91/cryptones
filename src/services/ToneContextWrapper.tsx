@@ -19,7 +19,7 @@ export interface toneDataContext {
   source: string
   sensitivity: number
   target: string
-  endpoint: string
+  dispatchedEndpoint: string
 }
 export interface toneDataDispatcher {
   setSource: React.Dispatch<React.SetStateAction<string>>
@@ -27,7 +27,7 @@ export interface toneDataDispatcher {
   setTarget: React.Dispatch<React.SetStateAction<string>>
 }
 export interface chartDataDispatcher {
-  setEndpoint: React.Dispatch<React.SetStateAction<string>>
+  setDispatchedEndpoint: React.Dispatch<React.SetStateAction<string>>
 }
 
 const ToneDataContext = createContext<toneDataContext | null>(null)
@@ -38,16 +38,17 @@ function ToneDataProvider({ children }: Props) {
   const [source, setSource] = useState<string>('default')
   const [sensitivity, setSensitivity] = useState<number>(100)
   const [target, setTarget] = useState<string>('default')
-  const [endpoint, setEndpoint] = useState<string>('/api/ohlcv/')
+  const [dispatchedEndpoint, setDispatchedEndpoint] =
+    useState<string>('/api/ohlcv/')
 
   const toneDataContext: toneDataContext = useMemo(
     () => ({
       source: source,
       sensitivity: sensitivity,
       target: target,
-      endpoint: endpoint,
+      dispatchedEndpoint: dispatchedEndpoint,
     }),
-    [source, sensitivity, target]
+    [source, sensitivity, target, dispatchedEndpoint]
   )
 
   const dispatchToneData = useMemo(
@@ -61,9 +62,9 @@ function ToneDataProvider({ children }: Props) {
 
   const dispatchChartData = useMemo(
     () => ({
-      setEndpoint: setEndpoint,
+      setDispatchedEndpoint: setDispatchedEndpoint,
     }),
-    [setEndpoint]
+    [setDispatchedEndpoint]
   )
 
   return (

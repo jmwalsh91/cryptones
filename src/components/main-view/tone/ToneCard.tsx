@@ -31,8 +31,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const [notes, setNotes] = useState<any>()
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
-  const { cache, mutate } = useSWRConfig()
-  const { data } = useSWR(endpoints, { suspense: false })
+  const { data } = useSWR(toneContext?.endpoint, { suspense: false })
   const now = Tone.now()
   Tone.Transport.bpm.value = 60
   let sequence
@@ -49,11 +48,11 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       startUpdateToneContext(() => {
         console.log(data.formattedOhlc)
         setNotes(differenceArray(data.formattedOhlc, toneContext.sensitivity))
-        Tone.Transport.start(1)
+        Tone.Transport.start(now)
       })
     }
     sequence = mapDataToSequence(synth, notes)
-  }, [toneContext, data])
+  }, [toneContext, data !== null])
 
   const playSynth = () => {
     console.log('play synth')

@@ -17,6 +17,7 @@ export function App() {
     <SWRConfig
       value={{
         fetcher: (endpoint) => {
+          console.log('global hit')
           return isClient
             ? cryptonesApi(endpoint).then((res) => res.data)
             : new Promise(() => 0)

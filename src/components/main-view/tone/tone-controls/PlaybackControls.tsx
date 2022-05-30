@@ -12,7 +12,6 @@ interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
   controls: audioControls
-  now: Tone.Transport.now
 }
 
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
@@ -35,7 +34,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="PlayArrow"
           color={color}
           size={iconSize}
-          onClick={() => handlePlay()}
+          onClick={() => controls.startPlayback()}
         >
           <PlayArrow fontSize="large" />
         </IconButton>

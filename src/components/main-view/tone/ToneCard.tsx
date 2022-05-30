@@ -44,7 +44,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   let sequence
 
   //TODO: This is messy,
-  useEffect(() => {
+  /* useEffect(() => {
     console.log('use effect')
     console.log(data)
     if (
@@ -59,7 +59,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       })
     }
     sequence = mapDataToSequence(synth, notes)
-  }, [toneContext, data])
+  }, [toneContext]) */
 
   const playSynth = () => {
     console.log('play synth')

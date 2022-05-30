@@ -18,6 +18,7 @@ import * as neu from '../../../styles/neu'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 
+import { useChartDataDispatch } from '~/services/ToneContextWrapper'
 import { tokenObject } from '~/types/interfaces'
 const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
 
@@ -35,12 +36,14 @@ const tokens: Array<tokenObject> = [
   { name: 'DOT', logo: PolkadotLogo },
   { name: 'ALGO', logo: AlgorandLogo },
 ]
+
 interface Props {
   setEndpoint: Dispatch<SetStateAction<string>>
   startUpdate: TransitionStartFunction
 }
 function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
+  const endpointDispatcher = useChartDataDispatch()
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -60,6 +63,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
     e.preventDefault()
     if (selectedToken.name) {
       const params = `/api/ohlcv/${selectedToken.name}/15min`
+      endpointDispatcher?.setDispatchedEndpoint(params)
       return setEndpoint(params)
     }
     if (!selectedToken.name) {

@@ -15,6 +15,7 @@ export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
   }, notes).start(0)
+  console.log(seq)
   return seq
 }
 

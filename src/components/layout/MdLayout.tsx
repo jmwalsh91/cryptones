@@ -16,7 +16,11 @@ function MdLayout() {
       <ToneContextWrapper>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <FullWidthCard />
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Suspense fallback="fallback2">
+                <FullWidthCard />
+              </Suspense>
+            </ErrorBoundary>
           </Grid>
           <Grid item xs={12} sm={6} md={7}>
             <MappingsCard />

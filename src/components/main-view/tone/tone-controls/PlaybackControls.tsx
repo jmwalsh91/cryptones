@@ -15,7 +15,6 @@ interface playbackProps {
 }
 
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
-
   const handlePlay = () => {
     controls.startPlayback()
   }

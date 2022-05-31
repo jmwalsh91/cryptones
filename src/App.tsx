@@ -33,7 +33,6 @@ export function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <NavBar />
-
           <Modal isOpen={true} />
           <Display />
         </CssBaseline>

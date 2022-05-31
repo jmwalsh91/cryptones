@@ -63,8 +63,9 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
     e.preventDefault()
     if (selectedToken.name) {
       const params = `/api/ohlcv/${selectedToken.name}/15min`
+      setEndpoint(params)
       endpointDispatcher?.setDispatchedEndpoint(params)
-      return setEndpoint(params)
+      return console.log(params)
     }
     if (!selectedToken.name) {
       return Error

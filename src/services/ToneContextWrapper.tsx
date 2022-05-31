@@ -6,28 +6,14 @@ import React, {
   useState,
 } from 'react'
 
+import {
+  chartDataDispatcher,
+  toneDataContext,
+  toneDataDispatcher,
+} from '../types/interfaces'
+
 type Props = {
   children: any
-}
-export type dispatchToneDataString = React.Dispatch<
-  React.SetStateAction<string | undefined>
->
-export type dispatchToneDataNumber = React.Dispatch<
-  React.SetStateAction<number | undefined>
->
-export interface toneDataContext {
-  source: string
-  sensitivity: number
-  target: string
-  dispatchedEndpoint: string
-}
-export interface toneDataDispatcher {
-  setSource: React.Dispatch<React.SetStateAction<string>>
-  setSensitivity: React.Dispatch<React.SetStateAction<number>>
-  setTarget: React.Dispatch<React.SetStateAction<string>>
-}
-export interface chartDataDispatcher {
-  setDispatchedEndpoint: React.Dispatch<React.SetStateAction<string>>
 }
 
 const ToneDataContext = createContext<toneDataContext | null>(null)

@@ -5,11 +5,15 @@ import { Button, Grid, Paper, Typography } from '@mui/material'
 import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
+import useSWR from 'swr'
 
 /* import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr' */
 import * as Axios from '../../../services/Axios'
 // eslint-disable-next-line import/order
-import { useDispatch } from '../../../services/ToneContextWrapper'
+import {
+  useDispatch,
+  useToneContext,
+} from '../../../services/ToneContextWrapper'
 
 /* import * as Tone from 'tone' */
 
@@ -27,9 +31,11 @@ function MappingsCard(props: Props) {
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [target, setTarget] = useState<string>('Note value')
   const dispatchToneData = useDispatch()
+  const toneContext = useToneContext()
+  /*   const fetcher = (endpoint: string, object: object) =>
+    Axios.cryptonesApi.post(endpoint, object).then((res) => res.data) */
 
-  const fetcher = (endpoint: string, object: object) =>
-    Axios.cryptonesApi.post(endpoint, object).then((res) => res.data)
+  const data = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
   const obj = {
     source: source,
@@ -37,7 +43,13 @@ function MappingsCard(props: Props) {
     target: target,
   }
   //
+
   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
+    e.preventDefault()
+    //GENERATE NOTES: data from endpoint -> (source -> sensitivity -> target) => return dispatch setNotes(array)
+  }
+
+  /*   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
     e.preventDefault()
     const cachedMapping = await fetcher('/api/cache', cacheMapping)
       .then((response: AxiosResponse<any, any>) => {
@@ -53,7 +65,7 @@ function MappingsCard(props: Props) {
 
     return cachedMapping
   }
-  return (
+ */ return (
     <>
       <Paper
         css={css`

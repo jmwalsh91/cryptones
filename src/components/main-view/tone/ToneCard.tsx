@@ -28,42 +28,15 @@ const endpoints = [
 ]
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
-  const [notes, setNotes] = useState<any>()
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
-  const { data } = useSWR(toneContext?.dispatchedEndpoint, {
-    suspense: true,
-    revalidateOnMount: false,
-    revalidateIfStale: false,
-    revalidateOnReconnect: false,
-    revalidateOnFocus: false,
-    focusThrottleInterval: 20000,
-  })
-  const now = Tone.now()
   Tone.Transport.bpm.value = 60
-  let sequence
-
-  //TODO: This is messy,
-  /* useEffect(() => {
-    console.log('use effect')
-    console.log(data)
-    if (
-      data?.formattedOhlc &&
-      toneContext?.source &&
-      toneContext.source === 'difference'
-    ) {
-      startUpdateToneContext(() => {
-        console.log(data.formattedOhlc)
-        setNotes(differenceArray(data.formattedOhlc, toneContext.sensitivity))
-        Tone.Transport.start(now)
-      })
-    }
-    sequence = mapDataToSequence(synth, notes)
-  }, [toneContext]) */
 
   const playSynth = () => {
     console.log('play synth')
-    Tone.Transport.start(0)
+    console.log(Tone.context.state)
+    mapDataToSequence(synth, toneContext?.notes)
+    Tone.Transport.start(Tone.now())
   }
   const controls: audioControls = {
     stopPlayback: stopPlayback,
@@ -95,8 +68,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       >
         <Typography variant="h5">Output:</Typography>
         <Typography variant="body1">
-          {data ? 'data' : 'Placeholder'} {toneContext?.source}{' '}
-          {toneContext?.target}
+          {toneContext?.source} {toneContext?.target}
         </Typography>
         <PlaybackControls
           iconSize="large"

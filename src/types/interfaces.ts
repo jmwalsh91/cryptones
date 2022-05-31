@@ -36,6 +36,7 @@ export interface toneDataContext {
   sensitivity: number
   target: string
   dispatchedEndpoint: string
+  notes: any
 }
 export interface toneDataDispatcher {
   setSource?: React.Dispatch<React.SetStateAction<string>>

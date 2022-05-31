@@ -51,6 +51,7 @@ function ToneDataProvider({ children }: Props) {
     sensitivity: sensitivity,
     target: target,
     dispatchedEndpoint: dispatchedEndpoint,
+    notes: notes,
   }
   const dispatchToneData = {
     setSource: setSource,

@@ -39,13 +39,6 @@ function MappingsCard(props: Props) {
 
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
-  const obj = {
-    source: source,
-    sensitivity: sensitivity,
-    target: target,
-  }
-  //
-
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
     console.log(data)

@@ -8,7 +8,7 @@ export const newSynth = () => {
 
 export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
-  Tone.Transport.stop()
+  Tone.Transport.stop(Tone.now())
 }
 //TODO: update to accept types of each synth subclass that will be available to user
 export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {

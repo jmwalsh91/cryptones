@@ -29,6 +29,7 @@ export const applySensitivity = (
 }
 
 //TODO: strengthen data typing: Partial<something<something,something>>
+//TODO: If difference iss less than 1 between vals, should have an x100 option? and a snackbar if the < 1 condition is met without x100 being checked?
 export function differenceArray(
   data: Array<any>,
   sensitivity: number
@@ -37,13 +38,17 @@ export function differenceArray(
   const difArray: number[] = []
   data.reduce((_previousValue: number, _currentValue: number, _ind: number) => {
     if (data[_ind][1][3] === data[0][1][3]) {
+      console.log('reduce if hit')
       return
     } else {
+      console.log('else')
       const difValue = data[_ind][1][3] - data[_ind - 1][1][3]
+      console.log(difValue)
       return difArray.push(
         Math.abs(Math.trunc(applySensitivity(sensitivity, difValue)))
       )
     }
   }, 0)
+  console.log(difArray)
   return difArray
 }

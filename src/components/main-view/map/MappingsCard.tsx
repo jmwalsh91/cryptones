@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
+import { CollectionsBookmarkOutlined } from '@mui/icons-material'
 import { Button, Grid, Paper, Typography } from '@mui/material'
 import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
@@ -20,6 +21,7 @@ import {
 import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
+import { differenceArray } from '../tone/tone-utils/tone'
 
 interface Props {
   children?: ReactNode
@@ -35,7 +37,7 @@ function MappingsCard(props: Props) {
   /*   const fetcher = (endpoint: string, object: object) =>
     Axios.cryptonesApi.post(endpoint, object).then((res) => res.data) */
 
-  const data = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
+  const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
   const obj = {
     source: source,
@@ -44,8 +46,12 @@ function MappingsCard(props: Props) {
   }
   //
 
-  const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
+    console.log(data)
+    const array = differenceArray(data.formattedOhlc, sensitivity)
+    dispatchToneData?.setNotes(array)
+    return console.log('submitted')
     //GENERATE NOTES: data from endpoint -> (source -> sensitivity -> target) => return dispatch setNotes(array)
   }
 
@@ -124,7 +130,7 @@ function MappingsCard(props: Props) {
               variant="contained"
               size="large"
               sx={{ m: '2rem', mr: '1rem' }}
-              onClick={(e) => handleSubmit(e, obj)}
+              onClick={(e) => handleSubmit(e)}
               css={css`
                 ${neu.raised}}
               `}

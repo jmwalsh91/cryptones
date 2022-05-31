@@ -27,6 +27,9 @@ function ToneDataProvider({ children }: Props) {
   const [dispatchedEndpoint, setDispatchedEndpoint] =
     useState<string>('/api/ohlcv/')
 
+  //TODO: improve
+  const [notes, setNotes] = useState<any>()
+
   /*   const toneDataContext: toneDataContext = useMemo(
     () => ({
       source: source,
@@ -37,6 +40,12 @@ function ToneDataProvider({ children }: Props) {
     [source, sensitivity, target, dispatchedEndpoint]
   )
  */
+  // TODO: useEffect is just for dev
+  useEffect(() => {
+    console.log('notes')
+    console.log(notes)
+  }, [notes])
+
   const toneDataContext = {
     source: source,
     sensitivity: sensitivity,
@@ -47,6 +56,7 @@ function ToneDataProvider({ children }: Props) {
     setSource: setSource,
     setSensitivity: setSensitivity,
     setTarget: setTarget,
+    setNotes: setNotes,
   }
 
   const dispatchChartData = {

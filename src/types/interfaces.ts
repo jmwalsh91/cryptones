@@ -38,9 +38,10 @@ export interface toneDataContext {
   dispatchedEndpoint: string
 }
 export interface toneDataDispatcher {
-  setSource: React.Dispatch<React.SetStateAction<string>>
-  setSensitivity: React.Dispatch<React.SetStateAction<number>>
-  setTarget: React.Dispatch<React.SetStateAction<string>>
+  setSource?: React.Dispatch<React.SetStateAction<string>>
+  setSensitivity?: React.Dispatch<React.SetStateAction<number>>
+  setTarget?: React.Dispatch<React.SetStateAction<string>>
+  setNotes: any
 }
 export interface chartDataDispatcher {
   setDispatchedEndpoint: React.Dispatch<React.SetStateAction<string>>

@@ -41,11 +41,16 @@ function FullWidthCard() {
             }
           >
             <Grid item md={3} sm={12}>
-              <TokenCard setEndpoint={setEndpoint} startUpdate={startUpdate} />
+              <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
+                <TokenCard
+                  setEndpoint={setEndpoint}
+                  startUpdate={startUpdate}
+                />
+              </ErrorBoundary>
             </Grid>
 
             <Grid item sm={12} md={8}>
-              <ErrorBoundary fallback={<ErrorFallback error={Error} />}>
+              <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
                 <Suspense fallback="fallback">
                   <ChartComponent
                     data={data.formattedOhlc}

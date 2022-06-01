@@ -1,33 +1,42 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
-import { useState } from 'react'
+import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
+import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
-import { mockOhlc } from '../../stories/mockOhlc'
+import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { differenceArray } from './tone-utils/tone'
-import { newSynth } from './tone-utils/tone'
+import { mapDataToSequence } from './tone-utils/tone'
+import { newSynth, stopPlayback } from './tone-utils/tone'
+
 //TODO: interface for data useable by tone.JS
-type Props = { data?: object }
+interface Props {
+  startUpdateToneContext: TransitionStartFunction
+  isToneContextUpdating: boolean
+}
 
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
-function ToneCard({ data }: Props) {
-  const [notes, setNotes] = useState<any>()
-  const now = Tone.now()
-  const synth: Tone.PluckSynth = newSynth()
 
-  //TODO: Hook up to MappingsCard's submitted value and accept args. This is to test req to API deployed on azure + tone's behavior in prod
-  const playSynth = async () => {
-    await Tone.start()
-    const diff = differenceArray(mockOhlc)
-    await setNotes(diff)
-    await new Tone.Sequence((time, note) => {
-      synth.triggerAttackRelease(note, '8n', time)
-      console.log(note)
-    }, notes).start(0)
-    Tone.Transport.start(now)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
+  const synth: Tone.FMSynth = newSynth()
+  const toneContext = useToneContext()
+  Tone.Transport.bpm.value = 60
+
+  //TODO: ERROR FEEDBACK
+  const playSynth = () => {
+    console.log('play synth')
+    console.log(Tone.context.state)
+    if (toneContext?.notes) {
+      mapDataToSequence(synth, toneContext.notes)
+      Tone.Transport.start(Tone.now())
+    } else console.error('error')
+  }
+  const controls: audioControls = {
+    stopPlayback: stopPlayback,
+    startPlayback: playSynth,
   }
   return (
     <Paper
@@ -42,11 +51,26 @@ function ToneCard({ data }: Props) {
         py: '.5rem',
       }}
     >
-      <Stack spacing={2} alignItems={'center'}>
+      <Stack
+        spacing={2}
+        alignItems={'center'}
+        css={
+          isToneContextUpdating
+            ? css`
+                ${neu.pendingSection}
+              `
+            : null
+        }
+      >
         <Typography variant="h5">Output:</Typography>
-        <Typography variant="body1">{data ? 'data' : 'Placeholder'}</Typography>
-        <button onClick={() => playSynth()}></button>
-        <PlaybackControls iconSize="large" color="secondary" />
+        <Typography variant="body1">
+          {toneContext?.source} {toneContext?.target}
+        </Typography>
+        <PlaybackControls
+          iconSize="large"
+          color="secondary"
+          controls={controls}
+        />
       </Stack>
     </Paper>
   )

@@ -16,7 +16,7 @@ function SlideSelector({ sliderSize, color }: sliderProps) {
         size={sliderSize}
         color={color}
         defaultValue={70}
-        aria-label={sliderSize}
+        aria-label={sliderSize + 'slider'}
         valueLabelDisplay="auto"
       />
     </Box>

@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/react'
+import { useTransition } from 'react'
 
 import ToneCard from '../main-view/tone/ToneCard'
 
@@ -9,7 +10,13 @@ const meta: Meta = {
 
 export default meta
 
-const mockData = {
-  data: [1, 6, 5, 43, 23, 212, 65, 54],
+/* tslint:disable-next-line */
+export const Default = () => {
+  const [isToneContextUpdating, startUpdateToneContext] = useTransition()
+  return (
+    <ToneCard
+      startUpdateToneContext={startUpdateToneContext}
+      isToneContextUpdating={isToneContextUpdating}
+    />
+  )
 }
-export const Default = () => <ToneCard data={mockData} />

@@ -13,4 +13,4 @@ const mockProps = {
 
 export default meta
 
-export const Default = () => <TokenLogo logo={SolanaLogo} />
+export const Default = () => <TokenLogo tokenLogo={SolanaLogo} />

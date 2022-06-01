@@ -2,13 +2,17 @@
 import { css } from '@emotion/react'
 
 import * as neu from '../../../styles/neu'
-type Props = { logo: string }
 
-function TokenLogo({ logo }: Props) {
+import * as interfaces from '~/types/interfaces'
+
+type Props = {
+  tokenLogo: interfaces.tokenObject['logo'] | undefined
+}
+function TokenLogo({ tokenLogo }: Props) {
   return (
     <div
       style={{
-        backgroundImage: `url(${logo})`,
+        backgroundImage: `url(${tokenLogo})`,
         backgroundRepeat: 'no-repeat',
         backgroundOrigin: 'content-box',
         paddingTop: '1.2rem',

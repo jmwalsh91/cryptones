@@ -7,7 +7,6 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import * as React from 'react'
-import { Dispatch } from 'react'
 
 import { raised } from '../../styles/neu'
 
@@ -16,17 +15,17 @@ export interface selectorProps {
   label: string
   values: Array<string>
   helperText: string
-  handler: Dispatch<React.SetStateAction<string>>
+  handler: any
 }
 //InputSelect is used for both SOURCE and TARGET : Determines what source is routed to what target
 //EXAMPLE: 'difference' routed to 'notevalue' translates the difference between sequential values (across time) to note values that can be 'played' by tone.JS
-export default function InputSelect({
+export default function TokenSelect({
   label,
   values,
   helperText,
   handler,
 }: selectorProps): ReactJSXElement {
-  const [val, setVal] = React.useState(values[0])
+  const [val, setVal] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent) => {
     setVal(event.target.value)
@@ -39,26 +38,26 @@ export default function InputSelect({
       </MenuItem>
     )
   })
-
   return (
-    <FormControl
-      sx={{ m: 1, p: 1, minWidth: 100 }}
+    <div
       css={css`
         ${raised}
       `}
     >
-      <InputLabel id={label}>{label}</InputLabel>
-      <Select
-        labelId={`{$label}Select`}
-        id="demo-simple-select-helper"
-        value={val}
-        label={label}
-        onChange={handleChange}
-        size="small"
-      >
-        {dropdownValues}
-      </Select>
-      <FormHelperText>{helperText}</FormHelperText>
-    </FormControl>
+      <FormControl sx={{ m: 1, p: 1, minWidth: 100 }}>
+        <InputLabel id={label}>{label}</InputLabel>
+        <Select
+          labelId={`{$label}Select`}
+          id="demo-simple-select-helper"
+          value={val}
+          label={label}
+          onChange={handleChange}
+          size="small"
+        >
+          {dropdownValues}
+        </Select>
+        <FormHelperText>{helperText}</FormHelperText>
+      </FormControl>
+    </div>
   )
 }

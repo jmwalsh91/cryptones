@@ -1,13 +1,76 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack } from '@mui/material'
+import { Button, Paper, Stack } from '@mui/material'
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  TransitionStartFunction,
+  useState,
+} from 'react'
 
+import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
+import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
+import EthereumLogo from '../../../public/ethereum-eth-logo.svg'
+import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
 import * as neu from '../../../styles/neu'
-import InputSelect from '../../formComponents/InputSelect'
+import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
-const tokenChoices = ['BTC', 'SOL', 'ETH', 'DOT', 'ALGO']
-function TokenCard() {
+
+import { useChartDataDispatch } from '~/services/ToneContextWrapper'
+import { tokenObject } from '~/types/interfaces'
+const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
+
+/*TODO: LAZY LOAD, FIGURE OUT TYPES 
+const BitcoinLogo: Promise<typeof SVGElement> = lazy(
+  (): Promise<{ new (): SVGElement; prototype: SVGElement }> =>
+    import('../../../public/bitcoin-btc-logo.svg').then((BitcoinLogo) => {
+      return BitcoinLogo
+    })
+) */
+const tokens: Array<tokenObject> = [
+  { name: 'SOL', logo: SolanaLogo },
+  { name: 'BTC', logo: BitcoinLogo },
+  { name: 'ETH', logo: EthereumLogo },
+  { name: 'DOT', logo: PolkadotLogo },
+  { name: 'ALGO', logo: AlgorandLogo },
+]
+
+interface Props {
+  setEndpoint: Dispatch<SetStateAction<string>>
+  startUpdate: TransitionStartFunction
+}
+function TokenCard({ setEndpoint, startUpdate }: Props) {
+  const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
+  const endpointDispatcher = useChartDataDispatch()
+
+  const handleTokenSelect = (val: string): tokenObject | undefined => {
+    const tokenItem: tokenObject | undefined = tokens.find(
+      (tokens) => tokens.name === val
+    )
+    if (tokenItem) {
+      const token: tokenObject = tokenItem
+      setSelectedToken(token)
+      return token
+    }
+    if (!tokenItem) {
+      return undefined
+    }
+  }
+  //TODO: Interval button
+  const updateData = (e: SyntheticEvent) => {
+    e.preventDefault()
+    if (selectedToken.name) {
+      const params = `/api/ohlcv/${selectedToken.name}/15min`
+      setEndpoint(params)
+      endpointDispatcher?.setDispatchedEndpoint(params)
+      return console.log(params)
+    }
+    if (!selectedToken.name) {
+      return Error
+    }
+  }
   return (
     <Paper
       css={css`
@@ -38,12 +101,22 @@ function TokenCard() {
         p={7}
         sx={{ flexDirection: { xs: 'row', md: 'column' } }}
       >
-        <TokenLogo logo={SolanaLogo} />
-        <InputSelect
+        <TokenLogo tokenLogo={selectedToken?.logo} />
+        <TokenSelect
           label="token"
           values={tokenChoices}
           helperText="choose token"
+          handler={handleTokenSelect}
         />
+        <Button
+          onClick={(e: SyntheticEvent) =>
+            startUpdate(() => {
+              updateData(e)
+            })
+          }
+        >
+          Submit
+        </Button>
       </Stack>
     </Paper>
   )

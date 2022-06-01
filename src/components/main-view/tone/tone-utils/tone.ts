@@ -1,5 +1,4 @@
 import * as Tone from 'tone'
-import { Synth } from 'tone'
 
 export const newSynth = () => {
   const fmSynth: Tone.FMSynth = new Tone.FMSynth().toDestination()

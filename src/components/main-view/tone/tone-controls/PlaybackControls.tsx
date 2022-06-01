@@ -6,7 +6,6 @@ import { ButtonGroup, IconButton, Paper } from '@mui/material'
 import * as neu from '../../../../styles/neu'
 
 import { audioControls } from '~/types/interfaces'
-import { Tone } from 'tone/build/esm/core/Tone'
 
 interface playbackProps {
   color: 'primary' | 'secondary'

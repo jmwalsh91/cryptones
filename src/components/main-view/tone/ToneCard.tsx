@@ -1,16 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography } from '@mui/material'
-import { TransitionStartFunction, useContext, useEffect, useState } from 'react'
-import useSWR, { useSWRConfig } from 'swr'
+import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
-import { mockOhlc } from '../../stories/mockOhlc'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { differenceArray, mapDataToSequence } from './tone-utils/tone'
+import { mapDataToSequence } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
@@ -19,14 +17,9 @@ interface Props {
   isToneContextUpdating: boolean
 }
 
-const endpoints = [
-  '/api/ohlcv/',
-  '/api/ohlcv/BTC/15min',
-  '/api/ohlcv/ETH/15min',
-  '/api/ohlcv/ALGO/15min',
-  '/api/ohlcv/SOL/15min',
-]
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()

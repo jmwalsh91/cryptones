@@ -1,15 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
-import { CollectionsBookmarkOutlined } from '@mui/icons-material'
 import { Button, Grid, Paper, Typography } from '@mui/material'
-import { AxiosResponse } from 'axios'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
 
-/* import useSWR, { SWRConfig, mutate, useSWRConfig } from 'swr' */
-import * as Axios from '../../../services/Axios'
 // eslint-disable-next-line import/order
 import {
   useDispatch,
@@ -29,8 +25,10 @@ interface Props {
 }
 
 function MappingsCard(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [target, setTarget] = useState<string>('Note value')
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()

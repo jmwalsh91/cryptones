@@ -6,9 +6,15 @@ const meta: Meta = {
   title: 'Sensitivity Slider',
   component: SensitivitySlider,
 }
-
+const handleClick = () => {
+  console.log('click')
+}
 export default meta
 
 export const Default = () => (
-  <SensitivitySlider sliderSize="medium" color="secondary" />
+  <SensitivitySlider
+    sliderSize="medium"
+    color="secondary"
+    handler={() => handleClick()}
+  />
 )

@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+//TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
-import { Box, SelectChangeEvent, Slider } from '@mui/material'
+import { Box, Slider } from '@mui/material'
 import React, { SyntheticEvent, useState } from 'react'
 import { Dispatch } from 'react'
-
-import { sensitivitySliderValues } from '~/types/interfaces'
 
 //Valid props for SlideSelector
 interface sensitivitySelectorProps {

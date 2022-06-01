@@ -32,11 +32,14 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const toneContext = useToneContext()
   Tone.Transport.bpm.value = 60
 
+  //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
-    mapDataToSequence(synth, toneContext?.notes)
-    Tone.Transport.start(Tone.now())
+    if (toneContext?.notes) {
+      mapDataToSequence(synth, toneContext.notes)
+      Tone.Transport.start(Tone.now())
+    } else console.error('error')
   }
   const controls: audioControls = {
     stopPlayback: stopPlayback,

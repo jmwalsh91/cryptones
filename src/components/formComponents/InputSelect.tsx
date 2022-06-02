@@ -9,6 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import * as React from 'react'
 import { Dispatch } from 'react'
 
+import * as base from '../../styles/base'
 import { raised } from '../../styles/neu'
 
 //Valid props for InputSelect
@@ -44,17 +45,28 @@ export default function InputSelect({
     <FormControl
       sx={{ m: 1, p: 1, minWidth: 100 }}
       css={css`
-        ${raised}
+        ${raised};
+        ${base.inputBox}
       `}
     >
-      <InputLabel id={label}>{label}</InputLabel>
+      <InputLabel
+        id={label}
+        css={css`
+          ${base.label}
+        `}
+      >
+        {label}
+      </InputLabel>
       <Select
-        labelId={`{$label}Select`}
+        labelId={`${label}Select`}
         id="demo-simple-select-helper"
         value={val}
         label={label}
         onChange={handleChange}
         size="small"
+        css={css`
+          ${base.select}
+        `}
       >
         {dropdownValues}
       </Select>

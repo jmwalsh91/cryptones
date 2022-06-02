@@ -14,12 +14,12 @@ import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
 import EthereumLogo from '../../../public/ethereum-eth-logo.svg'
 import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
+import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
+import { tokenObject } from '../../../types/interfaces'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 
-import { useChartDataDispatch } from '~/services/ToneContextWrapper'
-import { tokenObject } from '~/types/interfaces'
 const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
 
 /*TODO: LAZY LOAD, FIGURE OUT TYPES 

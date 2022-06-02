@@ -21,6 +21,8 @@ export const inputBox = css`
 `
 
 export const mapCard = css`
+  padding-top: 1rem;
+  min-width: 40rem;
   &:focus-within {
     box-shadow: 0 0 10px #65abba;
   }

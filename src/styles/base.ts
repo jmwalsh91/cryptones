@@ -25,5 +25,9 @@ export const mapCard = css`
     box-shadow: 0 0 10px #65abba;
   }
 `
-
+export const toneCard = css`
+  &:focus-within {
+    box-shadow: 0 0 10px #d070be;
+  }
+`
 export const focusBorder = css``

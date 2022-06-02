@@ -5,6 +5,7 @@ import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
 import { useToneContext } from '../../../services/ToneContextWrapper'
+import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
@@ -41,7 +42,8 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   return (
     <Paper
       css={css`
-        ${neu.depressed}
+        ${neu.depressed};
+        ${base.toneCard};
       `}
       sx={{
         width: '100%',

@@ -8,8 +8,22 @@ export const select = css`
 export const label = css`
   padding-bottom: 5rem;
   margin-bottom: 5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  color: black;
 `
 export const inputBox = css`
-  min-width: 140px;
+  min-width: 10rem;
+  height: 6.5rem;
+  justify-content: 'center';
+  &:hover {
+    box-shadow: 0 0 10px #65abba;
+  }
 `
+
+export const mapCard = css`
+  &:focus-within {
+    box-shadow: 0 0 10px #65abba;
+  }
+`
+
+export const focusBorder = css``

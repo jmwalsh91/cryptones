@@ -15,6 +15,7 @@ import {
 /* import * as Tone from 'tone' */
 
 import * as neu from '../../../styles/neu'
+import * as base from '../../../styles/base'
 import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
 import { differenceArray } from '../tone/tone-utils/tone'
@@ -66,7 +67,8 @@ function MappingsCard(props: Props) {
     <>
       <Paper
         css={css`
-          ${neu.depressed}
+          ${neu.depressed};
+          ${base.mapCard};
         `}
         sx={{
           width: '100%',
@@ -77,14 +79,11 @@ function MappingsCard(props: Props) {
         }}
         {...props}
       >
-        <Typography variant="h4" marginY={'.5rem'} textAlign={'left'}>
-          MAP:
-        </Typography>
         <Grid
           container
           sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
         >
-          <Grid item xs={3} container justifyContent={'center'}>
+          <Grid item xs={3} container >
             <InputSelect
               label={'Src'}
               values={['difference', 'absolute']}

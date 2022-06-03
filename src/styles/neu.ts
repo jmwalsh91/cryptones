@@ -2,12 +2,12 @@
 import { css } from '@emotion/react'
 
 export const light = {
-  raisedl: css`
+  raised: css`
     border-radius: 20px;
     background: #d9d9d9;
     box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
   `,
-  depressedl: css`
+  depressed: css`
     border-radius: 20px;
     background: #d9d9d9;
     box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
@@ -24,7 +24,7 @@ export const light = {
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
 ` */
 
-  circleActionl: css`
+  circleAction: css`
     display: block;
     padding: 1rem;
     margin: 0 auto;
@@ -36,14 +36,14 @@ export const light = {
     box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
   `,
 
-  actionHoverl: css`
+  actionHover: css`
     &:hover {
       border-radius: 100px;
       background: #d9d9d9;
       box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
     }
   `,
-  actionHoverPrimaryl: css`
+  actionHoverPrimary: css`
     &:hover {
       border-radius: 100px;
       background: #d9d9d9;

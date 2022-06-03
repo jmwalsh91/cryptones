@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Button, Paper, Stack } from '@mui/material'
+import { Button, Paper, Stack, useTheme } from '@mui/material'
 import {
   Dispatch,
   SetStateAction,
@@ -44,6 +44,8 @@ interface Props {
 function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
   const endpointDispatcher = useChartDataDispatch()
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -74,7 +76,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   return (
     <Paper
       css={css`
-        ${neu.depressed}
+        ${themedNeu.depressed}
       `}
       sx={{
         xs: {

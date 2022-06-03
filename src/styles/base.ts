@@ -9,7 +9,6 @@ export const label = css`
   padding-bottom: 5rem;
   margin-bottom: 5rem;
   font-size: 1.4rem;
-  color: black;
 `
 export const inputBox = css`
   min-width: 10rem;

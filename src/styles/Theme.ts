@@ -42,7 +42,7 @@ export const darkTheme = createTheme({
       main: '#d070be',
     },
     error: {
-      main: '#f44336',
+      main: '#f9494b',
     },
     warning: {
       main: '#E0981E',
@@ -54,6 +54,10 @@ export const darkTheme = createTheme({
       default: '#2f2c2c',
       paper: '#2f2c2c',
     },
+    text: {
+      primary: '#f5f2f2',
+    },
+    divider: 'rgba(201,192,192,0.75)',
   },
   typography: {
     fontFamily: 'Smooch Sans',

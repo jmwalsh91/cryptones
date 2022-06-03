@@ -1,6 +1,10 @@
 /** @jsx jsx */
 import { css } from '@emotion/react'
 
+export const pendingSection = css`
+  opacity: 0.6;
+`
+
 export const light = {
   raised: css`
     border-radius: 20px;
@@ -50,10 +54,6 @@ export const light = {
       box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8,
         inset -3px 3px 15px 3px #65abba;
     }
-  `,
-
-  pendingSection: css`
-    opacity: 0.6;
   `,
 }
 //dark mode literals

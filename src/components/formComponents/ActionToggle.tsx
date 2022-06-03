@@ -2,6 +2,7 @@
 import { css } from '@emotion/react'
 import { PlayArrow, Stop } from '@mui/icons-material'
 import { createSvgIcon, IconButton } from '@mui/material'
+import { useTheme } from '@mui/system'
 import { useState } from 'react'
 
 import play from '../../public/play2.svg'
@@ -20,6 +21,8 @@ type Props = {}
 /* const Play = createSvgIcon(`${play}`, 'Play') */
 function ActionToggle({}: Props) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
 
   const handleClick = () => {
     setIsPlaying(!isPlaying)
@@ -28,7 +31,7 @@ function ActionToggle({}: Props) {
   return (
     <div
       css={css`
-        ${neu.circleAction};
+        ${themedNeu.circleAction};
         ${base.centerChildren};
       `}
       onClick={handleClick}

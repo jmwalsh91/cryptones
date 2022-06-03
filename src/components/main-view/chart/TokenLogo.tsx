@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { useTheme } from '@mui/material'
 
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
@@ -10,10 +11,12 @@ type Props = {
   tokenLogo: interfaces.tokenObject['logo'] | undefined
 }
 function TokenLogo({ tokenLogo }: Props) {
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   return (
     <div
       css={css`
-        ${neu.circleAction};
+        ${themedNeu.circleAction};
         ${base.centerChildren};
         margin-bottom: 1rem;
       `}

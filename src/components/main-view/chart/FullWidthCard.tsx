@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Grid, Paper } from '@mui/material'
+import { Grid, Paper, useTheme } from '@mui/material'
 import { Suspense, lazy, useState, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
@@ -16,6 +16,8 @@ const ChartComponent = lazy(() => import('./ChartComponent'))
 function FullWidthCard() {
   const [endpoint, setEndpoint] = useState<string>('api/ohlcv')
   const [isUpdating, startUpdate] = useTransition()
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(endpoint, {
     suspense: true,
   })
@@ -24,7 +26,7 @@ function FullWidthCard() {
     <Paper
       sx={{ width: '100%', p: '1rem' }}
       css={css`
-        ${neu.depressed}
+        ${themedNeu.depressed}
       `}
     >
       <ErrorBoundary FallbackComponent={ErrorFallback}>

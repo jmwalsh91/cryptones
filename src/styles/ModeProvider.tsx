@@ -1,4 +1,4 @@
-import { PaletteMode, ThemeProvider } from '@mui/material'
+import { PaletteMode, Theme, ThemeProvider } from '@mui/material'
 import React, { createContext, ReactNode, useMemo, useState } from 'react'
 
 import * as themeObject from '../styles/Theme'
@@ -27,7 +27,8 @@ export function ModeProvider({ children }: Props) {
     []
   )
 
-  const theme = mode === 'light' ? themeObject.theme : themeObject.darkTheme
+  const theme: Theme =
+    mode === 'light' ? themeObject.theme : themeObject.darkTheme
 
   return (
     <ModeContext.Provider value={colorMode}>

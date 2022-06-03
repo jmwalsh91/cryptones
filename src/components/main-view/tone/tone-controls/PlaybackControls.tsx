@@ -18,13 +18,10 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
     <Paper
       variant="outlined"
       css={css`
-        ${neu.depressed}
+        ${neu.raised}
       `}
     >
       <ButtonGroup>
-        {/*         <IconButton aria-label="MusicNote" color={color} size={iconSize}>
-          <MusicNote fontSize="large" />
-        </IconButton> */}
         <IconButton
           aria-label="PlayArrow"
           color={color}

@@ -11,7 +11,7 @@ export const depressed = css`
   background: #d9d9d9;
   box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
 `
-export const token = css`
+/* export const token = css`
   display: block;
   padding: 1rem;
   margin: 0 auto;
@@ -21,7 +21,7 @@ export const token = css`
   border-radius: 100px;
   background: #d9d9d9;
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
-`
+` */
 
 export const circleAction = css`
   display: block;

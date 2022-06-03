@@ -83,7 +83,7 @@ function MappingsCard(props: Props) {
           container
           sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
         >
-          <Grid item xs={3} container >
+          <Grid item xs={3} container>
             <InputSelect
               label={'Src'}
               values={['difference', 'absolute']}

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { css } from '@emotion/react'
 
-export const raised = css`
+export const raisedlight = css`
   border-radius: 20px;
   background: #d9d9d9;
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
 `
-export const depressed = css`
+export const depressedlight = css`
   border-radius: 20px;
   background: #d9d9d9;
   box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
@@ -23,7 +23,7 @@ export const depressed = css`
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
 ` */
 
-export const circleAction = css`
+export const circleActionlight = css`
   display: block;
   padding: 1rem;
   margin: 0 auto;
@@ -35,14 +35,14 @@ export const circleAction = css`
   box-shadow: 6px 6px 15px #cacaca, -6px -6px 15px #e8e8e8;
 `
 
-export const actionHover = css`
+export const actionHoverlight = css`
   &:hover {
     border-radius: 100px;
     background: #d9d9d9;
     box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
   }
 `
-export const actionHoverPrimary = css`
+export const actionHoverPrimarylight = css`
   &:hover {
     border-radius: 100px;
     background: #d9d9d9;

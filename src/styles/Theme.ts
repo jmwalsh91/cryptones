@@ -10,7 +10,7 @@ export const theme = createTheme({
       main: '#d070be',
     },
     background: {
-      default: '#1D1D1D',
+      default: '#d9d9d9',
       paper: '#d9d9d9',
     },
     warning: {
@@ -51,7 +51,7 @@ export const darkTheme = createTheme({
       main: '#328d80',
     },
     background: {
-      default: '#1a1818',
+      default: '#2f2c2c',
       paper: '#2f2c2c',
     },
   },

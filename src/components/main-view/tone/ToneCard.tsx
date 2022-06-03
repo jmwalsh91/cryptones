@@ -4,6 +4,8 @@ import { Paper, Stack, Typography } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
+import ActionToggle from '~/components/formComponents/ActionToggle'
+
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
@@ -65,6 +67,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         }
       >
         <Typography variant="h5">Output:</Typography>
+        <ActionToggle />
         <Typography variant="body1">
           {toneContext?.source} {toneContext?.target}
         </Typography>

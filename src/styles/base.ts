@@ -20,6 +20,13 @@ export const inputBox = css`
   }
 `
 
+export const centerChildren = css`
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+`
+
 export const mapCard = css`
   padding-top: 1rem;
   min-width: 40rem;

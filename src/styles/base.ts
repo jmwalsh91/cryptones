@@ -27,6 +27,13 @@ export const centerChildren = css`
   text-decoration: none;
 `
 
+export const centeredSvg = css`
+  width: 4rem;
+  height: 4rem;
+  background-size: contain;
+  background-origin: content-box;
+`
+
 export const mapCard = css`
   padding-top: 1rem;
   min-width: 40rem;

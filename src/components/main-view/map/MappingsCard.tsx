@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
-import { Button, Grid, Paper, Typography } from '@mui/material'
+import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
@@ -14,8 +14,8 @@ import {
 
 /* import * as Tone from 'tone' */
 
-import * as neu from '../../../styles/neu'
 import * as base from '../../../styles/base'
+import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
 import { differenceArray } from '../tone/tone-utils/tone'
@@ -35,7 +35,8 @@ function MappingsCard(props: Props) {
   const toneContext = useToneContext()
   /*   const fetcher = (endpoint: string, object: object) =>
     Axios.cryptonesApi.post(endpoint, object).then((res) => res.data) */
-
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -67,7 +68,7 @@ function MappingsCard(props: Props) {
     <>
       <Paper
         css={css`
-          ${neu.depressed};
+          ${themedNeu.depressed};
           ${base.mapCard};
         `}
         sx={{
@@ -97,7 +98,7 @@ function MappingsCard(props: Props) {
             container
             sx={{ justifyContent: 'center', alignContent: 'baseline' }}
             css={css`
-              ${neu.raised}
+              ${themedNeu.raised}
             `}
           >
             <Typography variant="h6">Sensitivity</Typography>
@@ -122,7 +123,7 @@ function MappingsCard(props: Props) {
               sx={{ m: '2rem', mr: '1rem' }}
               onClick={(e) => handleSubmit(e)}
               css={css`
-                ${neu.raised}}
+                ${themedNeu.raised}}
               `}
             >
               Submit

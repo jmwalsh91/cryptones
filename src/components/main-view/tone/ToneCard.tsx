@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
@@ -26,6 +26,8 @@ interface Props {
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   Tone.Transport.bpm.value = 60
 
   //TODO: ERROR FEEDBACK
@@ -44,7 +46,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   return (
     <Paper
       css={css`
-        ${neu.depressed};
+        ${themedNeu.depressed};
         ${base.toneCard};
       `}
       sx={{

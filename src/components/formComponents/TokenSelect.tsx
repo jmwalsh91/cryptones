@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
+import { useTheme } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
@@ -8,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import * as React from 'react'
 
-import { raised } from '../../styles/neu'
+import * as neu from '../../styles/neu'
 
 //Valid props for InputSelect
 export interface selectorProps {
@@ -26,6 +27,8 @@ export default function TokenSelect({
   handler,
 }: selectorProps): ReactJSXElement {
   const [val, setVal] = React.useState('')
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
 
   const handleChange = (event: SelectChangeEvent) => {
     setVal(event.target.value)
@@ -41,7 +44,7 @@ export default function TokenSelect({
   return (
     <div
       css={css`
-        ${raised}
+        ${themedNeu.raised}
       `}
     >
       <FormControl sx={{ m: 1, p: 1, minWidth: 100 }}>

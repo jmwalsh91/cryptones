@@ -1,6 +1,9 @@
+import { useTheme } from '@mui/system'
 import ReactApexChart from 'react-apexcharts'
 
+//TODO: hover data disable ? 
 export default function ChartComponent({ data, name, interval }) {
+  const currentTheme = useTheme()
   let chartParams = {
     series: [
       {
@@ -10,9 +13,10 @@ export default function ChartComponent({ data, name, interval }) {
     options: {
       chart: {
         height: 350,
+        foreColor: `${currentTheme.palette.text.primary}`,
         type: 'candlestick',
         zoom: {
-          enabled: false,
+          enabled: true,
         },
       },
       dataLabels: {
@@ -23,13 +27,13 @@ export default function ChartComponent({ data, name, interval }) {
         align: 'center',
       },
       markers: {
-        strokeColors: '#08c9c9',
+        strokeColors: `${currentTheme.palette.background.default}`,
       },
       plotOptions: {
         candlestick: {
           colors: {
-            upward: '#53e6e6',
-            downward: 'rgba(253,147,0,0.73)',
+            upward: `${currentTheme.palette.primary.main}`,
+            downward: `${currentTheme.palette.error.main}`,
           },
         },
       },

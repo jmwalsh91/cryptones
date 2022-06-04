@@ -1,4 +1,6 @@
 import AdbIcon from '@mui/icons-material/Adb'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -11,6 +13,9 @@ import Toolbar from '@mui/material/Toolbar'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
+
+import { ModeContext } from '~/styles/ModeProvider'
+import { theme } from '~/styles/Theme'
 
 //TODO: Pages
 const pages = ['page']
@@ -37,7 +42,7 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-
+  const modeSetter = React.useContext(ModeContext)
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -127,6 +132,17 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={modeSetter.toggleColorMode}
+            color="inherit"
+          >
+            {theme.palette.mode === 'dark' ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

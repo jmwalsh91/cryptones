@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Pause, PlayArrow, Stop } from '@mui/icons-material'
-import { ButtonGroup, IconButton, Paper } from '@mui/material'
+import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
 import * as neu from '../../../../styles/neu'
 
@@ -14,17 +14,16 @@ interface playbackProps {
 }
 
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   return (
     <Paper
       variant="outlined"
       css={css`
-        ${neu.depressed}
+        ${themedNeu.raised}
       `}
     >
       <ButtonGroup>
-        {/*         <IconButton aria-label="MusicNote" color={color} size={iconSize}>
-          <MusicNote fontSize="large" />
-        </IconButton> */}
         <IconButton
           aria-label="PlayArrow"
           color={color}

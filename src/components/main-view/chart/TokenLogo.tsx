@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { useTheme } from '@mui/material'
 
+import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 
 import * as interfaces from '~/types/interfaces'
@@ -9,20 +11,22 @@ type Props = {
   tokenLogo: interfaces.tokenObject['logo'] | undefined
 }
 function TokenLogo({ tokenLogo }: Props) {
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   return (
     <div
-      style={{
-        backgroundImage: `url(${tokenLogo})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundOrigin: 'content-box',
-        paddingTop: '1.2rem',
-        marginBottom: '1rem',
-      }}
       css={css`
-        ${neu.token};
+        ${themedNeu.circleAction};
+        ${base.centerChildren};
+        margin-bottom: 1rem;
       `}
     >
-      {/*  <img src={logo} /> */}
+      <div
+        css={css`
+          ${base.centeredSvg};
+          background-image: url('${tokenLogo}');
+        `}
+      />
     </div>
   )
 }

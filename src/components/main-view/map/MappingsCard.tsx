@@ -78,27 +78,45 @@ function MappingsCard(props: Props) {
           height: '100%',
           justifyContent: 'center',
           px: '1rem',
-          py: '.5rem',
         }}
         {...props}
       >
+        <Typography
+          variant="h2"
+          css={css`
+            font-weight: 700;
+            text-shadow: 10px 1px 20px ${currentTheme.palette.primary.main},
+              5px 8px 10px ${currentTheme.palette.secondary.main};
+            color: ${currentTheme.palette.background.default};
+          `}
+          sx={{ textAlign: 'left' }}
+        >
+          {' '}
+          Mapping
+        </Typography>
         <Grid
           container
           sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
         >
-          <Grid item xs={3} container>
+          <Grid
+            item
+            xs={3}
+            container
+            sx={{ m: 1, p: 1, minWidth: 100 }}
+            css={css`
+              ${themedNeu.raised};
+            `}
+          >
             <AlgoSelect />
           </Grid>
           <Grid
             item
             sm={3}
             container
-            sx={{ justifyContent: 'center', alignContent: 'baseline' }}
             css={css`
               ${themedNeu.raised}
             `}
           >
-            <Typography variant="h6">Sensitivity</Typography>
             <SensitivitySlider
               sliderSize="small"
               color="primary"

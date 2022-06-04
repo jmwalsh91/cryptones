@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 //TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
-import { Box, Slider } from '@mui/material'
+import { css } from '@emotion/react'
+import { Box, Slider, Stack, Typography, useTheme } from '@mui/material'
 import React, { SyntheticEvent, useState } from 'react'
 import { Dispatch } from 'react'
 
+import * as base from '../../styles/base'
+import * as neu from '../../styles/neu'
 //Valid props for SlideSelector
 interface sensitivitySelectorProps {
   sliderSize: 'small' | 'medium'
@@ -18,7 +21,8 @@ function SensitivitySlider({
   handler,
 }: sensitivitySelectorProps) {
   const [val, setVal] = useState<number>(1)
-
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
     newValue: number | number[]
@@ -27,19 +31,26 @@ function SensitivitySlider({
     return handler(newValue as number)
   }
   return (
-    <Box width={300} m={2}>
-      <Slider
-        size={sliderSize}
-        color={color}
-        defaultValue={1}
-        aria-label={sliderSize}
-        valueLabelDisplay="auto"
-        step={0.1}
-        marks
-        min={0.1}
-        max={2}
-        onChangeCommitted={handleChange}
-      />
+    <Box
+      width={300}
+      m={2}
+      sx={{ alignItems: 'center', justifyContent: 'center' }}
+    >
+      <Stack>
+        <Typography variant="h5">Sensitivity</Typography>
+        <Slider
+          size={sliderSize}
+          color={color}
+          defaultValue={1}
+          aria-label={sliderSize}
+          valueLabelDisplay="auto"
+          step={0.1}
+          marks
+          min={0.1}
+          max={2}
+          onChangeCommitted={handleChange}
+        />
+      </Stack>
     </Box>
   )
 }

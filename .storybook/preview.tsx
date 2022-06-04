@@ -4,7 +4,7 @@ import { theme } from '../src/styles/Theme'
 /* import { GlobalStyle, theme } from '../src/styles' */
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  actions: {}
 }
 
 export const decorators = [
@@ -14,3 +14,4 @@ export const decorators = [
     </ThemeProvider>
   ),
 ]
+

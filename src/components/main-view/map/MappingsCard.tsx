@@ -6,6 +6,8 @@ import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
 
+import AlgoSelect from '~/components/formComponents/AlgoSelect'
+
 // eslint-disable-next-line import/order
 import {
   useDispatch,
@@ -85,12 +87,7 @@ function MappingsCard(props: Props) {
           sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
         >
           <Grid item xs={3} container>
-            <InputSelect
-              label={'Src'}
-              values={['difference', 'absolute']}
-              helperText={'Select source'}
-              handler={setSource}
-            />
+            <AlgoSelect />
           </Grid>
           <Grid
             item

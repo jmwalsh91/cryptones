@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
-import { ModeContext, ModeProvider } from '~/styles/ModeProvider'
+import { ModeContext } from '~/styles/ModeProvider'
 import { theme } from '~/styles/Theme'
 
 //TODO: Pages

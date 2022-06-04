@@ -52,4 +52,3 @@ export function differenceArray(
   console.log(difArray)
   return difArray
 }
-

@@ -1,5 +1,5 @@
 import { PaletteMode, Theme, ThemeProvider } from '@mui/material'
-import React, { createContext, ReactNode, useMemo, useState } from 'react'
+import React, { ReactNode, createContext, useMemo, useState } from 'react'
 
 import * as themeObject from '../styles/Theme'
 

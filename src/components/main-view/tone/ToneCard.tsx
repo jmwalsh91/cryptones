@@ -4,8 +4,7 @@ import { Paper, Stack, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
-import ActionToggle from '~/components/formComponents/ActionToggle'
-
+import ActionToggle from '../../../components/formComponents/ActionToggle'
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'

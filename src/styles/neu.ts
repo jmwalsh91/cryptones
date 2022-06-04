@@ -59,7 +59,6 @@ export const light = {
 //dark mode literals
 export const dark = {
   raised: css`
-    margin: 0.25rem;
     border-radius: 15px;
     background: #2f2c2c;
     box-shadow: 7px 7px 10px #1f1d1d, -7px -7px 10px #3f3b3b;

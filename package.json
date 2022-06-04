@@ -50,7 +50,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.7.0",
-    "@storybook/addon-actions": "6.4.22",
+    "@storybook/addon-actions/register": "6.4.22",
     "@storybook/addon-essentials": "6.4.22",
     "@storybook/addon-interactions": "6.4.22",
     "@storybook/addon-links": "6.4.22",

@@ -24,6 +24,8 @@ interface Props {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const [beat, setBeat] = useState<boolean>(false)
+  //TODO: select note length
+  const [division, setDivision] = useState<string>('16n')
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
@@ -35,8 +37,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
     console.log('play synth')
     console.log(Tone.context.state)
     if (toneContext?.notes) {
-      mapDataToSequence(synth, toneContext.notes)
-      animationSeq(console.log('bow'))
+      mapDataToSequence(synth, toneContext.notes, division)
       Tone.Transport.start(Tone.now())
     } else console.error('error')
   }
@@ -62,10 +63,9 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         spacing={2}
         alignItems={'center'}
         css={
-          beat
+          isToneContextUpdating
             ? css`
-                box-shadow: inset 6px 6px 15px #cacaca,
-                  inset -6px -6px 15px #e8e8e8, inset -3px 3px 15px 3px #65abba;
+                ${neu.pendingSection}
               `
             : null
         }

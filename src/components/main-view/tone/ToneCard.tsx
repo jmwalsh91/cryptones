@@ -10,7 +10,7 @@ import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { mapDataToSequence } from './tone-utils/tone'
+import { animationSeq, mapDataToSequence } from './tone-utils/tone'
 import { newSynth, stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
@@ -30,21 +30,13 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   Tone.Transport.bpm.value = 60
 
-  Tone.Transport.schedule((time) => {
-    // use the time argument to schedule a callback with Draw
-    Tone.Draw.schedule(() => {
-      // do drawing or DOM manipulation here
-      console.log(time)
-    }, time)
-  }, '.01')
-
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
     if (toneContext?.notes) {
       mapDataToSequence(synth, toneContext.notes)
-
+      animationSeq(console.log('bow'))
       Tone.Transport.start(Tone.now())
     } else console.error('error')
   }

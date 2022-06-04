@@ -10,7 +10,12 @@ export const stopPlayback = (/*callback?*/) => {
   Tone.Transport.stop(Tone.now())
 }
 //TODO: update to accept types of each synth subclass that will be available to user
-export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
+export const mapDataToSequence = (
+  synth: Tone.FMSynth,
+  notes: number[],
+  time?: string
+) => {
+  //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
   }, notes).start(0)
@@ -50,4 +55,16 @@ export function differenceArray(
   }, 0)
   console.log(difArray)
   return difArray
+}
+
+export const animationSeq = (event: void, time: string) => {
+  Tone.Transport.schedule((time) => {
+    // use the time argument to schedule a callback with Draw
+    Tone.Draw.schedule(() => {
+      // do drawing or DOM manipulation here
+      //event placeholder
+      console.log(event)
+      console.log(time)
+    }, time)
+  }, '.5')
 }

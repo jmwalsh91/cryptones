@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { PlayArrow, Stop } from '@mui/icons-material'
-import { createSvgIcon, IconButton } from '@mui/material'
+import { IconButton, createSvgIcon } from '@mui/material'
 import { useTheme } from '@mui/system'
 import { useState } from 'react'
+import * as Tone from 'tone'
 
 import play from '../../public/play2.svg'
 import stop from '../../public/stop2.svg'
@@ -21,8 +22,19 @@ type Props = {}
 /* const Play = createSvgIcon(`${play}`, 'Play') */
 function ActionToggle({}: Props) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [beat, setBeat] = useState<boolean>(false)
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+
+  const loop = new Tone.Loop(function (time) {
+    //instead of scheduling visuals inside of here
+    //schedule a deferred callback with Tone.Draw
+
+    Tone.Draw.schedule(function () {
+      setBeat(!beat)
+      console.log(beat)
+    }, time) //use AudioContext time of the event
+  }, '8n')
 
   const handleClick = () => {
     setIsPlaying(!isPlaying)
@@ -36,7 +48,7 @@ function ActionToggle({}: Props) {
       `}
       onClick={handleClick}
     >
-      {isPlaying ? (
+      {beat ? (
         <div
           css={css`
             width: 4rem;

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography, useTheme } from '@mui/material'
-import { TransitionStartFunction } from 'react'
+import { TransitionStartFunction, useState } from 'react'
 import * as Tone from 'tone'
 
 import ActionToggle from '../../../components/formComponents/ActionToggle'
@@ -23,11 +23,20 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
+  const [beat, setBeat] = useState<boolean>(false)
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   Tone.Transport.bpm.value = 60
+
+  Tone.Transport.schedule((time) => {
+    // use the time argument to schedule a callback with Draw
+    Tone.Draw.schedule(() => {
+      // do drawing or DOM manipulation here
+      console.log(time)
+    }, time)
+  }, '.01')
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
@@ -35,6 +44,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
     console.log(Tone.context.state)
     if (toneContext?.notes) {
       mapDataToSequence(synth, toneContext.notes)
+
       Tone.Transport.start(Tone.now())
     } else console.error('error')
   }
@@ -60,9 +70,10 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         spacing={2}
         alignItems={'center'}
         css={
-          isToneContextUpdating
+          beat
             ? css`
-                ${neu.pendingSection}
+                box-shadow: inset 6px 6px 15px #cacaca,
+                  inset -6px -6px 15px #e8e8e8, inset -3px 3px 15px 3px #65abba;
               `
             : null
         }

@@ -1,10 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack, Typography } from '@mui/material'
+import { Paper, Stack, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
+import ActionToggle from '../../../components/formComponents/ActionToggle'
 import { useToneContext } from '../../../services/ToneContextWrapper'
+import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
@@ -21,8 +23,12 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
+  //TODO: select note length
+  /*   const [division, setDivision] = useState<string>('16n') */
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   Tone.Transport.bpm.value = 60
 
   //TODO: ERROR FEEDBACK
@@ -41,7 +47,8 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   return (
     <Paper
       css={css`
-        ${neu.depressed}
+        ${themedNeu.depressed};
+        ${base.toneCard};
       `}
       sx={{
         width: '100%',
@@ -63,6 +70,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         }
       >
         <Typography variant="h5">Output:</Typography>
+        <ActionToggle />
         <Typography variant="body1">
           {toneContext?.source} {toneContext?.target}
         </Typography>

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Button, Paper, Stack } from '@mui/material'
+import { Button, Paper, Stack, useTheme } from '@mui/material'
 import {
   Dispatch,
   SetStateAction,
@@ -14,12 +14,12 @@ import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
 import EthereumLogo from '../../../public/ethereum-eth-logo.svg'
 import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
+import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
+import { tokenObject } from '../../../types/interfaces'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 
-import { useChartDataDispatch } from '~/services/ToneContextWrapper'
-import { tokenObject } from '~/types/interfaces'
 const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
 
 /*TODO: LAZY LOAD, FIGURE OUT TYPES 
@@ -44,6 +44,8 @@ interface Props {
 function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
   const endpointDispatcher = useChartDataDispatch()
+  const currentTheme = useTheme()
+  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -74,7 +76,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   return (
     <Paper
       css={css`
-        ${neu.depressed}
+        ${themedNeu.depressed}
       `}
       sx={{
         xs: {

@@ -11,6 +11,7 @@ export const stopPlayback = (/*callback?*/) => {
 }
 //TODO: update to accept types of each synth subclass that will be available to user
 export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
+  //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
   }, notes).start(0)

@@ -53,26 +53,25 @@ export function differenceArray(
   return difArray
 }
 
-
 export function deviationArray(
   data: Array<any>,
   sensitivity: number
 ): number[] {
   console.log('props data is ' + data)
-  const difArray: number[] = []
+  const devArray: number[] = []
   data.reduce((_previousValue: number, _currentValue: number, _ind: number) => {
     if (data[_ind][1][3] === data[0][1][3]) {
       console.log('reduce if hit')
       return
     } else {
       console.log('else')
-      const difValue = data[0][1][3] - data[_ind - 1][1][3]
-      console.log(difValue)
-      return difArray.push(
-        Math.abs(Math.trunc(applySensitivity(sensitivity, difValue)))
+      const devValue = data[0][1][3] - data[_ind - 1][1][3]
+      console.log(devValue)
+      return devArray.push(
+        Math.abs(Math.trunc(applySensitivity(sensitivity, devValue)))
       )
     }
   }, 0)
-  console.log(difArray)
-  return difArray
+  console.log(devArray)
+  return devArray
 }

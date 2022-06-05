@@ -32,7 +32,6 @@ function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [target, setTarget] = useState<string>('Note value')
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
   /*   const fetcher = (endpoint: string, object: object) =>
@@ -130,14 +129,14 @@ function MappingsCard(props: Props) {
               handler={setSensitivity}
             />
           </Grid>
-          <Grid item xs={3} container justifyContent={'center'}>
+       {/*    <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect
               label={'Target'}
               values={['Note value']}
               helperText={'Select target'}
               handler={setTarget}
             />
-          </Grid>
+          </Grid> */}
           <Grid item container justifyContent={'end'}>
             <Button
               variant="contained"

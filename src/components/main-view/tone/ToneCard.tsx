@@ -82,9 +82,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         }
       >
         <ActionToggle />
-        <Typography variant="body1">
-          {toneContext?.source} {toneContext?.target}
-        </Typography>
+        <Typography variant="body1">{toneContext?.source}</Typography>
         <PlaybackControls
           iconSize="large"
           color="secondary"

@@ -17,7 +17,6 @@ const ChartDataDispatch = createContext<chartDataDispatcher | null>(null)
 function ToneDataProvider({ children }: Props) {
   const [source, setSource] = useState<string>('default')
   const [sensitivity, setSensitivity] = useState<number>(100)
-  const [target, setTarget] = useState<string>('default')
   const [dispatchedEndpoint, setDispatchedEndpoint] =
     useState<string>('/api/ohlcv/')
 
@@ -43,14 +42,12 @@ function ToneDataProvider({ children }: Props) {
   const toneDataContext = {
     source: source,
     sensitivity: sensitivity,
-    target: target,
     dispatchedEndpoint: dispatchedEndpoint,
     notes: notes,
   }
   const dispatchToneData = {
     setSource: setSource,
     setSensitivity: setSensitivity,
-    setTarget: setTarget,
     setNotes: setNotes,
   }
 

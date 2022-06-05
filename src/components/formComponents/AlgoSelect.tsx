@@ -7,16 +7,20 @@ import FormLabel from '@mui/material/FormLabel'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import * as React from 'react'
+import { Dispatch } from 'react'
 
 import * as base from '../../styles/base'
 import * as neu from '../../styles/neu'
-
-export default function AlgoSelect() {
-  const [value, setValue] = React.useState('female')
+type Props = {
+  handler: Dispatch<React.SetStateAction<string>>
+}
+export default function AlgoSelect({ handler }: Props) {
+  const [value, setValue] = React.useState('difference')
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value)
+    handler(value)
   }
 
   return (

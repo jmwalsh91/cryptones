@@ -114,7 +114,7 @@ function MappingsCard(props: Props) {
               ${themedNeu.raised};
             `}
           >
-            <AlgoSelect />
+            <AlgoSelect handler={setSource} />
           </Grid>
           <Grid
             item

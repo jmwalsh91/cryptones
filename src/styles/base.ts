@@ -34,7 +34,8 @@ export const centeredSvg = css`
 `
 export const mapCard = css`
   position: relative;
-  padding-top: 1.2rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   &:focus-within {
     box-shadow: 0 0 10px #65abba;
   }
@@ -44,5 +45,10 @@ export const toneCard = css`
   &:focus-within {
     box-shadow: 0 0 10px #d070be;
   }
+`
+
+export const playBackControls = css`
+  position: relative;
+  align-items: center;
 `
 export const focusBorder = css``

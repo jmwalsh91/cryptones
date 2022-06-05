@@ -53,6 +53,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       sx={{
         width: '100%',
         height: '100%',
+        alignContent: 'center',
         justifyContent: 'center',
         px: '1rem',
         py: '.5rem',
@@ -70,25 +71,17 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       >
         Output
       </Typography>
-      <Stack
-        spacing={2}
-        alignItems={'center'}
-        css={
-          isToneContextUpdating
-            ? css`
-                ${neu.pendingSection}
-              `
-            : null
-        }
+      <div
+        css={css`
+          ${base.playBackControls}
+        `}
       >
-        <ActionToggle />
-        <Typography variant="body1">{toneContext?.source}</Typography>
         <PlaybackControls
           iconSize="large"
           color="secondary"
           controls={controls}
         />
-      </Stack>
+      </div>
     </Paper>
   )
 }

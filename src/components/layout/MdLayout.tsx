@@ -22,10 +22,10 @@ function MdLayout() {
               </Suspense>
             </ErrorBoundary>
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={12} sm={12} md={8}>
             <MappingsCard />
           </Grid>
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid item xs={12} sm={12} md={4}>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
               <Suspense fallback="fallback2">
                 <ToneCard

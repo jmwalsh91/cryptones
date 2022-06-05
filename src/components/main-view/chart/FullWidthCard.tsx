@@ -33,7 +33,6 @@ function FullWidthCard() {
         <Suspense fallback="fallback2">
           <Grid
             container
-            direction={{ sm: 'column', md: 'row' }}
             justifyContent={'space-between'}
             css={
               isUpdating

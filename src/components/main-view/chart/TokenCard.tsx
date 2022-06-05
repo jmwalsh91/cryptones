@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Button, Paper, Stack, useTheme } from '@mui/material'
+import { Button, Paper, Stack, useMediaQuery, useTheme } from '@mui/material'
 import {
   Dispatch,
   SetStateAction,
@@ -46,6 +46,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   const endpointDispatcher = useChartDataDispatch()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const displayMode = useMediaQuery('min-width: 600px')
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -81,8 +82,11 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
     >
       <Stack
         justifyContent="space-around"
-        p={7}
-        sx={{ flexDirection: { xs: 'row', md: 'column' } }}
+        sx={{
+          flexDirection: { xs: 'row', md: 'column' },
+          alignItems: { xs: 'flex-start', md: 'center' },
+          padding: { xs: 2, md: 7 },
+        }}
       >
         <TokenLogo tokenLogo={selectedToken?.logo} />
         <TokenSelect

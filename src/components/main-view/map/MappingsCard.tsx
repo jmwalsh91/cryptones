@@ -1,12 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
-import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
+import {
+  Button,
+  Grid,
+  Paper,
+  Switch,
+  Tooltip,
+  Typography,
+  useTheme,
+} from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
 
 import AlgoSelect from '~/components/formComponents/AlgoSelect'
+import TransposeToggle from '~/components/formComponents/TransposeToggle'
 
 // eslint-disable-next-line import/order
 import {
@@ -123,11 +132,15 @@ function MappingsCard(props: Props) {
               ${themedNeu.raised}
             `}
           >
-            <SensitivitySlider
-              sliderSize="small"
-              color="primary"
-              handler={setSensitivity}
-            />
+            <Grid container>
+              <SensitivitySlider
+                sliderSize="small"
+                color="primary"
+                handler={setSensitivity}
+              />
+
+              <TransposeToggle />
+            </Grid>
           </Grid>
           <Button
             variant="contained"

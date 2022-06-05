@@ -20,7 +20,7 @@ import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { differenceArray } from '../tone/tone-utils/tone'
+import { deviationArray, differenceArray } from '../tone/tone-utils/tone'
 
 interface Props {
   children?: ReactNode
@@ -43,11 +43,18 @@ function MappingsCard(props: Props) {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(data)
-    const array = differenceArray(data.formattedOhlc, sensitivity)
-    dispatchToneData?.setNotes(array)
+    let array
+    switch (source) {
+      case 'difference':
+        array = differenceArray(data.formattedOhlc, sensitivity)
+        dispatchToneData?.setNotes(array)
+        break
+      case 'deviation':
+        array = deviationArray(data.formattedOhlc, sensitivity)
+        dispatchToneData?.setNotes(array)
+        break
+    }
     return console.log('submitted')
-    //GENERATE NOTES: data from endpoint -> (source -> sensitivity -> target) => return dispatch setNotes(array)
   }
 
   /*   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {

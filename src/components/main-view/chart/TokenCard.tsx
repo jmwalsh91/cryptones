@@ -78,25 +78,6 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       css={css`
         ${themedNeu.depressed}
       `}
-      sx={{
-        xs: {
-          height: '3rem',
-        },
-        lg: {
-          width: '100%',
-          height: '100%',
-        },
-        justifyContent: 'center',
-        px: '1rem',
-        py: '.5rem',
-      }}
-      /* sx={{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        px: '1rem',
-        py: '.5rem',
-      }} */
     >
       <Stack
         justifyContent="space-around"

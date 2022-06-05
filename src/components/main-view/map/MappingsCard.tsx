@@ -129,7 +129,7 @@ function MappingsCard(props: Props) {
               handler={setSensitivity}
             />
           </Grid>
-       {/*    <Grid item xs={3} container justifyContent={'center'}>
+          {/*    <Grid item xs={3} container justifyContent={'center'}>
             <InputSelect
               label={'Target'}
               values={['Note value']}
@@ -137,19 +137,18 @@ function MappingsCard(props: Props) {
               handler={setTarget}
             />
           </Grid> */}
-          <Grid item container justifyContent={'end'}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{ m: '2rem', mr: '1rem' }}
-              onClick={(e) => handleSubmit(e)}
-              css={css`
+
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ m: '2rem', mr: '1rem' }}
+            onClick={(e) => handleSubmit(e)}
+            css={css`
                 ${themedNeu.raised}}
               `}
-            >
-              Submit
-            </Button>
-          </Grid>
+          >
+            Submit
+          </Button>
         </Grid>
       </Paper>
     </>

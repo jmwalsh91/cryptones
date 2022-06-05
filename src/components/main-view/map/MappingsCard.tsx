@@ -129,22 +129,31 @@ function MappingsCard(props: Props) {
               handler={setSensitivity}
             />
           </Grid>
-          {/*    <Grid item xs={3} container justifyContent={'center'}>
-            <InputSelect
-              label={'Target'}
-              values={['Note value']}
-              helperText={'Select target'}
-              handler={setTarget}
-            />
-          </Grid> */}
-
           <Button
             variant="contained"
             size="large"
-            sx={{ m: '2rem', mr: '1rem' }}
+            sx={{
+              minHeight: {
+                xs: '1rem',
+                md: '100%',
+              },
+              minWidth: {
+                xs: '100%',
+                md: '1rem',
+              },
+              marginTop: {
+                xs: '1rem',
+                md: 0,
+              },
+              marginRight: {
+                xs: 0,
+                md: '.25rem',
+              },
+            }}
             onClick={(e) => handleSubmit(e)}
             css={css`
                 ${themedNeu.raised}}
+
               `}
           >
             Submit

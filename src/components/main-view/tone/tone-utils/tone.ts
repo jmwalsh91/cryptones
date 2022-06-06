@@ -113,9 +113,11 @@ export function keyArray(key: string, mode: Mode): keyFilter {
 export function filterNotes(keyArray: keyFilter, notes: number[]) {
   console.log(keyArray, notes)
   return notes.map((note) => {
-    console.log(keyArray.includes(Note.fromFreq(note)))
-    keyArray.includes(Note.fromFreq(note))
-    return Note.fromFreq(note)
+    console.log(keyArray, Note.pitchClass(Note.fromFreq(note)))
+    if (keyArray.includes(Note.pitchClass(Note.fromFreq(note)))) {
+      console.log(Note.fromFreq(note))
+      return Note.fromFreq(note)
+    } else return null
   })
 }
 /**

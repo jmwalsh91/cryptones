@@ -65,7 +65,8 @@ function MappingsCard(props: Props) {
         if (prettierState && keyMode) {
           console.log(keyMode)
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
-          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
+          const filtered = filterNotes(keyArr, notesArray)
+          dispatchToneData?.setNotes(filtered)
         }
         break
       case 'deviation':
@@ -73,8 +74,9 @@ function MappingsCard(props: Props) {
         if (!prettierState) {
           dispatchToneData?.setNotes(notesArray)
         }
-        if (prettierState) {
-          console.log(keyModeRef?.current?.value)
+        if (prettierState && keyMode) {
+          const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
+          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
         }
         break
     }

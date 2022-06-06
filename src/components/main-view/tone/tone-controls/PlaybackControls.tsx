@@ -3,8 +3,9 @@ import { css } from '@emotion/react'
 import { Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
-import * as neu from '../../../../styles/neu'
 import * as base from '../../../../styles/base'
+import * as neu from '../../../../styles/neu'
+
 import { audioControls } from '~/types/interfaces'
 
 interface playbackProps {

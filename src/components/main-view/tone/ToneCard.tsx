@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { Paper, Stack, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction, useState } from 'react'
 import * as Tone from 'tone'
+
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
 
 import ActionToggle from '../../../components/formComponents/ActionToggle'
@@ -26,7 +27,6 @@ interface Props {
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   //TODO: select note length
   /*   const [division, setDivision] = useState<string>('16n') */
-  const [volume, setVolume] = useState<number>(80)
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
@@ -79,7 +79,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
           justify-items: flex-end;
         `}
       >
-        <VolumeSlider handler={setVolume} />
+        <VolumeSlider />
         <PlaybackControls
           iconSize="large"
           color="secondary"

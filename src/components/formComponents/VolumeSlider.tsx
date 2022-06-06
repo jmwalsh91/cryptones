@@ -5,24 +5,26 @@ import { css } from '@emotion/react'
 import { Box, Slider, Stack, Typography, useTheme } from '@mui/material'
 import React, { SyntheticEvent, useState } from 'react'
 import { Dispatch } from 'react'
+import * as Tone from 'tone'
 
 import * as base from '../../styles/base'
 import * as neu from '../../styles/neu'
 //Valid props for SlideSelector
-interface VolumeSelectorProps {
+/* interface VolumeSelectorProps {
   handler: Dispatch<React.SetStateAction<number>>
-}
+} */
 
-function VolumeSlider({ handler }: VolumeSelectorProps) {
-  const [val, setVal] = useState<number>(1)
+function VolumeSlider() {
+  const [val, setVal] = useState<number>()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
-    newValue: number | number[]
+    newValue: number
   ) => {
     setVal(newValue as number)
-    return handler(newValue as number)
+    Tone.getDestination().volume.rampTo(newValue as number, 0.01)
+    console.log(val)
   }
   return (
     <Box
@@ -34,13 +36,13 @@ function VolumeSlider({ handler }: VolumeSelectorProps) {
         <Typography variant="h5">Volume</Typography>
         <Slider
           color="secondary"
-          defaultValue={1}
+          defaultValue={-12}
           aria-label="Volume Slider"
           valueLabelDisplay="auto"
-          step={0.1}
-          min={0.1}
-          max={2}
-          onChangeCommitted={handleChange}
+          step={1}
+          min={-60}
+          max={1}
+          onChange={handleChange}
           css={css`
             background: #2f2c2c;
             height: 10px;

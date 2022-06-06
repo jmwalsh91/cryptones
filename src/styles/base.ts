@@ -49,6 +49,5 @@ export const toneCard = css`
 
 export const playBackControls = css`
   position: relative;
-  align-items: center;
 `
 export const focusBorder = css``

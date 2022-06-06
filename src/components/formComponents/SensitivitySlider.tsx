@@ -2,7 +2,14 @@
 //TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Box, FormLabel, Slider, Stack, Typography, useTheme } from '@mui/material'
+import {
+  Box,
+  FormLabel,
+  Slider,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import React, { SyntheticEvent, useState } from 'react'
 import { Dispatch } from 'react'
 
@@ -37,8 +44,8 @@ function SensitivitySlider({
       sx={{ alignItems: 'center', justifyContent: 'center' }}
     >
       <Stack>
-      <FormLabel id="Set Sensitivity">
-        <Typography variant="h5">Sensitivity</Typography>
+        <FormLabel id="Set Sensitivity">
+          <Typography variant="h5">Sensitivity</Typography>
         </FormLabel>
         <Slider
           size={sliderSize}

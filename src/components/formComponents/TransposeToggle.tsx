@@ -1,21 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { useState } from 'react'
 
-/* type Props = {
+type Props = {
+  keyRef: any
   handler?: () => void
-} */
-/* interface modeIndex {
-  index: number
-} */
-function TransposeToggle() {
+}
+enum Mode {
+  Major = 'major',
+  Minor = 'minor',
+}
+
+type rootIndex = number
+export const TransposeToggle: ({ keyRef }: Props) => EmotionJSX.Element = ({
+  keyRef,
+}: Props) => {
   const [prettier, setPrettier] = useState<boolean>(false)
-  const [root, setRoot] = useState<number>(0)
-  /*   const [mode, setMode] = useState<modeIndex['index']>(0) */
+  const [root, setRoot] = useState<rootIndex>(0)
+  const [mode, setMode] = useState<Mode>(Mode.Major)
 
   const handleKeyChange = (str: string) => {
     switch (str) {
@@ -29,10 +36,9 @@ function TransposeToggle() {
     }
   }
 
-  /*   const handleChange = () => {
-
-    handler()
-  } */
+  const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
+    mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
+  }
   const rootArray = [
     'A',
     'A#',
@@ -47,7 +53,6 @@ function TransposeToggle() {
     'G',
     'G#',
   ]
-  /* const modeArray = ['major', 'minor', 'egyptian'] */
 
   return (
     <Stack
@@ -56,6 +61,8 @@ function TransposeToggle() {
       alignContent={'center'}
       mb={3}
     >
+      <input value={[rootArray[root], mode]} type="hidden" ref={keyRef} />
+
       <FormControlLabel
         control={
           <Switch
@@ -102,5 +109,3 @@ function TransposeToggle() {
     </Stack>
   )
 }
-
-export default TransposeToggle

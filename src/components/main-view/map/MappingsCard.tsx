@@ -3,11 +3,11 @@ import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
-import { ReactNode, SyntheticEvent, useState } from 'react'
+import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
 import AlgoSelect from '~/components/formComponents/AlgoSelect'
-import TransposeToggle from '~/components/formComponents/TransposeToggle'
+import { TransposeToggle } from '~/components/formComponents/TransposeToggle'
 
 // eslint-disable-next-line import/order
 import {
@@ -31,11 +31,12 @@ function MappingsCard(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
+  const [prettier, setPrettier] = useState<boolean>(false)
+  const keyRef = useRef(null)
+  const modeRef = useRef(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
-  /*   const fetcher = (endpoint: string, object: object) =>
-    Axios.cryptonesApi.post(endpoint, object).then((res) => res.data) */
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
@@ -55,24 +56,7 @@ function MappingsCard(props: Props) {
     }
     return console.log('submitted')
   }
-
-  /*   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
-    e.preventDefault()
-    const cachedMapping = await fetcher('/api/cache', cacheMapping)
-      .then((response: AxiosResponse<any, any>) => {
-        console.log(response)
-        //TODO: likely best to set object properties and memoize the setter, though I believe React Fiber will hold off on update until it hits the return here...
-        //TODO: consider startTransition here, change styling of submit button?
-        dispatchToneData?.setSource(source)
-        dispatchToneData?.setSensitivity(sensitivity)
-        dispatchToneData?.setTarget(target)
-        return response.data
-      })
-      .catch((error) => console.error(error))
-
-    return cachedMapping
-  }
- */ return (
+  return (
     <>
       <Paper
         css={css`
@@ -132,7 +116,7 @@ function MappingsCard(props: Props) {
                 handler={setSensitivity}
               />
 
-              <TransposeToggle />
+              <TransposeToggle keyRef={keyRef} modeRef={modeRef} />
             </Grid>
           </Grid>
           <Button

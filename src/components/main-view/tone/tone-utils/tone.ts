@@ -1,7 +1,6 @@
-import { Note } from '@tonaljs/tonal'
+import { Key, Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
 
-import { signal } from '../ToneCard'
 export const newSynth = () => {
   const fmSynth: Tone.FMSynth = new Tone.FMSynth().toDestination()
   return fmSynth
@@ -79,6 +78,23 @@ export function deviationArray(
   return devArray
 }
 
+type keyFilter = readonly string[]
+
 /**
  * TONAL JS FUNCTIONS
  */
+
+/**
+ * @function
+ * @params key, mode
+ * @return array of notes that corresponds to key and mode
+ */
+
+export function keyArray(key: string, mode: string) {
+  if (mode === 'minor') {
+    return Key.minorKey(key).natural.scale
+  }
+  if (mode === 'major') {
+    return Key.majorKey(key).scale
+  } else return undefined
+}

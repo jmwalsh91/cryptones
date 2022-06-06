@@ -9,17 +9,11 @@ import { Dispatch } from 'react'
 import * as base from '../../styles/base'
 import * as neu from '../../styles/neu'
 //Valid props for SlideSelector
-interface sensitivitySelectorProps {
-  sliderSize: 'small' | 'medium'
-  color: 'primary' | 'secondary'
+interface VolumeSelectorProps {
   handler: Dispatch<React.SetStateAction<number>>
 }
 
-function SensitivitySlider({
-  sliderSize,
-  color,
-  handler,
-}: sensitivitySelectorProps) {
+function VolumeSlider({ handler }: VolumeSelectorProps) {
   const [val, setVal] = useState<number>(1)
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
@@ -37,12 +31,11 @@ function SensitivitySlider({
       sx={{ alignItems: 'center', justifyContent: 'center' }}
     >
       <Stack>
-        <Typography variant="h5">Sensitivity</Typography>
+        <Typography variant="h5">Volume</Typography>
         <Slider
-          size={sliderSize}
-          color={color}
+          color="secondary"
           defaultValue={1}
-          aria-label={sliderSize}
+          aria-label="Volume Slider"
           valueLabelDisplay="auto"
           step={0.1}
           min={0.1}
@@ -58,4 +51,4 @@ function SensitivitySlider({
   )
 }
 
-export default SensitivitySlider
+export default VolumeSlider

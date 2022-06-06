@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Stack, Typography, useTheme } from '@mui/material'
-import { TransitionStartFunction } from 'react'
+import { TransitionStartFunction, useState } from 'react'
 import * as Tone from 'tone'
+import VolumeSlider from '~/components/formComponents/VolumeSlider'
 
 import ActionToggle from '../../../components/formComponents/ActionToggle'
 import { useToneContext } from '../../../services/ToneContextWrapper'
@@ -25,6 +26,7 @@ interface Props {
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   //TODO: select note length
   /*   const [division, setDivision] = useState<string>('16n') */
+  const [volume, setVolume] = useState<number>(80)
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
@@ -53,8 +55,6 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       sx={{
         width: '100%',
         height: '100%',
-        alignContent: 'center',
-        justifyContent: 'center',
         px: '1rem',
         py: '.5rem',
       }}
@@ -74,8 +74,12 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       <div
         css={css`
           ${base.playBackControls}
+          display: flex;
+          flex-direction: column;
+          justify-items: flex-end;
         `}
       >
+        <VolumeSlider handler={setVolume} />
         <PlaybackControls
           iconSize="large"
           color="secondary"

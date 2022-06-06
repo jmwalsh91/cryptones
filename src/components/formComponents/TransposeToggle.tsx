@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Stack, Typography } from '@mui/material'
+import { FormControl, FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import Tooltip from '@mui/material/Tooltip'
 import React, { useState } from 'react'
@@ -14,10 +14,22 @@ interface modeIndex {
   index: number
 }
 function TransposeToggle({ handler }: Props) {
+  const [prettier, setPrettier] = useState<boolean>(false)
   const [root, setRoot] = useState<number>(0)
   const [mode, setMode] = useState<modeIndex['index']>(0)
-  //TODO: set dispatch for context, need Tonal JS
-  //TODO: Figure out UI for this component
+
+  const handleKeyChange = (str: string) => {
+    switch (str) {
+      case 'up':
+        if (rootArray[root + 1]) setRoot(root + 1)
+        else setRoot(0)
+        break
+      case 'down':
+        if (rootArray[root - 1]) setRoot(root - 1)
+        else setRoot(rootArray.length - 1)
+    }
+  }
+
   /*   const handleChange = () => {
 
     handler()
@@ -37,18 +49,57 @@ function TransposeToggle({ handler }: Props) {
     'G#',
   ]
   const modeArray = ['major', 'minor', 'egyptian']
+
   return (
-    <Stack direction="row" justifyContent={'center'}>
-      <Tooltip title="Map to scale">
-        <Switch
+    <Stack
+      direction="row"
+      justifyContent={'center'}
+      alignContent={'center'}
+      mb={3}
+    >
+      <FormControlLabel
+        control={
+          <Switch
+            checked={prettier}
+            onChange={() => setPrettier(!prettier)}
+            inputProps={{ 'aria-label': 'controlled' }}
+            css={css`
+              transform: rotate(270deg);
+            `}
+          />
+        }
+        label="Prettier"
+        labelPlacement="top"
+      />
+      <span
+        css={css`
+          display: inherit;
+          border: 1px solid white;
+          align-items: center;
+          width: 4.2rem;
+        `}
+      >
+        <ArrowBackIosSharpIcon
           css={css`
-            transform: rotate(270deg);
+            text-align: left;
           `}
+          onClick={() => handleKeyChange('down')}
         />
-      </Tooltip>
-      <ArrowBackIosSharpIcon onClick={() => setRoot(root - 1)} />
-      <Typography variant="h5">{rootArray[root]}</Typography>
-      <ArrowForwardIosIcon onClick={() => setRoot(root + 1)} />
+        <Typography
+          variant="h5"
+          css={css`
+            text-align: center;
+          `}
+        >
+          {rootArray[root]}
+        </Typography>
+        <ArrowForwardIosIcon
+          css={css`
+            align-self: right;
+          `}
+          onClick={() => handleKeyChange('up')}
+        />
+      </span>
     </Stack>
   )
 }

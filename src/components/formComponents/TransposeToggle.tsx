@@ -60,6 +60,7 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
   }
 
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
+    console.log(mode)
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
 
@@ -119,7 +120,9 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
           onClick={() => handleKeyChange('up')}
         />
       </span>
-      <Button onClick={() => handleModeChange}>Current Mode: {mode} </Button>
+      <Button onClick={() => handleModeChange(mode)}>
+        Current Mode: {mode}{' '}
+      </Button>
     </Stack>
   )
 }

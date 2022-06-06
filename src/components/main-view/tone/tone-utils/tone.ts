@@ -1,12 +1,18 @@
+import { SingleBed } from '@mui/icons-material'
 import { Key, Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
+import { PluckSynth } from 'tone'
 
 import { Mode } from '~/components/formComponents/TransposeToggle'
 
 export const newSynth = () => {
-  const reverb = new Tone.Reverb(0.8).toDestination()
-  const fmSynth: Tone.FMSynth = new Tone.FMSynth()
-    .connect(reverb)
+  const reverb = new Tone.Reverb(2).toDestination()
+  const delay = new Tone.Delay(0.7).connect(reverb)
+  const fmSynth: Tone.FMSynth = new Tone.FMSynth({
+    harmonicity: 7,
+    envelope: { attack: 0.5, decay: 0.4, sustain: 1, release: 0.5 },
+  })
+    .connect(delay)
     .toDestination()
   return fmSynth
 }
@@ -17,7 +23,10 @@ export const stopPlayback = (/*callback?*/) => {
 }
 //TODO: update to accept types of each synth subclass that will be available to user
 //TODO: strengthen typing with notes.
-export const mapDataToSequence = (synth: Tone.FMSynth, notes: any[]) => {
+export const mapDataToSequence = (
+  synth: Tone.FMSynth | Tone.FMSynth,
+  notes: any[]
+) => {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)

@@ -1,5 +1,6 @@
 import * as Tone from 'tone'
 
+import { signal } from '../ToneCard'
 export const newSynth = () => {
   const fmSynth: Tone.FMSynth = new Tone.FMSynth().toDestination()
   return fmSynth
@@ -14,6 +15,7 @@ export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
+    console.log(signal.getValueAtTime(Tone.now()))
   }, notes).start(0)
   console.log(seq)
   return seq
@@ -75,3 +77,7 @@ export function deviationArray(
   console.log(devArray)
   return devArray
 }
+
+/**
+ * TONAL JS FUNCTIONS
+ */

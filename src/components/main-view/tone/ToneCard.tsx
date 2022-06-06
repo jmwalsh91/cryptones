@@ -1,14 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack, Typography, useTheme } from '@mui/material'
-import { TransitionStartFunction, useState } from 'react'
+import { Paper, Typography, useTheme } from '@mui/material'
+import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
-import BPMSlider from '~/components/formComponents/BPM'
-import BPM from '~/components/formComponents/BPM'
 
+import BPMSlider from '~/components/formComponents/BPM'
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
 
-import ActionToggle from '../../../components/formComponents/ActionToggle'
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'

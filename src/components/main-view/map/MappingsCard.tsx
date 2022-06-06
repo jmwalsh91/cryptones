@@ -1,15 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
-import {
-  Button,
-  Grid,
-  Paper,
-  Switch,
-  Tooltip,
-  Typography,
-  useTheme,
-} from '@mui/material'
+import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
@@ -27,7 +19,6 @@ import {
 
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
-import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
 import { deviationArray, differenceArray } from '../tone/tone-utils/tone'
 
@@ -117,9 +108,11 @@ function MappingsCard(props: Props) {
             item
             xs={3}
             container
-            sx={{ m: 1, p: 1, minWidth: 100 }}
+            sx={{ minWidth: { xs: '100%', md: '100px' } }}
             css={css`
               ${themedNeu.raised};
+              ${base.centerChildren};
+              align-items: center;
             `}
           >
             <AlgoSelect handler={setSource} />

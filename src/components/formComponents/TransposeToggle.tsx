@@ -2,21 +2,20 @@
 import { css } from '@emotion/react'
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { FormControl, FormControlLabel, Stack, Typography } from '@mui/material'
+import { FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
-import Tooltip from '@mui/material/Tooltip'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-type Props = {
+/* type Props = {
   handler?: () => void
-}
-interface modeIndex {
+} */
+/* interface modeIndex {
   index: number
-}
-function TransposeToggle({ handler }: Props) {
+} */
+function TransposeToggle() {
   const [prettier, setPrettier] = useState<boolean>(false)
   const [root, setRoot] = useState<number>(0)
-  const [mode, setMode] = useState<modeIndex['index']>(0)
+  /*   const [mode, setMode] = useState<modeIndex['index']>(0) */
 
   const handleKeyChange = (str: string) => {
     switch (str) {
@@ -48,7 +47,7 @@ function TransposeToggle({ handler }: Props) {
     'G',
     'G#',
   ]
-  const modeArray = ['major', 'minor', 'egyptian']
+  /* const modeArray = ['major', 'minor', 'egyptian'] */
 
   return (
     <Stack

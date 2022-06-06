@@ -21,7 +21,7 @@ function ToneDataProvider({ children }: Props) {
     useState<string>('/api/ohlcv/')
 
   //TODO: improve
-  const [notes, setNotes] = useState<number[]>([])
+  const [notes, setNotes] = useState<number[] | string[]>([])
 
   /*   const toneDataContext: toneDataContext = useMemo(
     () => ({

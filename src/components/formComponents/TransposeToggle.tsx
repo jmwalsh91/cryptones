@@ -3,24 +3,47 @@ import { css } from '@emotion/react'
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { FormControlLabel, Stack, Typography } from '@mui/material'
+import { Button, FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
-import { useState } from 'react'
+import {
+  Dispatch,
+  HTMLInputTypeAttribute,
+  LegacyRef,
+  MutableRefObject,
+  SetStateAction,
+  useState,
+} from 'react'
 
 type Props = {
-  keyRef: any
-  handler?: () => void
+  keyModeRef: LegacyRef<HTMLInputElement> /* | MutableRefObject<string[]> */
+  dispatchPrettier: Dispatch<SetStateAction<boolean>>
+  prettierState: any
 }
-enum Mode {
+export enum Mode {
   Major = 'major',
   Minor = 'minor',
 }
+const rootArray = [
+  'A',
+  'A#',
+  'B',
+  'C',
+  'C#',
+  'D',
+  'D#',
+  'E',
+  'F',
+  'F#',
+  'G',
+  'G#',
+]
 
 type rootIndex = number
-export const TransposeToggle: ({ keyRef }: Props) => EmotionJSX.Element = ({
-  keyRef,
+export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
+  keyModeRef,
+  dispatchPrettier,
+  prettierState,
 }: Props) => {
-  const [prettier, setPrettier] = useState<boolean>(false)
   const [root, setRoot] = useState<rootIndex>(0)
   const [mode, setMode] = useState<Mode>(Mode.Major)
 
@@ -39,21 +62,11 @@ export const TransposeToggle: ({ keyRef }: Props) => EmotionJSX.Element = ({
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
-  const rootArray = [
-    'A',
-    'A#',
-    'B',
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-  ]
 
+  const handlePrettierToggle = () => {
+    console.log('clicky')
+    dispatchPrettier(!prettierState)
+  }
   return (
     <Stack
       direction="row"
@@ -61,13 +74,13 @@ export const TransposeToggle: ({ keyRef }: Props) => EmotionJSX.Element = ({
       alignContent={'center'}
       mb={3}
     >
-      <input value={[rootArray[root], mode]} type="hidden" ref={keyRef} />
+      <input value={[rootArray[root], mode]} type="hidden" ref={keyModeRef} />
 
       <FormControlLabel
         control={
           <Switch
-            checked={prettier}
-            onChange={() => setPrettier(!prettier)}
+            checked={prettierState}
+            onChange={() => handlePrettierToggle()}
             inputProps={{ 'aria-label': 'controlled' }}
             css={css`
               transform: rotate(270deg);
@@ -106,6 +119,7 @@ export const TransposeToggle: ({ keyRef }: Props) => EmotionJSX.Element = ({
           onClick={() => handleKeyChange('up')}
         />
       </span>
+      <Button onClick={() => handleModeChange}>Current Mode: {mode} </Button>
     </Stack>
   )
 }

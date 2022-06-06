@@ -1,13 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
+import { SettingsRemoteSharp } from '@mui/icons-material'
 import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
-import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
+import { LegacyRef, ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
 import AlgoSelect from '~/components/formComponents/AlgoSelect'
-import { TransposeToggle } from '~/components/formComponents/TransposeToggle'
+import {
+  Mode,
+  TransposeToggle,
+} from '~/components/formComponents/TransposeToggle'
 
 // eslint-disable-next-line import/order
 import {
@@ -20,7 +24,13 @@ import {
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { deviationArray, differenceArray } from '../tone/tone-utils/tone'
+import {
+  deviationArray,
+  differenceArray,
+  filterNotes,
+  keyArray,
+  keyFilter,
+} from '../tone/tone-utils/tone'
 
 interface Props {
   children?: ReactNode
@@ -31,9 +41,8 @@ function MappingsCard(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
-  const [prettier, setPrettier] = useState<boolean>(false)
-  const keyRef = useRef(null)
-  const modeRef = useRef(null)
+  const [prettierState, setPrettier] = useState<boolean>(false)
+  const keyModeRef = useRef<HTMLInputElement | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
@@ -43,15 +52,30 @@ function MappingsCard(props: Props) {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    let array
+    const keyMode = keyModeRef?.current?.value.split(',')
+    console.log(keyMode)
+    console.log(prettierState)
+    let notesArray
     switch (source) {
       case 'difference':
-        array = differenceArray(data.formattedOhlc, sensitivity)
-        dispatchToneData?.setNotes(array)
+        notesArray = differenceArray(data.formattedOhlc, sensitivity)
+        if (!prettierState) {
+          dispatchToneData?.setNotes(notesArray)
+        }
+        if (prettierState && keyMode) {
+          console.log(keyMode)
+          const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
+          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
+        }
         break
       case 'deviation':
-        array = deviationArray(data.formattedOhlc, sensitivity)
-        dispatchToneData?.setNotes(array)
+        notesArray = deviationArray(data.formattedOhlc, sensitivity)
+        if (!prettierState) {
+          dispatchToneData?.setNotes(notesArray)
+        }
+        if (prettierState) {
+          console.log(keyModeRef?.current?.value)
+        }
         break
     }
     return console.log('submitted')
@@ -116,7 +140,11 @@ function MappingsCard(props: Props) {
                 handler={setSensitivity}
               />
 
-              <TransposeToggle keyRef={keyRef} modeRef={modeRef} />
+              <TransposeToggle
+                prettierState={prettierState}
+                dispatchPrettier={setPrettier}
+                keyModeRef={keyModeRef}
+              />
             </Grid>
           </Grid>
           <Button

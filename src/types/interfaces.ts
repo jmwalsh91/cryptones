@@ -35,14 +35,14 @@ export interface toneDataContext {
   /*   source: string
   sensitivity: number */
   dispatchedEndpoint: string
-  notes: number[] | string[]
+  notes: (string | number | null)[]
 }
 
 //TODO: Keep other setters here, in the event we need to .post to API and store in DB.
 export interface toneDataDispatcher {
   setSource?: React.Dispatch<React.SetStateAction<string>>
   setSensitivity?: React.Dispatch<React.SetStateAction<number>>
-  setNotes: React.Dispatch<React.SetStateAction<number[] | string[]>>
+  setNotes: React.Dispatch<React.SetStateAction<(string | number | null)[]>>
 }
 export interface chartDataDispatcher {
   setDispatchedEndpoint: React.Dispatch<React.SetStateAction<string>>

@@ -1,3 +1,4 @@
+import { Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
 
 import { signal } from '../ToneCard'
@@ -15,7 +16,7 @@ export const mapDataToSequence = (synth: Tone.FMSynth, notes: number[]) => {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
-    console.log(signal.getValueAtTime(Tone.now()))
+    console.log(Note.fromFreq(note))
   }, notes).start(0)
   console.log(seq)
   return seq

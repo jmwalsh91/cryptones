@@ -46,6 +46,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   const endpointDispatcher = useChartDataDispatch()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  /*   const displayMode = useMediaQuery('min-width: 600px') */
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -78,30 +79,14 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       css={css`
         ${themedNeu.depressed}
       `}
-      sx={{
-        xs: {
-          height: '3rem',
-        },
-        lg: {
-          width: '100%',
-          height: '100%',
-        },
-        justifyContent: 'center',
-        px: '1rem',
-        py: '.5rem',
-      }}
-      /* sx={{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        px: '1rem',
-        py: '.5rem',
-      }} */
     >
       <Stack
-        justifyContent="space-around"
-        p={7}
-        sx={{ flexDirection: { xs: 'row', md: 'column' } }}
+        spacing={3}
+        sx={{
+          flexDirection: { xs: 'row', md: 'column' },
+          alignItems: { xs: 'flex-start', md: 'center' },
+          padding: { xs: 2, md: 5 },
+        }}
       >
         <TokenLogo tokenLogo={selectedToken?.logo} />
         <TokenSelect
@@ -111,6 +96,34 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
           handler={handleTokenSelect}
         />
         <Button
+          variant="contained"
+          size="large"
+          sx={{
+            alignSelf: {
+              xs: 'flex-end',
+              md: 'flex-end',
+            },
+            minHeight: {
+              xs: '100%',
+              md: '1rem',
+            },
+            minWidth: {
+              xs: '1rem',
+              md: '100%',
+            },
+            marginTop: {
+              xs: 0,
+              md: '1rem',
+            },
+            marginRight: {
+              xs: '.25rem',
+              md: 0,
+            },
+          }}
+          css={css`
+            ${themedNeu.raised}
+            color: ${currentTheme.palette.primary.main}
+          `}
           onClick={(e: SyntheticEvent) =>
             startUpdate(() => {
               updateData(e)
@@ -125,3 +138,34 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
 }
 
 export default TokenCard
+{
+  /* <Button
+            variant="contained"
+            size="large"
+            sx={{
+              minHeight: {
+                xs: '1rem',
+                md: '100%',
+              },
+              minWidth: {
+                xs: '100%',
+                md: '1rem',
+              },
+              marginTop: {
+                xs: '1rem',
+                md: 0,
+              },
+              marginRight: {
+                xs: 0,
+                md: '.25rem',
+              },
+            }}
+            onClick={(e) => handleSubmit(e)}
+            css={css`
+              ${themedNeu.raised}
+              color: ${currentTheme.palette.primary.main}
+            `}
+          >
+            Submit
+          </Button> */
+}

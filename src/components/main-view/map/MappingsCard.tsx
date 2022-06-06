@@ -6,6 +6,9 @@ import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 import { ReactNode, SyntheticEvent, useState } from 'react'
 import useSWR from 'swr'
 
+import AlgoSelect from '~/components/formComponents/AlgoSelect'
+import TransposeToggle from '~/components/formComponents/TransposeToggle'
+
 // eslint-disable-next-line import/order
 import {
   useDispatch,
@@ -16,9 +19,8 @@ import {
 
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
-import InputSelect from '../../formComponents/InputSelect'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { differenceArray } from '../tone/tone-utils/tone'
+import { deviationArray, differenceArray } from '../tone/tone-utils/tone'
 
 interface Props {
   children?: ReactNode
@@ -30,7 +32,6 @@ function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [target, setTarget] = useState<string>('Note value')
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
   /*   const fetcher = (endpoint: string, object: object) =>
@@ -41,11 +42,18 @@ function MappingsCard(props: Props) {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(data)
-    const array = differenceArray(data.formattedOhlc, sensitivity)
-    dispatchToneData?.setNotes(array)
+    let array
+    switch (source) {
+      case 'difference':
+        array = differenceArray(data.formattedOhlc, sensitivity)
+        dispatchToneData?.setNotes(array)
+        break
+      case 'deviation':
+        array = deviationArray(data.formattedOhlc, sensitivity)
+        dispatchToneData?.setNotes(array)
+        break
+    }
     return console.log('submitted')
-    //GENERATE NOTES: data from endpoint -> (source -> sensitivity -> target) => return dispatch setNotes(array)
   }
 
   /*   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
@@ -76,59 +84,86 @@ function MappingsCard(props: Props) {
           height: '100%',
           justifyContent: 'center',
           px: '1rem',
-          py: '.5rem',
         }}
         {...props}
       >
+        <Typography
+          variant="h2"
+          css={css`
+            font-weight: 700;
+            text-shadow: 10px 1px 20px ${currentTheme.palette.primary.main},
+              5px 8px 10px ${currentTheme.palette.secondary.main};
+            color: ${currentTheme.palette.background.default};
+          `}
+          sx={{ textAlign: 'left' }}
+        >
+          {' '}
+          Mapping
+        </Typography>
         <Grid
           container
           sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
         >
-          <Grid item xs={3} container>
-            <InputSelect
-              label={'Src'}
-              values={['difference', 'absolute']}
-              helperText={'Select source'}
-              handler={setSource}
-            />
+          <Grid
+            item
+            xs={3}
+            container
+            sx={{ minWidth: { xs: '100%', md: '100px' } }}
+            css={css`
+              ${themedNeu.raised};
+              ${base.centerChildren};
+              align-items: center;
+            `}
+          >
+            <AlgoSelect handler={setSource} />
           </Grid>
           <Grid
             item
             sm={3}
             container
-            sx={{ justifyContent: 'center', alignContent: 'baseline' }}
             css={css`
               ${themedNeu.raised}
             `}
           >
-            <Typography variant="h6">Sensitivity</Typography>
-            <SensitivitySlider
-              sliderSize="small"
-              color="primary"
-              handler={setSensitivity}
-            />
+            <Grid container>
+              <SensitivitySlider
+                sliderSize="small"
+                color="primary"
+                handler={setSensitivity}
+              />
+
+              <TransposeToggle />
+            </Grid>
           </Grid>
-          <Grid item xs={3} container justifyContent={'center'}>
-            <InputSelect
-              label={'Target'}
-              values={['Note value']}
-              helperText={'Select target'}
-              handler={setTarget}
-            />
-          </Grid>
-          <Grid item container justifyContent={'end'}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{ m: '2rem', mr: '1rem' }}
-              onClick={(e) => handleSubmit(e)}
-              css={css`
-                ${themedNeu.raised}}
-              `}
-            >
-              Submit
-            </Button>
-          </Grid>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              minHeight: {
+                xs: '1rem',
+                md: '100%',
+              },
+              minWidth: {
+                xs: '100%',
+                md: '1rem',
+              },
+              marginTop: {
+                xs: '1rem',
+                md: 0,
+              },
+              marginRight: {
+                xs: 0,
+                md: '.25rem',
+              },
+            }}
+            onClick={(e) => handleSubmit(e)}
+            css={css`
+              ${themedNeu.raised}
+              color: ${currentTheme.palette.primary.main}
+            `}
+          >
+            Submit
+          </Button>
         </Grid>
       </Paper>
     </>

@@ -4,6 +4,7 @@
 import { css } from '@emotion/react'
 import { Box, Slider, Stack, Typography, useTheme } from '@mui/material'
 import { SyntheticEvent, useState } from 'react'
+import * as Tone from 'tone'
 
 import * as base from '../../styles/base'
 import * as neu from '../../styles/neu'
@@ -13,7 +14,7 @@ interface BPMSelectorProps {
 }
 
 function BPMSlider({ size }: BPMSelectorProps) {
-  const [val, setVal] = useState<number>(1)
+  const [val, setVal] = useState<number>(120)
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const handleChange = (
@@ -21,6 +22,7 @@ function BPMSlider({ size }: BPMSelectorProps) {
     newValue: number | number[]
   ) => {
     setVal(newValue as number)
+    Tone.Transport.bpm.rampTo(newValue as number, 0.5)
   }
   return (
     <Box
@@ -38,7 +40,7 @@ function BPMSlider({ size }: BPMSelectorProps) {
           step={2}
           min={40}
           max={240}
-          onChangeCommitted={handleChange}
+          onChange={handleChange}
           css={css`
             height: 10px;
           `}

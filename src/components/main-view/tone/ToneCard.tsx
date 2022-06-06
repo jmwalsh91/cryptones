@@ -33,7 +33,6 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
-  Tone.Transport.bpm.value = 60
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {

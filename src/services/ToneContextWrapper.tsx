@@ -17,8 +17,9 @@ const ChartDataDispatch = createContext<chartDataDispatcher | null>(null)
 function ToneDataProvider({ children }: Props) {
   /*   const [source, setSource] = useState<string>('default') */
   /*   const [sensitivity, setSensitivity] = useState<number>(100) */
-  const [dispatchedEndpoint, setDispatchedEndpoint] =
-    useState<string>('/api/ohlcv/')
+  const [dispatchedEndpoint, setDispatchedEndpoint] = useState<string>(
+    '/api/ohlcv/btc/5min'
+  )
 
   //TODO: improve
   const [notes, setNotes] = useState<(string | number | null)[]>([])

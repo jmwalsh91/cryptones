@@ -7,32 +7,31 @@ import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import * as React from 'react'
 
 import * as neu from '../../styles/neu'
 
+import { tokenObject } from '~/types/interfaces'
+
 //Valid props for InputSelect
 export interface selectorProps {
-  label: string
-  values: Array<string>
+  values: string[]
   helperText: string
-  handler: any
+  handleTokenSelect: (val: string) => tokenObject | undefined
+  selectedToken: tokenObject
 }
 //InputSelect is used for both SOURCE and TARGET : Determines what source is routed to what target
 //EXAMPLE: 'difference' routed to 'notevalue' translates the difference between sequential values (across time) to note values that can be 'played' by tone.JS
 export default function TokenSelect({
-  label,
   values,
   helperText,
-  handler,
+  handleTokenSelect,
+  selectedToken,
 }: selectorProps): ReactJSXElement {
-  const [val, setVal] = React.useState('')
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
 
   const handleChange = (event: SelectChangeEvent) => {
-    setVal(event.target.value)
-    return handler(event.target.value)
+    return handleTokenSelect(event.target.value)
   }
   const dropdownValues = values.map((option) => {
     return (
@@ -48,12 +47,12 @@ export default function TokenSelect({
       `}
     >
       <FormControl sx={{ m: 1, p: 1, minWidth: 100 }}>
-        <InputLabel id={label}>{label}</InputLabel>
+        <InputLabel id="select token">Select Token</InputLabel>
         <Select
-          labelId={`{$label}Select`}
-          id="demo-simple-select-helper"
-          value={val}
-          label={label}
+          labelId="select token"
+          id="select token dropdown"
+          label="hi"
+          value={selectedToken.name}
           onChange={handleChange}
           size="small"
         >

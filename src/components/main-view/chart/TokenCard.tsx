@@ -30,8 +30,8 @@ const BitcoinLogo: Promise<typeof SVGElement> = lazy(
     })
 ) */
 const tokens: Array<tokenObject> = [
-  { name: 'SOL', logo: SolanaLogo },
   { name: 'BTC', logo: BitcoinLogo },
+  { name: 'SOL', logo: SolanaLogo },
   { name: 'ETH', logo: EthereumLogo },
   { name: 'DOT', logo: PolkadotLogo },
   { name: 'ALGO', logo: AlgorandLogo },
@@ -90,10 +90,10 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       >
         <TokenLogo tokenLogo={selectedToken?.logo} />
         <TokenSelect
-          label="token"
+          selectedToken={selectedToken}
           values={tokenChoices}
           helperText="choose token"
-          handler={handleTokenSelect}
+          handleTokenSelect={handleTokenSelect}
         />
         <Button
           variant="contained"

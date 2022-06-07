@@ -1,7 +1,9 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { useTheme } from '@mui/system'
 import ReactApexChart from 'react-apexcharts'
 
-//TODO: hover data disable ? 
+//TODO: hover data disable ?
 export default function ChartComponent({ data, name, interval }) {
   const currentTheme = useTheme()
   let chartParams = {
@@ -12,11 +14,10 @@ export default function ChartComponent({ data, name, interval }) {
     ],
     options: {
       chart: {
-        height: 350,
         foreColor: `${currentTheme.palette.text.primary}`,
         type: 'candlestick',
         zoom: {
-          enabled: true,
+          enabled: false,
         },
       },
       dataLabels: {
@@ -49,7 +50,12 @@ export default function ChartComponent({ data, name, interval }) {
     },
   }
   return (
-    <div id="chart">
+    <div
+      id="chart"
+      css={css`
+        width: 100%;
+      `}
+    >
       <ReactApexChart
         options={chartParams.options}
         series={chartParams.series}

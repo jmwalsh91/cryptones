@@ -104,7 +104,7 @@ function MappingsCard(props: Props) {
               5px 8px 10px ${currentTheme.palette.secondary.main};
             color: ${currentTheme.palette.background.default};
           `}
-          sx={{ textAlign: 'left' }}
+          sx={{ textAlign: { xs: 'center', md: 'left' }, mb: '1rem' }}
         >
           {' '}
           Mapping
@@ -117,11 +117,11 @@ function MappingsCard(props: Props) {
             item
             xs={3}
             container
-            sx={{ minWidth: { xs: '100%', md: '100px' }, mb: { xs: '1rem' } }}
+            sx={{ minWidth: { xs: '100%', md: '100px' } }}
             css={css`
               ${themedNeu.raised};
-              ${base.centerChildren};
               align-items: center;
+              justify-content: space-around;
             `}
           >
             <AlgoSelect handler={setSource} />
@@ -133,6 +133,8 @@ function MappingsCard(props: Props) {
             css={css`
               ${themedNeu.raised};
               min-width: 10rem;
+              align-items: center;
+              justify-content: space-around;
             `}
           >
             <SensitivitySlider

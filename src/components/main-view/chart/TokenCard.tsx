@@ -11,7 +11,7 @@ import {
 
 import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
-import EthereumLogo from '../../../public/ethereum-eth-logo.svg'
+import EthereumLogo from '../../../public/eth3.svg'
 import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
 import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
@@ -30,8 +30,8 @@ const BitcoinLogo: Promise<typeof SVGElement> = lazy(
     })
 ) */
 const tokens: Array<tokenObject> = [
-  { name: 'SOL', logo: SolanaLogo },
   { name: 'BTC', logo: BitcoinLogo },
+  { name: 'SOL', logo: SolanaLogo },
   { name: 'ETH', logo: EthereumLogo },
   { name: 'DOT', logo: PolkadotLogo },
   { name: 'ALGO', logo: AlgorandLogo },
@@ -79,30 +79,29 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       css={css`
         ${themedNeu.depressed}
       `}
+      sx={{ height: { xs: '10rem', md: '100%' }, mb: { xs: '2rem', md: 0 } }}
     >
       <Stack
         spacing={3}
         sx={{
           flexDirection: { xs: 'row', md: 'column' },
-          alignItems: { xs: 'flex-start', md: 'center' },
+          alignItems: { xs: 'stretch', md: 'center' },
+          justifyContent: { xs: 'space-between', md: 'space-around' },
           padding: { xs: 2, md: 5 },
+          mb: { xs: '2rem', md: '0rem' },
         }}
       >
         <TokenLogo tokenLogo={selectedToken?.logo} />
         <TokenSelect
-          label="token"
+          selectedToken={selectedToken}
           values={tokenChoices}
           helperText="choose token"
-          handler={handleTokenSelect}
+          handleTokenSelect={handleTokenSelect}
         />
         <Button
           variant="contained"
           size="large"
           sx={{
-            alignSelf: {
-              xs: 'flex-end',
-              md: 'flex-end',
-            },
             minHeight: {
               xs: '100%',
               md: '1rem',
@@ -111,8 +110,12 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
               xs: '1rem',
               md: '100%',
             },
+            maxWidth: {
+              xs: '1rem',
+              md: '100%',
+            },
             marginTop: {
-              xs: 0,
+              xs: '0.5rem',
               md: '1rem',
             },
             marginRight: {

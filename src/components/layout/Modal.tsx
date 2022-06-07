@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as Tone from 'tone'
 
 /* import * as neu from '../../styles/neu' */
@@ -18,10 +18,7 @@ type Props = {
 }
 export default function Modal({ isOpen }: Props) {
   const [open, setOpen] = useState(isOpen)
-  //TODO: delete this, only for troubleshooting
-  useEffect(() => {
-    console.log(Tone.context.state)
-  })
+
   const handleClose = async () => {
     await Tone.start()
     console.log('tone started')
@@ -37,14 +34,16 @@ export default function Modal({ isOpen }: Props) {
         onClose={handleClose}
         sx={{
           bgcolor: 'black',
-          opacity: '.90',
-          backgroundBlendMode: 'luminosity',
         }}
       >
         <DialogActions>
-          <Stack justifyContent={'center'}>
+          <Stack
+            direction="column"
+            justifyContent={'center'}
+            alignItems="center"
+          >
             <DialogTitle variant="h1" textAlign={'center'}>
-              Welcome to crypTones
+              crypTones
             </DialogTitle>
             <DialogContent>
               <DialogContentText variant="body1" textAlign={'center'}>

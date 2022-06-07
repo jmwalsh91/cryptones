@@ -109,10 +109,7 @@ function MappingsCard(props: Props) {
           {' '}
           Mapping
         </Typography>
-        <Grid
-          container
-          sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
-        >
+        <Grid container gap={3} sx={{ justifyContent: 'space-between' }}>
           <Grid
             item
             xs={3}

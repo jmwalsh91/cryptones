@@ -1,66 +1,72 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { FormControlLabel, Stack, Typography } from '@mui/material'
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
+import { Button, FormControlLabel, Stack } from '@mui/material'
 import Switch from '@mui/material/Switch'
-import { useState } from 'react'
+import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 
-/* type Props = {
-  handler?: () => void
-} */
-/* interface modeIndex {
-  index: number
-} */
-function TransposeToggle() {
-  const [prettier, setPrettier] = useState<boolean>(false)
-  const [root, setRoot] = useState<number>(0)
-  /*   const [mode, setMode] = useState<modeIndex['index']>(0) */
+import KeySelect from './KeySelect'
 
-  const handleKeyChange = (str: string) => {
-    switch (str) {
-      case 'up':
-        if (rootArray[root + 1]) setRoot(root + 1)
-        else setRoot(0)
-        break
-      case 'down':
-        if (rootArray[root - 1]) setRoot(root - 1)
-        else setRoot(rootArray.length - 1)
-    }
+/* import * as base from '../../styles/base'
+import * as neu from '../../styles/neu' */
+
+type Props = {
+  keyModeRef: LegacyRef<HTMLInputElement>
+  dispatchPrettier: Dispatch<SetStateAction<boolean>>
+  prettierState: any
+}
+export enum Mode {
+  Major = 'major',
+  Minor = 'minor',
+}
+const rootArray = [
+  'A',
+  'A#',
+  'B',
+  'C',
+  'C#',
+  'D',
+  'D#',
+  'E',
+  'F',
+  'F#',
+  'G',
+  'G#',
+]
+
+export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
+  keyModeRef,
+  dispatchPrettier,
+  prettierState,
+}: Props) => {
+  const [root, setRoot] = useState<string>(rootArray[0])
+  const [mode, setMode] = useState<Mode>(Mode.Major)
+  const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
+    console.log(mode)
+    mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
 
-  /*   const handleChange = () => {
-
-    handler()
-  } */
-  const rootArray = [
-    'A',
-    'A#',
-    'B',
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-  ]
-  /* const modeArray = ['major', 'minor', 'egyptian'] */
-
+  const handlePrettierToggle = () => {
+    console.log('clicky')
+    dispatchPrettier(!prettierState)
+  }
   return (
     <Stack
       direction="row"
       justifyContent={'center'}
       alignContent={'center'}
+      alignItems={'stretch'}
       mb={3}
     >
+      <input value={[root, mode]} type="hidden" ref={keyModeRef} />
+
       <FormControlLabel
+        sx={{ justifyContent: 'center' }}
         control={
           <Switch
-            checked={prettier}
-            onChange={() => setPrettier(!prettier)}
+            checked={prettierState}
+            size="medium"
+            onChange={() => handlePrettierToggle()}
             inputProps={{ 'aria-label': 'controlled' }}
             css={css`
               transform: rotate(270deg);
@@ -70,37 +76,10 @@ function TransposeToggle() {
         label="Prettier"
         labelPlacement="top"
       />
-      <span
-        css={css`
-          display: inherit;
-          border: 1px solid white;
-          align-items: center;
-          width: 4.2rem;
-        `}
-      >
-        <ArrowBackIosSharpIcon
-          css={css`
-            text-align: left;
-          `}
-          onClick={() => handleKeyChange('down')}
-        />
-        <Typography
-          variant="h5"
-          css={css`
-            text-align: center;
-          `}
-        >
-          {rootArray[root]}
-        </Typography>
-        <ArrowForwardIosIcon
-          css={css`
-            align-self: right;
-          `}
-          onClick={() => handleKeyChange('up')}
-        />
-      </span>
+      <div>
+        <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
+        <Button onClick={() => handleModeChange(mode)}>{mode}</Button>
+      </div>
     </Stack>
   )
 }
-
-export default TransposeToggle

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 import {
   chartDataDispatcher,
@@ -15,13 +15,13 @@ const ToneDataDispatch = createContext<toneDataDispatcher | null>(null)
 const ChartDataDispatch = createContext<chartDataDispatcher | null>(null)
 
 function ToneDataProvider({ children }: Props) {
-  const [source, setSource] = useState<string>('default')
-  const [sensitivity, setSensitivity] = useState<number>(100)
+  /*   const [source, setSource] = useState<string>('default') */
+  /*   const [sensitivity, setSensitivity] = useState<number>(100) */
   const [dispatchedEndpoint, setDispatchedEndpoint] =
     useState<string>('/api/ohlcv/')
 
   //TODO: improve
-  const [notes, setNotes] = useState<number[]>([])
+  const [notes, setNotes] = useState<(string | number | null)[]>([])
 
   /*   const toneDataContext: toneDataContext = useMemo(
     () => ({
@@ -33,21 +33,16 @@ function ToneDataProvider({ children }: Props) {
     [source, sensitivity, target, dispatchedEndpoint]
   )
  */
-  // TODO: useEffect is just for dev
-  useEffect(() => {
-    console.log('notes')
-    console.log(notes)
-  }, [notes])
 
   const toneDataContext = {
-    source: source,
-    sensitivity: sensitivity,
+    /*     source: source,
+    sensitivity: sensitivity, */
     dispatchedEndpoint: dispatchedEndpoint,
     notes: notes,
   }
   const dispatchToneData = {
-    setSource: setSource,
-    setSensitivity: setSensitivity,
+    /*     setSource: setSource,
+    setSensitivity: setSensitivity, */
     setNotes: setNotes,
   }
 

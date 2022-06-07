@@ -3,11 +3,14 @@ import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
 import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
-import { ReactNode, SyntheticEvent, useState } from 'react'
+import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
 import AlgoSelect from '~/components/formComponents/AlgoSelect'
-import TransposeToggle from '~/components/formComponents/TransposeToggle'
+import {
+  Mode,
+  TransposeToggle,
+} from '~/components/formComponents/TransposeToggle'
 
 // eslint-disable-next-line import/order
 import {
@@ -20,7 +23,13 @@ import {
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { deviationArray, differenceArray } from '../tone/tone-utils/tone'
+import {
+  deviationArray,
+  differenceArray,
+  filterNotes,
+  keyArray,
+  keyFilter,
+} from '../tone/tone-utils/tone'
 
 interface Props {
   children?: ReactNode
@@ -31,48 +40,48 @@ function MappingsCard(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
+  const [prettierState, setPrettier] = useState<boolean>(false)
+  const keyModeRef = useRef<HTMLInputElement | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
-  /*   const fetcher = (endpoint: string, object: object) =>
-    Axios.cryptonesApi.post(endpoint, object).then((res) => res.data) */
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    let array
+    const keyMode = keyModeRef?.current?.value.split(',')
+    console.log(keyMode)
+    console.log(prettierState)
+    let notesArray
     switch (source) {
       case 'difference':
-        array = differenceArray(data.formattedOhlc, sensitivity)
-        dispatchToneData?.setNotes(array)
+        notesArray = differenceArray(data.formattedOhlc, sensitivity)
+        if (!prettierState) {
+          dispatchToneData?.setNotes(notesArray)
+        }
+        if (prettierState && keyMode) {
+          console.log(keyMode)
+          const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
+          const filtered = filterNotes(keyArr, notesArray)
+          dispatchToneData?.setNotes(filtered)
+        }
         break
       case 'deviation':
-        array = deviationArray(data.formattedOhlc, sensitivity)
-        dispatchToneData?.setNotes(array)
+        notesArray = deviationArray(data.formattedOhlc, sensitivity)
+        if (!prettierState) {
+          dispatchToneData?.setNotes(notesArray)
+        }
+        if (prettierState && keyMode) {
+          const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
+          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
+        }
         break
     }
     return console.log('submitted')
   }
-
-  /*   const handleSubmit = async (e: SyntheticEvent, cacheMapping: object) => {
-    e.preventDefault()
-    const cachedMapping = await fetcher('/api/cache', cacheMapping)
-      .then((response: AxiosResponse<any, any>) => {
-        console.log(response)
-        //TODO: likely best to set object properties and memoize the setter, though I believe React Fiber will hold off on update until it hits the return here...
-        //TODO: consider startTransition here, change styling of submit button?
-        dispatchToneData?.setSource(source)
-        dispatchToneData?.setSensitivity(sensitivity)
-        dispatchToneData?.setTarget(target)
-        return response.data
-      })
-      .catch((error) => console.error(error))
-
-    return cachedMapping
-  }
- */ return (
+  return (
     <>
       <Paper
         css={css`
@@ -108,7 +117,7 @@ function MappingsCard(props: Props) {
             item
             xs={3}
             container
-            sx={{ minWidth: { xs: '100%', md: '100px' } }}
+            sx={{ minWidth: { xs: '100%', md: '100px' }, mb: { xs: '1rem' } }}
             css={css`
               ${themedNeu.raised};
               ${base.centerChildren};
@@ -119,21 +128,24 @@ function MappingsCard(props: Props) {
           </Grid>
           <Grid
             item
-            sm={3}
+            md={3}
             container
             css={css`
-              ${themedNeu.raised}
+              ${themedNeu.raised};
+              min-width: 10rem;
             `}
           >
-            <Grid container>
-              <SensitivitySlider
-                sliderSize="small"
-                color="primary"
-                handler={setSensitivity}
-              />
+            <SensitivitySlider
+              sliderSize="small"
+              color="primary"
+              handler={setSensitivity}
+            />
 
-              <TransposeToggle />
-            </Grid>
+            <TransposeToggle
+              prettierState={prettierState}
+              dispatchPrettier={setPrettier}
+              keyModeRef={keyModeRef}
+            />
           </Grid>
           <Button
             variant="contained"

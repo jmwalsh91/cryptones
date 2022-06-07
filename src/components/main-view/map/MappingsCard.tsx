@@ -109,10 +109,7 @@ function MappingsCard(props: Props) {
           {' '}
           Mapping
         </Typography>
-        <Grid
-          container
-          sx={{ justifyContent: 'space-between', alignContent: 'baseline' }}
-        >
+        <Grid container gap={3} sx={{ justifyContent: 'space-between' }}>
           <Grid
             item
             xs={3}
@@ -160,10 +157,6 @@ function MappingsCard(props: Props) {
               minWidth: {
                 xs: '100%',
                 md: '1rem',
-              },
-              marginTop: {
-                xs: '1rem',
-                md: 0,
               },
               marginRight: {
                 xs: 0,

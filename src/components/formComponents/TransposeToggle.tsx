@@ -4,6 +4,7 @@ import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import { Button, FormControlLabel, Stack } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
+
 import KeySelect from './KeySelect'
 
 /* import * as base from '../../styles/base'
@@ -33,7 +34,6 @@ const rootArray = [
   'G#',
 ]
 
-type rootIndex = number
 export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
   keyModeRef,
   dispatchPrettier,

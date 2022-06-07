@@ -49,5 +49,6 @@ export const toneCard = css`
 
 export const playBackControls = css`
   position: relative;
+  max-width: 100%;
 `
 export const focusBorder = css``

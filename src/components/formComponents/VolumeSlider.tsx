@@ -26,12 +26,9 @@ function VolumeSlider() {
     Tone.getDestination().volume.rampTo(newValue as number, 0.01)
     console.log(val)
   }
+  //TODO: STYLE
   return (
-    <Box
-      width={300}
-      m={2}
-      sx={{ alignItems: 'center', justifyContent: 'center' }}
-    >
+    <Box mb={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
       <Stack>
         <Typography variant="h5">Volume</Typography>
         <Slider
@@ -44,7 +41,6 @@ function VolumeSlider() {
           max={1}
           onChange={handleChange}
           css={css`
-            background: #2f2c2c;
             height: 10px;
           `}
         />

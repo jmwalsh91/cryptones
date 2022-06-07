@@ -117,7 +117,7 @@ function MappingsCard(props: Props) {
             item
             xs={3}
             container
-            sx={{ minWidth: { xs: '100%', md: '100px' } }}
+            sx={{ minWidth: { xs: '100%', md: '100px' }, mb: { xs: '1rem' } }}
             css={css`
               ${themedNeu.raised};
               ${base.centerChildren};

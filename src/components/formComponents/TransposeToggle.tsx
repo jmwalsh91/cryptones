@@ -5,14 +5,7 @@ import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Button, FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
-import {
-  Dispatch,
-  HTMLInputTypeAttribute,
-  LegacyRef,
-  MutableRefObject,
-  SetStateAction,
-  useState,
-} from 'react'
+import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 
 type Props = {
   keyModeRef: LegacyRef<HTMLInputElement> /* | MutableRefObject<string[]> */

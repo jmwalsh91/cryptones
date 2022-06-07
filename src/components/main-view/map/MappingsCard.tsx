@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { StyledOptions } from '@emotion/styled'
-import { SettingsRemoteSharp } from '@mui/icons-material'
 import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
 /* import { AxiosResponse } from 'axios' */
-import { LegacyRef, ReactNode, SyntheticEvent, useRef, useState } from 'react'
+import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
 import AlgoSelect from '~/components/formComponents/AlgoSelect'

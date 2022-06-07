@@ -1,7 +1,5 @@
-import { SingleBed } from '@mui/icons-material'
 import { Key, Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
-import { PluckSynth } from 'tone'
 
 import { Mode } from '~/components/formComponents/TransposeToggle'
 

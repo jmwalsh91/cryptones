@@ -158,10 +158,6 @@ function MappingsCard(props: Props) {
                 xs: '100%',
                 md: '1rem',
               },
-              marginTop: {
-                xs: '1rem',
-                md: 0,
-              },
               marginRight: {
                 xs: 0,
                 md: '.25rem',

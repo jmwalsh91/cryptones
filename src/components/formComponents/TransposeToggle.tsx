@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace'
-import ArrowBackIosSharpIcon from '@mui/icons-material/ArrowBackIosSharp'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Button, FormControlLabel, Stack, Typography } from '@mui/material'
+import { Button, FormControlLabel, Stack } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 import KeySelect from './KeySelect'
 
+/* import * as base from '../../styles/base'
+import * as neu from '../../styles/neu' */
+
 type Props = {
-  keyModeRef: LegacyRef<HTMLInputElement> /* | MutableRefObject<string[]> */
+  keyModeRef: LegacyRef<HTMLInputElement>
   dispatchPrettier: Dispatch<SetStateAction<boolean>>
   prettierState: any
 }
@@ -40,19 +41,6 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
 }: Props) => {
   const [root, setRoot] = useState<string>(rootArray[0])
   const [mode, setMode] = useState<Mode>(Mode.Major)
-  /* 
-  const handleKeyChange = (str: string) => {
-    switch (str) {
-      case 'up':
-        if (rootArray[root + 1]) setRoot(root + 1)
-        else setRoot(0)
-        break
-      case 'down':
-        if (rootArray[root - 1]) setRoot(root - 1)
-        else setRoot(rootArray.length - 1)
-    }
-  } */
-
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
     console.log(mode)
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
@@ -67,14 +55,17 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
       direction="row"
       justifyContent={'center'}
       alignContent={'center'}
+      alignItems={'stretch'}
       mb={3}
     >
       <input value={[root, mode]} type="hidden" ref={keyModeRef} />
 
       <FormControlLabel
+        sx={{ justifyContent: 'center' }}
         control={
           <Switch
             checked={prettierState}
+            size="medium"
             onChange={() => handlePrettierToggle()}
             inputProps={{ 'aria-label': 'controlled' }}
             css={css`
@@ -85,36 +76,6 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         label="Prettier"
         labelPlacement="top"
       />
-      {/* 
-      <span
-        css={css`
-          display: inherit;
-          border: 1px solid white;
-          align-items: center;
-          width: 4.2rem;
-        `}
-      >
-        <ArrowBackIosSharpIcon
-          css={css`
-            text-align: left;
-          `}
-          onClick={() => handleKeyChange('down')}
-        />
-        <Typography
-          variant="h5"
-          css={css`
-            text-align: center;
-          `}
-        >
-          {rootArray[root]}
-        </Typography>
-        <ArrowForwardIosIcon
-          css={css`
-            align-self: right;
-          `}
-          onClick={() => handleKeyChange('up')}
-        />
-      </span> */}
       <div>
         <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
         <Button onClick={() => handleModeChange(mode)}>{mode}</Button>

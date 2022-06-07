@@ -128,25 +128,24 @@ function MappingsCard(props: Props) {
           </Grid>
           <Grid
             item
-            sm={3}
+            md={3}
             container
             css={css`
-              ${themedNeu.raised}
+              ${themedNeu.raised};
+              min-width: 10rem;
             `}
           >
-            <Grid container>
-              <SensitivitySlider
-                sliderSize="small"
-                color="primary"
-                handler={setSensitivity}
-              />
+            <SensitivitySlider
+              sliderSize="small"
+              color="primary"
+              handler={setSensitivity}
+            />
 
-              <TransposeToggle
-                prettierState={prettierState}
-                dispatchPrettier={setPrettier}
-                keyModeRef={keyModeRef}
-              />
-            </Grid>
+            <TransposeToggle
+              prettierState={prettierState}
+              dispatchPrettier={setPrettier}
+              keyModeRef={keyModeRef}
+            />
           </Grid>
           <Button
             variant="contained"

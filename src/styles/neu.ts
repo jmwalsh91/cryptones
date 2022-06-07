@@ -31,7 +31,6 @@ export const light = {
   circleAction: css`
     display: block;
     padding: 1rem;
-    margin: 0 auto;
     width: 6rem;
     height: 6rem;
     background-position: 50% 50%;
@@ -83,7 +82,6 @@ export const dark = {
   circleAction: css`
     display: block;
     padding: 1rem;
-    margin: 0 auto;
     width: 6rem;
     height: 6rem;
     background-position: 50% 50%;

@@ -79,13 +79,16 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       css={css`
         ${themedNeu.depressed}
       `}
+      sx={{ height: { xs: '10rem', md: '100%' }, mb: { xs: '2rem', md: 0 } }}
     >
       <Stack
         spacing={3}
         sx={{
           flexDirection: { xs: 'row', md: 'column' },
-          alignItems: { xs: 'flex-start', md: 'center' },
+          alignItems: { xs: 'stretch', md: 'center' },
+          justifyContent: { xs: 'space-between', md: 'space-around' },
           padding: { xs: 2, md: 5 },
+          mb: { xs: '2rem', md: '0rem' },
         }}
       >
         <TokenLogo tokenLogo={selectedToken?.logo} />
@@ -99,10 +102,6 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
           variant="contained"
           size="large"
           sx={{
-            alignSelf: {
-              xs: 'flex-end',
-              md: 'flex-end',
-            },
             minHeight: {
               xs: '100%',
               md: '1rem',
@@ -111,14 +110,19 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
               xs: '1rem',
               md: '100%',
             },
+            maxWidth: {
+              xs: '1rem',
+              md: '100%',
+            },
             marginTop: {
-              xs: 0,
+              xs: '0.5rem',
               md: '1rem',
             },
             marginRight: {
               xs: '.25rem',
               md: 0,
             },
+
           }}
           css={css`
             ${themedNeu.raised}

@@ -51,7 +51,7 @@ export default function TokenSelect({
         <Select
           labelId="select token"
           id="select token dropdown"
-          label="hi"
+          label="select token dropdown"
           value={selectedToken.name}
           onChange={handleChange}
           size="small"

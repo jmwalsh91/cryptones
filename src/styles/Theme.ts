@@ -21,12 +21,12 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Montserrat', sans-serif;",
+    fontFamily: 'Smooch Sans',
   },
   components: {
     MuiTypography: {
       defaultProps: {
-        fontFamily: "'Montserrat', sans-serif;",
+        fontFamily: 'Smooch Sans',
       },
     },
   },
@@ -61,5 +61,12 @@ export const darkTheme = createTheme({
   },
   typography: {
     fontFamily: 'Smooch Sans',
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        fontFamily: 'Smooch Sans',
+      },
+    },
   },
 })

@@ -1,10 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Stack, Typography, useTheme } from '@mui/material'
+import { Paper, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
-import ActionToggle from '../../../components/formComponents/ActionToggle'
+import BPMSlider from '~/components/formComponents/BPM'
+import VolumeSlider from '~/components/formComponents/VolumeSlider'
+
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
@@ -20,7 +22,7 @@ interface Props {
 }
 
 //ToneCard accepts data as props (shape utilized by chart), reshapes it to suit the requirements of tone.JS, and utilizes relationships defined by MappingCard to determine what tone.JS outputs in the browser.
-
+export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   //TODO: select note length
@@ -29,7 +31,6 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
-  Tone.Transport.bpm.value = 60
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
@@ -53,33 +54,39 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       sx={{
         width: '100%',
         height: '100%',
-        justifyContent: 'center',
         px: '1rem',
         py: '.5rem',
       }}
     >
-      <Stack
-        spacing={2}
-        alignItems={'center'}
-        css={
-          isToneContextUpdating
-            ? css`
-                ${neu.pendingSection}
-              `
-            : null
-        }
+      <Typography
+        variant="h2"
+        css={css`
+          font-weight: 700;
+          text-shadow: 10px 1px 12px ${currentTheme.palette.secondary.main},
+            5px 8px 12px ${currentTheme.palette.primary.main};
+          color: ${currentTheme.palette.background.default};
+        `}
+        sx={{ textAlign: 'center' }}
       >
-        <Typography variant="h5">Output:</Typography>
-        <ActionToggle />
-        <Typography variant="body1">
-          {toneContext?.source} {toneContext?.target}
-        </Typography>
+        Output
+      </Typography>
+      <div
+        css={css`
+          ${base.playBackControls}
+          display: flex;
+          flex-direction: column;
+          justify-items: flex-end;
+        `}
+      >
+        {' '}
+        <BPMSlider size="desktop" />
+        <VolumeSlider />
         <PlaybackControls
           iconSize="large"
           color="secondary"
           controls={controls}
         />
-      </Stack>
+      </div>
     </Paper>
   )
 }

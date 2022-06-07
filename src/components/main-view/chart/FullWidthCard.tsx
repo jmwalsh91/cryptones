@@ -42,7 +42,7 @@ function FullWidthCard() {
                 : null
             }
           >
-            <Grid item md={3} sm={12}>
+            <Grid item xs={12} sm={12} md={3} lg={3}>
               <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
                 <TokenCard
                   setEndpoint={setEndpoint}
@@ -51,7 +51,7 @@ function FullWidthCard() {
               </ErrorBoundary>
             </Grid>
 
-            <Grid item sm={12} md={8}>
+            <Grid item sm={12} md={9} lg={9}>
               <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
                 <Suspense fallback="fallback">
                   <ChartComponent

@@ -122,7 +122,6 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
               xs: '.25rem',
               md: 0,
             },
-
           }}
           css={css`
             ${themedNeu.raised}

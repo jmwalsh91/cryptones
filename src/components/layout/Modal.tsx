@@ -34,14 +34,16 @@ export default function Modal({ isOpen }: Props) {
         onClose={handleClose}
         sx={{
           bgcolor: 'black',
-          opacity: '.90',
-          backgroundBlendMode: 'luminosity',
         }}
       >
         <DialogActions>
-          <Stack justifyContent={'center'}>
+          <Stack
+            direction="column"
+            justifyContent={'center'}
+            alignItems="center"
+          >
             <DialogTitle variant="h1" textAlign={'center'}>
-              Welcome to crypTones
+              crypTones
             </DialogTitle>
             <DialogContent>
               <DialogContentText variant="body1" textAlign={'center'}>

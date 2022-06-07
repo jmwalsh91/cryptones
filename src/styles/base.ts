@@ -35,7 +35,7 @@ export const centeredSvg = css`
 export const mapCard = css`
   position: relative;
   padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
   &:focus-within {
     box-shadow: 0 0 10px #65abba;
   }

@@ -18,6 +18,7 @@ function TokenLogo({ tokenLogo }: Props) {
       css={css`
         ${themedNeu.circleAction};
         ${base.centerChildren};
+        margin-top: 1rem;
       `}
     >
       <div

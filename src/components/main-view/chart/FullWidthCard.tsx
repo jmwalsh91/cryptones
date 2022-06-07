@@ -51,7 +51,14 @@ function FullWidthCard() {
               </ErrorBoundary>
             </Grid>
 
-            <Grid item sm={12} md={9} lg={9}>
+            <Grid
+              item
+              container
+              sm={12}
+              md={9}
+              lg={9}
+              justifyContent={'center'}
+            >
               <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
                 <Suspense fallback="fallback">
                   <ChartComponent

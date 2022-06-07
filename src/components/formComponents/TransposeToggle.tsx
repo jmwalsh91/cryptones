@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Button, FormControlLabel, Stack, Typography } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
+import KeySelect from './KeySelect'
 
 type Props = {
   keyModeRef: LegacyRef<HTMLInputElement> /* | MutableRefObject<string[]> */
@@ -37,9 +38,9 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
   dispatchPrettier,
   prettierState,
 }: Props) => {
-  const [root, setRoot] = useState<rootIndex>(0)
+  const [root, setRoot] = useState<string>(rootArray[0])
   const [mode, setMode] = useState<Mode>(Mode.Major)
-
+  /* 
   const handleKeyChange = (str: string) => {
     switch (str) {
       case 'up':
@@ -50,7 +51,7 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         if (rootArray[root - 1]) setRoot(root - 1)
         else setRoot(rootArray.length - 1)
     }
-  }
+  } */
 
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
     console.log(mode)
@@ -68,7 +69,7 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
       alignContent={'center'}
       mb={3}
     >
-      <input value={[rootArray[root], mode]} type="hidden" ref={keyModeRef} />
+      <input value={[root, mode]} type="hidden" ref={keyModeRef} />
 
       <FormControlLabel
         control={
@@ -84,6 +85,7 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         label="Prettier"
         labelPlacement="top"
       />
+      {/* 
       <span
         css={css`
           display: inherit;
@@ -112,10 +114,11 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
           `}
           onClick={() => handleKeyChange('up')}
         />
-      </span>
-      <Button onClick={() => handleModeChange(mode)}>
-        Current Mode: {mode}{' '}
-      </Button>
+      </span> */}
+      <div>
+        <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
+        <Button onClick={() => handleModeChange(mode)}>{mode}</Button>
+      </div>
     </Stack>
   )
 }

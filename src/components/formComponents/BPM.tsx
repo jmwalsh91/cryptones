@@ -25,11 +25,7 @@ function BPMSlider({ size }: BPMSelectorProps) {
     Tone.Transport.bpm.rampTo(newValue as number, 0.5)
   }
   return (
-    <Box
-      width={300}
-      m={2}
-      sx={{ alignItems: 'center', justifyContent: 'center' }}
-    >
+    <Box sx={{ alignItems: 'center', justifyContent: 'center' }}>
       <Stack>
         <Typography variant="h5">BPM</Typography>
         <Slider

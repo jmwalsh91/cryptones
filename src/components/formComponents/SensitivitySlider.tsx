@@ -58,7 +58,6 @@ function SensitivitySlider({
           max={2}
           onChangeCommitted={handleChange}
           css={css`
-            background: #2f2c2c;
             height: 10px;
           `}
         />

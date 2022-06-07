@@ -11,7 +11,7 @@ import {
 
 import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
-import EthereumLogo from '../../../public/ethereum-eth-logo.svg'
+import EthereumLogo from '../../../public/eth3.svg'
 import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg'
 import { useChartDataDispatch } from '../../../services/ToneContextWrapper'

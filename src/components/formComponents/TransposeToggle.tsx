@@ -7,8 +7,8 @@ import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 
 import KeySelect from './KeySelect'
 
-/* import * as base from '../../styles/base'
-import * as neu from '../../styles/neu' */
+import * as base from '../../styles/base'
+import * as neu from '../../styles/neu'
 
 type Props = {
   keyModeRef: LegacyRef<HTMLInputElement>
@@ -41,13 +41,15 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
 }: Props) => {
   const [root, setRoot] = useState<string>(rootArray[0])
   const [mode, setMode] = useState<Mode>(Mode.Major)
+  const [disabled, setDisabled] = useState(true)
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
     console.log(mode)
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
-
+  const disabledRootMode = prettierState ? null : neu.prettierOff
   const handlePrettierToggle = () => {
     console.log('clicky')
+    setDisabled(!disabled)
     dispatchPrettier(!prettierState)
   }
   return (
@@ -76,7 +78,11 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         label="Prettier"
         labelPlacement="top"
       />
-      <div>
+      <div
+        css={css`
+          ${disabledRootMode}
+        `}
+      >
         <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
         <Button onClick={() => handleModeChange(mode)}>{mode}</Button>
       </div>

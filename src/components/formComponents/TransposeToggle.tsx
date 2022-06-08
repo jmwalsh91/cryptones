@@ -5,10 +5,8 @@ import { Button, FormControlLabel, Stack } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 
-import KeySelect from './KeySelect'
-
-import * as base from '../../styles/base'
 import * as neu from '../../styles/neu'
+import KeySelect from './KeySelect'
 
 type Props = {
   keyModeRef: LegacyRef<HTMLInputElement>

@@ -79,12 +79,27 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         labelPlacement="top"
       />
       <div
+        role="contentinfo"
+        id="select key and mode section"
+        aria-description="A dropdown to select a key and a button that toggles the mode from major to minor. These are disabled when the toggle labeled 'prettier' is off"
+        aria-disabled={disabled}
+        aria-live="assertive"
         css={css`
           ${disabledRootMode}
         `}
       >
-        <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
-        <Button onClick={() => handleModeChange(mode)}>{mode}</Button>
+        <KeySelect
+          aria-describedby="select key and mode section"
+          root={root}
+          setRoot={setRoot}
+          rootArr={rootArray}
+        />
+        <Button
+          aria-describedby="select key and mode section"
+          onClick={() => handleModeChange(mode)}
+        >
+          {mode}
+        </Button>
       </div>
     </Stack>
   )

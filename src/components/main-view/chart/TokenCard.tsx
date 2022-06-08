@@ -86,7 +86,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
         sx={{
           flexDirection: { xs: 'row', md: 'column' },
           alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: { xs: 'space-evenly', md: 'space-around' },
+          justifyContent: { xs: 'space-between', md: 'space-around' },
           padding: { xs: 2, md: 5 },
           mb: { xs: '2rem', md: '0rem' },
         }}

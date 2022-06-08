@@ -55,7 +55,7 @@ function SensitivitySlider({
           valueLabelDisplay="auto"
           step={0.1}
           min={0.1}
-          max={2}
+          max={10}
           onChangeCommitted={handleChange}
           css={css`
             height: 10px;

@@ -5,10 +5,8 @@ import { Button, FormControlLabel, Stack } from '@mui/material'
 import Switch from '@mui/material/Switch'
 import { Dispatch, LegacyRef, SetStateAction, useState } from 'react'
 
+import * as neu from '../../styles/neu'
 import KeySelect from './KeySelect'
-
-/* import * as base from '../../styles/base'
-import * as neu from '../../styles/neu' */
 
 type Props = {
   keyModeRef: LegacyRef<HTMLInputElement>
@@ -41,13 +39,15 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
 }: Props) => {
   const [root, setRoot] = useState<string>(rootArray[0])
   const [mode, setMode] = useState<Mode>(Mode.Major)
+  const [disabled, setDisabled] = useState(true)
   const handleModeChange = (mode: Mode.Major | Mode.Minor): void => {
     console.log(mode)
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
-
+  const disabledRootMode = prettierState ? null : neu.disabled
   const handlePrettierToggle = () => {
     console.log('clicky')
+    setDisabled(!disabled)
     dispatchPrettier(!prettierState)
   }
   return (
@@ -76,9 +76,28 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
         label="Prettier"
         labelPlacement="top"
       />
-      <div>
-        <KeySelect root={root} setRoot={setRoot} rootArr={rootArray} />
-        <Button onClick={() => handleModeChange(mode)}>{mode}</Button>
+      <div
+        role="contentinfo"
+        id="select key and mode section"
+        aria-description="A dropdown to select a key and a button that toggles the mode from major to minor. These are disabled when the toggle labeled 'prettier' is off"
+        aria-disabled={disabled}
+        aria-live="assertive"
+        css={css`
+          ${disabledRootMode}
+        `}
+      >
+        <KeySelect
+          aria-describedby="select key and mode section"
+          root={root}
+          setRoot={setRoot}
+          rootArr={rootArray}
+        />
+        <Button
+          aria-describedby="select key and mode section"
+          onClick={() => handleModeChange(mode)}
+        >
+          {mode}
+        </Button>
       </div>
     </Stack>
   )

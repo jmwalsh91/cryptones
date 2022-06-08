@@ -9,19 +9,20 @@ import {
   useState,
 } from 'react'
 
-import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
+/* import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
+ */
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
 import EthereumLogo from '../../../public/eth3.svg'
-import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
-import SolanaLogo from '../../../public/solana-sol-logo.svg'
+/* import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
+import SolanaLogo from '../../../public/solana-sol-logo.svg' */
 import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
 import * as neu from '../../../styles/neu'
 import { tokenObject } from '../../../types/interfaces'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 
-const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO']
-
+/* const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO'] */
+const tokenChoices = ['BTC', 'ETH']
 /*TODO: LAZY LOAD, FIGURE OUT TYPES 
 const BitcoinLogo: Promise<typeof SVGElement> = lazy(
   (): Promise<{ new (): SVGElement; prototype: SVGElement }> =>
@@ -31,10 +32,10 @@ const BitcoinLogo: Promise<typeof SVGElement> = lazy(
 ) */
 const tokens: Array<tokenObject> = [
   { name: 'BTC', logo: BitcoinLogo },
-  { name: 'SOL', logo: SolanaLogo },
-  { name: 'ETH', logo: EthereumLogo },
-  { name: 'DOT', logo: PolkadotLogo },
-  { name: 'ALGO', logo: AlgorandLogo },
+  /*   { name: 'SOL', logo: SolanaLogo },
+   */ { name: 'ETH', logo: EthereumLogo },
+  /*   { name: 'DOT', logo: PolkadotLogo },
+  { name: 'ALGO', logo: AlgorandLogo }, */
 ]
 
 interface Props {
@@ -86,7 +87,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
         sx={{
           flexDirection: { xs: 'row', md: 'column' },
           alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: { xs: 'space-evenly', md: 'space-around' },
+          justifyContent: { xs: 'space-between', md: 'space-around' },
           padding: { xs: 2, md: 5 },
           mb: { xs: '2rem', md: '0rem' },
         }}

@@ -46,7 +46,7 @@ export const TransposeToggle: ({ keyModeRef }: Props) => EmotionJSX.Element = ({
     console.log(mode)
     mode === Mode.Major ? setMode(Mode.Minor) : setMode(Mode.Major)
   }
-  const disabledRootMode = prettierState ? null : neu.prettierOff
+  const disabledRootMode = prettierState ? null : neu.disabled
   const handlePrettierToggle = () => {
     console.log('clicky')
     setDisabled(!disabled)

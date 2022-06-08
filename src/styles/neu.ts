@@ -4,8 +4,9 @@ import { css } from '@emotion/react'
 export const pendingSection = css`
   opacity: 0.6;
 `
-export const prettierOff = css`
-  opacity: 0.3;
+export const disabled = css`
+  opacity: 0.5;
+  pointer-events: none;
 `
 export const light = {
   raised: css`

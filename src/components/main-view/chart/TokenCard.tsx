@@ -21,15 +21,8 @@ import { tokenObject } from '../../../types/interfaces'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 
-/* const tokenChoices = ['SOL', 'BTC', 'ETH', 'DOT', 'ALGO'] */
 const tokenChoices = ['BTC', 'ETH']
-/*TODO: LAZY LOAD, FIGURE OUT TYPES 
-const BitcoinLogo: Promise<typeof SVGElement> = lazy(
-  (): Promise<{ new (): SVGElement; prototype: SVGElement }> =>
-    import('../../../public/bitcoin-btc-logo.svg').then((BitcoinLogo) => {
-      return BitcoinLogo
-    })
-) */
+
 const tokens: Array<tokenObject> = [
   { name: 'BTC', logo: BitcoinLogo },
   /*   { name: 'SOL', logo: SolanaLogo },
@@ -47,7 +40,6 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   const endpointDispatcher = useChartDataDispatch()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
-  /*   const displayMode = useMediaQuery('min-width: 600px') */
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(
@@ -142,34 +134,3 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
 }
 
 export default TokenCard
-{
-  /* <Button
-            variant="contained"
-            size="large"
-            sx={{
-              minHeight: {
-                xs: '1rem',
-                md: '100%',
-              },
-              minWidth: {
-                xs: '100%',
-                md: '1rem',
-              },
-              marginTop: {
-                xs: '1rem',
-                md: 0,
-              },
-              marginRight: {
-                xs: 0,
-                md: '.25rem',
-              },
-            }}
-            onClick={(e) => handleSubmit(e)}
-            css={css`
-              ${themedNeu.raised}
-              color: ${currentTheme.palette.primary.main}
-            `}
-          >
-            Submit
-          </Button> */
-}

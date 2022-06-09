@@ -2,19 +2,10 @@
 //TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import {
-  Box,
-  FormLabel,
-  Slider,
-  Stack,
-  Typography,
-  useTheme,
-} from '@mui/material'
+import { Box, FormLabel, Slider, Stack, Typography } from '@mui/material'
 import React, { SyntheticEvent, useState } from 'react'
 import { Dispatch } from 'react'
 
-import * as base from '../../styles/base'
-import * as neu from '../../styles/neu'
 //Valid props for SlideSelector
 interface sensitivitySelectorProps {
   sliderSize: 'small' | 'medium'
@@ -28,8 +19,7 @@ function SensitivitySlider({
   handler,
 }: sensitivitySelectorProps) {
   const [val, setVal] = useState<number>(1)
-  const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
     newValue: number | number[]

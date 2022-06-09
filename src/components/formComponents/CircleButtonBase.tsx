@@ -1,18 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Button } from '@mui/material'
-import { useTheme } from '@mui/system'
 import { ReactNode } from 'react'
 
-import * as neu from '../../styles/neu'
+import { useMode } from '~/utils/hooks/useMode'
 
 type Props = {
   children: string | ReactNode
   handler: VoidFunction
 }
 function CircleButtonBase({ children, handler }: Props) {
-  const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const themedNeu = useMode()
   return (
     <Button
       css={css`

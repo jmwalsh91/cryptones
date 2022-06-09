@@ -1,14 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
-import { useTheme } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
-import * as neu from '../../styles/neu'
+import { useMode } from '~/utils/hooks/useMode'
 
 import { tokenObject } from '~/types/interfaces'
 
@@ -27,8 +26,7 @@ export default function TokenSelect({
   handleTokenSelect,
   selectedToken,
 }: selectorProps): ReactJSXElement {
-  const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const themedNeu = useMode()
 
   const handleChange = (event: SelectChangeEvent) => {
     return handleTokenSelect(event.target.value)

@@ -2,13 +2,10 @@
 //TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Box, Slider, Stack, Typography, useTheme } from '@mui/material'
-import React, { SyntheticEvent, useState } from 'react'
-import { Dispatch } from 'react'
+import { Box, Slider, Stack, Typography } from '@mui/material'
+import { SyntheticEvent, useState } from 'react'
 import * as Tone from 'tone'
 
-import * as base from '../../styles/base'
-import * as neu from '../../styles/neu'
 //Valid props for SlideSelector
 /* interface VolumeSelectorProps {
   handler: Dispatch<React.SetStateAction<number>>
@@ -16,8 +13,6 @@ import * as neu from '../../styles/neu'
 
 function VolumeSlider() {
   const [val, setVal] = useState<number>()
-  const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
     newValue: number | number[]

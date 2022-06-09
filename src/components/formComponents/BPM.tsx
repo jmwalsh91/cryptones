@@ -2,12 +2,12 @@
 //TODO: ^^ is because of not using ' val'
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Box, Slider, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Slider, Stack, Typography } from '@mui/material'
 import { SyntheticEvent, useState } from 'react'
 import * as Tone from 'tone'
 
-import * as base from '../../styles/base'
-import * as neu from '../../styles/neu'
+import { useMode } from '~/utils/hooks/useMode'
+
 //Valid props for SlideSelector
 interface BPMSelectorProps {
   size: string
@@ -15,8 +15,7 @@ interface BPMSelectorProps {
 
 function BPMSlider({ size }: BPMSelectorProps) {
   const [val, setVal] = useState<number>(120)
-  const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const themedNeu = useMode()
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
     newValue: number | number[]

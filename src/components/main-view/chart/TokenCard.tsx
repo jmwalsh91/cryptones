@@ -30,11 +30,11 @@ const tokens: Array<tokenObject> = [
   /*   { name: 'DOT', logo: PolkadotLogo },
   { name: 'ALGO', logo: AlgorandLogo }, */
 ]
-
 interface Props {
   setEndpoint: Dispatch<SetStateAction<string>>
   startUpdate: TransitionStartFunction
 }
+
 function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
   const endpointDispatcher = useChartDataDispatch()

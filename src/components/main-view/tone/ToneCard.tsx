@@ -6,10 +6,10 @@ import * as Tone from 'tone'
 
 import BPMSlider from '~/components/formComponents/BPM'
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
+import { useMode } from '~/utils/hooks/useMode'
 
 import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
-import * as neu from '../../../styles/neu'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { mapDataToSequence } from './tone-utils/tone'
@@ -30,7 +30,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const synth: Tone.FMSynth = newSynth()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const themedNeu = useMode()
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {

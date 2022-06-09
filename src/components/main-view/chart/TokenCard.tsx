@@ -9,6 +9,8 @@ import {
   useState,
 } from 'react'
 
+import { useMode } from '~/utils/hooks/useMode'
+
 /* import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
  */
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
@@ -16,7 +18,6 @@ import EthereumLogo from '../../../public/eth3.svg'
 /* import PolkadotLogo from '../../../public/polkadot-new-dot-logo.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg' */
 import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
-import * as neu from '../../../styles/neu'
 import { tokenObject } from '../../../types/interfaces'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
@@ -39,7 +40,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
   const [selectedToken, setSelectedToken] = useState<tokenObject>(tokens[0])
   const endpointDispatcher = useChartDataDispatch()
   const currentTheme = useTheme()
-  const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const themedNeu = useMode()
 
   const handleTokenSelect = (val: string): tokenObject | undefined => {
     const tokenItem: tokenObject | undefined = tokens.find(

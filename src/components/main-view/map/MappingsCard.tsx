@@ -49,11 +49,10 @@ function MappingsCard(props: Props) {
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
+  //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
-    console.log(keyMode)
-    console.log(prettierState)
     let notesArray
     switch (source) {
       case 'difference':
@@ -79,8 +78,9 @@ function MappingsCard(props: Props) {
         }
         break
     }
-    return console.log('submitted')
+    return
   }
+
   return (
     <>
       <Paper

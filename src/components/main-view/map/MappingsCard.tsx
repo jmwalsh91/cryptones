@@ -1,7 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { StyledOptions } from '@emotion/styled'
-import { Button, Grid, Paper, Typography, useTheme } from '@mui/material'
+/* import { Button, Grid, Paper, Typography, useTheme } from '@mui/material' */
+import { useTheme } from '@mui/material'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 /* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
@@ -33,7 +37,6 @@ import {
 
 interface Props {
   children?: ReactNode
-  attributes?: StyledOptions<Props>
 }
 
 function MappingsCard(props: Props) {
@@ -49,11 +52,10 @@ function MappingsCard(props: Props) {
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
 
+  //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
-    console.log(keyMode)
-    console.log(prettierState)
     let notesArray
     switch (source) {
       case 'difference':
@@ -79,8 +81,9 @@ function MappingsCard(props: Props) {
         }
         break
     }
-    return console.log('submitted')
+    return
   }
+
   return (
     <>
       <Paper

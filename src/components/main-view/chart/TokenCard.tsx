@@ -119,7 +119,7 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
           }}
           css={css`
             ${themedNeu.raised}
-            color: ${currentTheme.palette.primary.main}
+            color: ${currentTheme.palette.text.primary}
           `}
           onClick={(e: SyntheticEvent) =>
             startUpdate(() => {

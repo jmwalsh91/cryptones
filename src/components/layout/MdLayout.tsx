@@ -20,9 +20,11 @@ function MdLayout() {
             <FullWidthCard />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <Suspense fallback={<MappingsFallback />}>
-              <MappingsCard />
-            </Suspense>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Suspense fallback={<MappingsFallback />}>
+                <MappingsCard />
+              </Suspense>
+            </ErrorBoundary>
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <ErrorBoundary FallbackComponent={ErrorFallback}>

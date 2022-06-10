@@ -50,10 +50,11 @@ function MappingsCard(props: Props) {
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
-  const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: false })
+  const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
   const handleSubmit = async (e: SyntheticEvent) => {
+    console.log(data)
     e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
     let notesArray

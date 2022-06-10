@@ -1,9 +1,10 @@
-import { Container, Grid, Skeleton } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 import { Suspense, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import ToneContextWrapper from '../../services/ToneContextWrapper'
 import ErrorFallback from '../err-and-feedback/ErrorFallback'
+import MappingsFallback from '../err-and-feedback/MappingsFallback'
 import FullWidthCard from '../main-view/chart/FullWidthCard'
 import MappingsCard from '../main-view/map/MappingsCard'
 import ToneCard from '../main-view/tone/ToneCard'
@@ -19,7 +20,9 @@ function MdLayout() {
             <FullWidthCard />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <MappingsCard />
+            <Suspense fallback={<MappingsFallback />}>
+              <MappingsCard />
+            </Suspense>
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <ErrorBoundary FallbackComponent={ErrorFallback}>

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Grid, Paper } from '@mui/material'
+import { Grid, Paper, Skeleton } from '@mui/material'
 import { Suspense, lazy, useState, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
@@ -28,49 +28,41 @@ function FullWidthCard() {
         ${themedNeu.depressed}
       `}
     >
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense fallback="fallback2">
-          <Grid
-            container
-            justifyContent={'space-between'}
-            css={
-              isUpdating
-                ? css`
-                    ${neu.pendingSection}
-                  `
-                : null
-            }
-          >
-            <Grid item xs={12} sm={12} md={3} lg={3}>
-              <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
-                <TokenCard
-                  setEndpoint={setEndpoint}
-                  startUpdate={startUpdate}
-                />
-              </ErrorBoundary>
-            </Grid>
+      <Grid
+        container
+        justifyContent={'space-between'}
+        css={
+          isUpdating
+            ? css`
+                ${neu.pendingSection}
+              `
+            : null
+        }
+      >
+        <Grid item xs={12} sm={12} md={3} lg={3}>
+          <TokenCard setEndpoint={setEndpoint} startUpdate={startUpdate} />
+        </Grid>
 
-            <Grid
-              item
-              container
-              sm={12}
-              md={9}
-              lg={9}
-              justifyContent={'center'}
+        <Grid item container sm={12} md={9} lg={9} justifyContent={'center'}>
+          <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
+            <Suspense
+              fallback={
+                <Skeleton
+                  sx={{ bgcolor: 'red' }}
+                  variant="rectangular"
+                  height={350}
+                />
+              }
             >
-              <ErrorBoundary fallback={<ErrorFallback error={ErrorFallback} />}>
-                <Suspense fallback="fallback">
-                  <ChartComponent
-                    data={data.formattedOhlc}
-                    name={data.tokenName}
-                    interval={data.interval}
-                  />
-                </Suspense>
-              </ErrorBoundary>
-            </Grid>
-          </Grid>
-        </Suspense>
-      </ErrorBoundary>
+              <ChartComponent
+                data={data.formattedOhlc}
+                name={data.tokenName}
+                interval={data.interval}
+              />
+            </Suspense>
+          </ErrorBoundary>
+        </Grid>
+      </Grid>
     </Paper>
   )
 }

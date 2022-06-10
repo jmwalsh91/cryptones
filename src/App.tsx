@@ -32,7 +32,7 @@ export function App() {
       <ModeProvider>
         <CssBaseline>
           <NavBar />
-          <Modal isOpen={true} />
+          <Modal isOpen={false} />
           <Display />
         </CssBaseline>
       </ModeProvider>

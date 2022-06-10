@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material'
+import { Container, Grid, Skeleton } from '@mui/material'
 import { Suspense, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -16,11 +16,7 @@ function MdLayout() {
       <ToneContextWrapper>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <Suspense fallback="fallback2">
-                <FullWidthCard />
-              </Suspense>
-            </ErrorBoundary>
+            <FullWidthCard />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
             <MappingsCard />

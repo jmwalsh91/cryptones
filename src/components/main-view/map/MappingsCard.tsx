@@ -169,7 +169,7 @@ function MappingsCard(props: Props) {
             onClick={(e) => handleSubmit(e)}
             css={css`
               ${themedNeu.raised}
-              color: ${currentTheme.palette.primary.main}
+              color: ${currentTheme.palette.text.primary}
             `}
           >
             Submit

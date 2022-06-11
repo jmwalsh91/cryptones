@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export type formattedOhlc = any[][]
 export type volumeArray = number[]
 
@@ -14,6 +16,8 @@ export interface tokenObject {
 export interface audioControls {
   stopPlayback: () => void
   startPlayback: () => void
+  disposeSequences: Dispatch<SetStateAction<any>>
+  trigger: number
 }
 
 export interface sensitivitySliderValues {

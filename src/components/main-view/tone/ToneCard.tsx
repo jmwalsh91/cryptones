@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Typography, useTheme } from '@mui/material'
-import { TransitionStartFunction } from 'react'
+import { TransitionStartFunction, useState } from 'react'
 import * as Tone from 'tone'
 
 import BPMSlider from '~/components/formComponents/BPM'
@@ -25,6 +25,10 @@ interface Props {
 export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
+  const [trigger, setTrigger] = useState<number>(0)
+  const [sequence1, setSequence1] = useState<any>([])
+  const [sequence2, setSequence2] = useState([])
+
   //TODO: select note length
   /*   const [division, setDivision] = useState<string>('16n') */
   const synth: Tone.FMSynth = newSynth()
@@ -32,18 +36,23 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const currentTheme = useTheme()
   const themedNeu = useMode()
 
+  const disposeSequences = () => {
+    setSequence1([])
+  }
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
     if (toneContext?.notes) {
-      mapDataToSequence(synth, toneContext.notes)
+      setSequence1(mapDataToSequence(synth, toneContext.notes))
       Tone.Transport.start(Tone.now())
     } else console.error('error')
   }
   const controls: audioControls = {
     stopPlayback: stopPlayback,
     startPlayback: playSynth,
+    disposeSequences: disposeSequences,
+    trigger: trigger,
   }
   return (
     <Paper

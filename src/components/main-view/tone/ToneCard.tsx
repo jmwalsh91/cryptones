@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { Paper, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction, useState } from 'react'
 import * as Tone from 'tone'
+import { Timeline } from 'tone'
 
 import BPMSlider from '~/components/formComponents/BPM'
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
@@ -26,7 +27,7 @@ export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const [trigger, setTrigger] = useState<number>(0)
-  const [sequence1, setSequence1] = useState<any>([])
+  const [sequence1, setSequence1] = useState<Tone.Sequence | null>()
   const [sequence2, setSequence2] = useState<any>([])
 
   //TODO: select note length
@@ -37,22 +38,29 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const themedNeu = useMode()
 
   const disposeSequences = () => {
-    setSequence1([])
+    sequence1?.dispose()
+    sequence2?.dispose()
+    setSequence1(null)
+    setSequence2(null)
+    console.log(Tone.getTransport())
+    console.log(sequence1, sequence2)
   }
+
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
-    if (toneContext?.notes && sequence1.length < 2) {
+    if (toneContext?.notes && !sequence1) {
       setSequence1(mapDataToSequence(synth, toneContext.notes))
       console.log(sequence1)
       Tone.Transport.start(Tone.now())
     }
-    if (sequence1.length > 2) {
+    if (sequence1) {
       if (sequence2.length > 2 || toneContext?.notes == sequence2) {
         Tone.Transport.start(Tone.now())
         //TODO: ALERT
         console.error('there is already something there')
+        console.log(Tone.getContext())
       } else if (toneContext?.notes && sequence2.length === 0) {
         setSequence2(mapDataToSequence(synth, toneContext.notes))
         console.log(sequence2)

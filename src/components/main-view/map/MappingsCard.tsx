@@ -54,7 +54,9 @@ function MappingsCard(props: Props) {
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
-  const handleSubmit = async (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent, target: string) => {
+    const updateTarget =
+      target === 'dub' ? dispatchToneData?.setDub : dispatchToneData?.setOverdub
     console.log(toneContext)
     console.log(data)
     e.preventDefault()
@@ -64,29 +66,23 @@ function MappingsCard(props: Props) {
       case 'difference':
         notesArray = differenceArray(data.formattedOhlc, sensitivity)
         if (!prettierState && toneContext) {
-          dispatchToneData?.setDub(
-            mapDataToSequence(toneContext?.synth, notesArray)
-          )
+          updateTarget(mapDataToSequence(toneContext?.synth, notesArray))
         }
         if (prettierState && keyMode && toneContext) {
           console.log(keyMode)
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
           const filtered = filterNotes(keyArr, notesArray)
-          dispatchToneData?.setDub(
-            mapDataToSequence(toneContext?.synth, filtered)
-          )
+          updateTarget(mapDataToSequence(toneContext?.synth, filtered))
         }
         break
       case 'deviation':
         notesArray = deviationArray(data.formattedOhlc, sensitivity)
         if (!prettierState && toneContext) {
-          dispatchToneData?.setDub(
-            mapDataToSequence(toneContext?.synth, notesArray)
-          )
+          updateTarget(mapDataToSequence(toneContext?.synth, notesArray))
         }
         if (prettierState && keyMode && toneContext) {
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
-          dispatchToneData?.setDub(
+          updateTarget(
             mapDataToSequence(
               toneContext?.synth,
               filterNotes(keyArr, notesArray)
@@ -182,7 +178,7 @@ function MappingsCard(props: Props) {
                 md: '.25rem',
               },
             }}
-            onClick={(e) => handleSubmit(e)}
+            onClick={(e) => handleSubmit(e, 'dub')}
             css={css`
               ${themedNeu.raised}
               color: ${currentTheme.palette.text.primary}
@@ -190,6 +186,7 @@ function MappingsCard(props: Props) {
           >
             Submit
           </Button>
+          <Button onClick={(e) => handleSubmit(e, 'overdub')}>overdub</Button>
         </Grid>
       </Paper>
     </>

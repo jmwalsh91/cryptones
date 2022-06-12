@@ -12,10 +12,10 @@ import {
 type Props = {
   children: any
 }
-
-const ToneDataContext = createContext<toneDataContext | null>(null)
-const ToneDataDispatch = createContext<toneDataDispatcher | null>(null)
-const ChartDataDispatch = createContext<chartDataDispatcher | null>(null)
+//TODO: THIS FEELS HACKY. WRAP CONTEXT WITH SOMETHING TO HANDLE INITIAL UNDEFINED/NULL
+const ToneDataContext = createContext<toneDataContext>(undefined!)
+const ToneDataDispatch = createContext<toneDataDispatcher>(undefined!)
+const ChartDataDispatch = createContext<chartDataDispatcher>(undefined!)
 
 function ToneDataProvider({ children }: Props) {
   const synth = newSynth()

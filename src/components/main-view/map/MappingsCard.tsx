@@ -54,11 +54,10 @@ function MappingsCard(props: Props) {
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
+  //TODO: Add "target" arg to mapData... for sequence name.
   const handleSubmit = async (e: SyntheticEvent, target: string) => {
     const updateTarget =
       target === 'dub' ? dispatchToneData?.setDub : dispatchToneData?.setOverdub
-    console.log(toneContext)
-    console.log(data)
     e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
     let notesArray

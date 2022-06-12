@@ -6,6 +6,7 @@ import * as Tone from 'tone'
 import { Timeline } from 'tone'
 
 import BPMSlider from '~/components/formComponents/BPM'
+import TrackIndicator from '~/components/formComponents/TrackIndicator'
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
 import { useMode } from '~/utils/hooks/useMode'
 
@@ -13,8 +14,7 @@ import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { mapDataToSequence } from './tone-utils/tone'
-import { newSynth, stopPlayback } from './tone-utils/tone'
+import { stopPlayback } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
 interface Props {
@@ -26,47 +26,20 @@ interface Props {
 export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
-  /* const [trigger, setTrigger] = useState<number>(0)
-  const [sequence1, setSequence1] = useState<Tone.Sequence | null>()
-  const [sequence2, setSequence2] = useState<any>([]) */
-
-  //TODO: select note length
-  /*   const [division, setDivision] = useState<string>('16n') */
-  /* const synth: Tone.FMSynth = newSynth() */
-  /* const toneContext = useToneContext() */
   const currentTheme = useTheme()
   const themedNeu = useMode()
+  const toneContext = useToneContext()
 
   const disposeSequences = () => {
-    /* sequence1?.dispose()
-    sequence2?.dispose()
-    setSequence1(null)
-    setSequence2(null)
-    console.log(Tone.getTransport()) */
-    console.log('square one')
+    toneContext.overdub?.dispose()
+    toneContext.dub?.dispose()
   }
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
-    /* if (toneContext?.notes && !sequence1) {
-      setSequence1(mapDataToSequence(synth, toneContext.notes))
-      console.log(sequence1)
-      Tone.Transport.start(Tone.now())
-    }
-    if (sequence1) {
-      if (sequence2.length > 2 || toneContext?.notes == sequence2) {
-        Tone.Transport.start(Tone.now())
-        //TODO: ALERT
-        console.error('there is already something there')
-        console.log(Tone.getContext())
-      } else if (toneContext?.notes && sequence2.length === 0) {
-        setSequence2(mapDataToSequence(synth, toneContext.notes))
-        console.log(sequence2)
-        Tone.Transport.start(Tone.now())
-      }
-    } */
+    Tone.Transport.start(Tone.now())
   }
 
   const controls: audioControls = {
@@ -99,6 +72,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
       >
         Output
       </Typography>
+      <TrackIndicator />
       <div
         css={css`
           ${base.playBackControls}

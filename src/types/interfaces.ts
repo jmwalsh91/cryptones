@@ -17,7 +17,7 @@ export interface tokenObject {
 export interface audioControls {
   stopPlayback: () => void
   startPlayback: () => void
-  disposeSequences: Dispatch<SetStateAction<any>>
+  dispose: (sequence: Tone.Sequence | null, seq2: Tone.Sequence | null) => void
   //TODO: remove
   trigger?: any
 }
@@ -32,10 +32,10 @@ export interface sensitivitySliderValues {
 
 //Context interfaces
 export type dispatchToneDataString = React.Dispatch<
-  React.SetStateAction<string | undefined>
+  React.SetStateAction<string>
 >
 export type dispatchToneDataNumber = React.Dispatch<
-  React.SetStateAction<number | undefined>
+  React.SetStateAction<number>
 >
 export interface toneDataContext {
   /*   source: string

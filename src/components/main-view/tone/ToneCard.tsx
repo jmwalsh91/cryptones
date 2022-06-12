@@ -14,7 +14,7 @@ import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
 import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { stopPlayback } from './tone-utils/tone'
+import { stopPlayback, transportControls } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
 interface Props {
@@ -29,11 +29,7 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const currentTheme = useTheme()
   const themedNeu = useMode()
   const toneContext = useToneContext()
-
-  const disposeSequences = () => {
-    toneContext.overdub?.dispose()
-    toneContext.dub?.dispose()
-  }
+  const controls = transportControls
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
@@ -42,11 +38,6 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
     Tone.Transport.start(Tone.now())
   }
 
-  const controls: audioControls = {
-    stopPlayback: stopPlayback,
-    startPlayback: playSynth,
-    disposeSequences: disposeSequences,
-  }
   return (
     <Paper
       css={css`

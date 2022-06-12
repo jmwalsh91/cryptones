@@ -44,7 +44,7 @@ function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [prettierState, setPrettier] = useState<boolean>(false)
-  const keyModeRef = useRef<HTMLInputElement | null>(null)
+  const keyModeRef = useRef<HTMLInputElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()

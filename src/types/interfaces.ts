@@ -17,7 +17,8 @@ export interface audioControls {
   stopPlayback: () => void
   startPlayback: () => void
   disposeSequences: Dispatch<SetStateAction<any>>
-  trigger: number
+  //TODO: remove
+  trigger?: any
 }
 
 export interface sensitivitySliderValues {

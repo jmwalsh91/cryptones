@@ -26,31 +26,31 @@ interface Props {
 export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
-  const [trigger, setTrigger] = useState<number>(0)
+  /* const [trigger, setTrigger] = useState<number>(0)
   const [sequence1, setSequence1] = useState<Tone.Sequence | null>()
-  const [sequence2, setSequence2] = useState<any>([])
+  const [sequence2, setSequence2] = useState<any>([]) */
 
   //TODO: select note length
   /*   const [division, setDivision] = useState<string>('16n') */
-  const synth: Tone.FMSynth = newSynth()
-  const toneContext = useToneContext()
+  /* const synth: Tone.FMSynth = newSynth() */
+  /* const toneContext = useToneContext() */
   const currentTheme = useTheme()
   const themedNeu = useMode()
 
   const disposeSequences = () => {
-    sequence1?.dispose()
+    /* sequence1?.dispose()
     sequence2?.dispose()
     setSequence1(null)
     setSequence2(null)
-    console.log(Tone.getTransport())
-    console.log(sequence1, sequence2)
+    console.log(Tone.getTransport()) */
+    console.log('square one')
   }
 
   //TODO: ERROR FEEDBACK
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
-    if (toneContext?.notes && !sequence1) {
+    /* if (toneContext?.notes && !sequence1) {
       setSequence1(mapDataToSequence(synth, toneContext.notes))
       console.log(sequence1)
       Tone.Transport.start(Tone.now())
@@ -66,14 +66,13 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         console.log(sequence2)
         Tone.Transport.start(Tone.now())
       }
-    }
+    } */
   }
 
   const controls: audioControls = {
     stopPlayback: stopPlayback,
     startPlayback: playSynth,
     disposeSequences: disposeSequences,
-    trigger: trigger,
   }
   return (
     <Paper

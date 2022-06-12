@@ -27,7 +27,7 @@ export const signal = new Tone.Signal().toDestination()
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const [trigger, setTrigger] = useState<number>(0)
   const [sequence1, setSequence1] = useState<any>([])
-  const [sequence2, setSequence2] = useState([])
+  const [sequence2, setSequence2] = useState<any>([])
 
   //TODO: select note length
   /*   const [division, setDivision] = useState<string>('16n') */
@@ -43,11 +43,24 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const playSynth = () => {
     console.log('play synth')
     console.log(Tone.context.state)
-    if (toneContext?.notes) {
+    if (toneContext?.notes && sequence1.length < 2) {
       setSequence1(mapDataToSequence(synth, toneContext.notes))
+      console.log(sequence1)
       Tone.Transport.start(Tone.now())
-    } else console.error('error')
+    }
+    if (sequence1.length > 2) {
+      if (sequence2.length > 2 || toneContext?.notes == sequence2) {
+        Tone.Transport.start(Tone.now())
+        //TODO: ALERT
+        console.error('there is already something there')
+      } else if (toneContext?.notes && sequence2.length === 0) {
+        setSequence2(mapDataToSequence(synth, toneContext.notes))
+        console.log(sequence2)
+        Tone.Transport.start(Tone.now())
+      }
+    }
   }
+
   const controls: audioControls = {
     stopPlayback: stopPlayback,
     startPlayback: playSynth,

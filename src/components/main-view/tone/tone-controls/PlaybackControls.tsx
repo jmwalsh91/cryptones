@@ -35,7 +35,12 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
         >
           <PlayArrow fontSize="large" />
         </IconButton>
-        <IconButton aria-label="Pause" color={color} size={iconSize}>
+        <IconButton
+          aria-label="Pause"
+          color={color}
+          size={iconSize}
+          onClick={() => controls.disposeSequences([])}
+        >
           <Pause fontSize="large" />
         </IconButton>
         <IconButton

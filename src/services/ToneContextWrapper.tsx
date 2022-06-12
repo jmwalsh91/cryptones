@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import * as Tone from 'tone'
+
 import { newSynth } from '~/components/main-view/tone/tone-utils/tone'
 
 import {
@@ -25,7 +26,7 @@ function ToneDataProvider({ children }: Props) {
   )
 
   //TODO: improve
-  const [notes, setNotes] = useState<Tone.Sequence | null>(null)
+  const [dub, setDub] = useState<Tone.Sequence | null>(null)
   const [overdub, setOverdub] = useState<Tone.Sequence | null>(null)
 
   /*   const toneDataContext: toneDataContext = useMemo(
@@ -44,12 +45,14 @@ function ToneDataProvider({ children }: Props) {
     sensitivity: sensitivity, */
     synth: synth,
     dispatchedEndpoint: dispatchedEndpoint,
-    notes: notes,
+    dub: dub,
+    overdub: overdub,
   }
   const dispatchToneData = {
     /*     setSource: setSource,
     setSensitivity: setSensitivity, */
-    setNotes: setNotes,
+    setDub: setDub,
+    setOverdub: setOverdub,
   }
 
   const dispatchChartData = {

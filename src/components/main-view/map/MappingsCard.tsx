@@ -27,6 +27,7 @@ import {
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
+import { mapDataToSequence } from '../tone/tone-utils/tone'
 import {
   deviationArray,
   differenceArray,
@@ -54,6 +55,7 @@ function MappingsCard(props: Props) {
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
   const handleSubmit = async (e: SyntheticEvent) => {
+    console.log(toneContext)
     console.log(data)
     e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
@@ -61,24 +63,35 @@ function MappingsCard(props: Props) {
     switch (source) {
       case 'difference':
         notesArray = differenceArray(data.formattedOhlc, sensitivity)
-        if (!prettierState) {
-          dispatchToneData?.setNotes(notesArray)
+        if (!prettierState && toneContext) {
+          dispatchToneData?.setDub(
+            mapDataToSequence(toneContext?.synth, notesArray)
+          )
         }
-        if (prettierState && keyMode) {
+        if (prettierState && keyMode && toneContext) {
           console.log(keyMode)
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
           const filtered = filterNotes(keyArr, notesArray)
-          dispatchToneData?.setNotes(filtered)
+          dispatchToneData?.setDub(
+            mapDataToSequence(toneContext?.synth, filtered)
+          )
         }
         break
       case 'deviation':
         notesArray = deviationArray(data.formattedOhlc, sensitivity)
-        if (!prettierState) {
-          dispatchToneData?.setNotes(notesArray)
+        if (!prettierState && toneContext) {
+          dispatchToneData?.setDub(
+            mapDataToSequence(toneContext?.synth, notesArray)
+          )
         }
-        if (prettierState && keyMode) {
+        if (prettierState && keyMode && toneContext) {
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
-          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
+          dispatchToneData?.setDub(
+            mapDataToSequence(
+              toneContext?.synth,
+              filterNotes(keyArr, notesArray)
+            )
+          )
         }
         break
     }
@@ -113,6 +126,8 @@ function MappingsCard(props: Props) {
           {' '}
           Mapping
         </Typography>
+        {toneContext?.dub ? 'dub' : 'nodub'}
+        {toneContext?.overdub ? 'overdub' : 'noverdub'}
         <Grid container gap={3} sx={{ justifyContent: 'space-between' }}>
           <Grid
             item

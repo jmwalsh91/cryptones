@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import * as Tone from 'tone'
 
 import { newSynth } from '~/components/main-view/tone/tone-utils/tone'
@@ -29,6 +29,10 @@ function ToneDataProvider({ children }: Props) {
   const [dub, setDub] = useState<Tone.Sequence | null>(null)
   const [overdub, setOverdub] = useState<Tone.Sequence | null>(null)
 
+  useEffect(() => {
+    console.log(dub)
+    console.log(overdub)
+  }, [dub, overdub])
   /*   const toneDataContext: toneDataContext = useMemo(
     () => ({
       source: source,

@@ -42,15 +42,15 @@ export interface toneDataContext {
   sensitivity: number */
   dispatchedEndpoint: string
   synth: Tone.FMSynth
-  notes: Tone.Sequence
-  overdub: Tone.Sequence
+  dub: Tone.Sequence | null
+  overdub: Tone.Sequence | null
 }
 
 //TODO: Keep other setters here, in the event we need to .post to API and store in DB.
 export interface toneDataDispatcher {
   setSource?: React.Dispatch<React.SetStateAction<string>>
   setSensitivity?: React.Dispatch<React.SetStateAction<number>>
-  setNotes: React.Dispatch<React.SetStateAction<Tone.Sequence<any> | null>>
+  setDub: React.Dispatch<React.SetStateAction<Tone.Sequence<any> | null>>
   setOverdub: React.Dispatch<React.SetStateAction<Tone.Sequence<any> | null>>
 }
 export interface chartDataDispatcher {

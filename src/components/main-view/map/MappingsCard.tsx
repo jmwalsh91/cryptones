@@ -169,7 +169,7 @@ function MappingsCard(props: Props) {
                 md: '100%',
               },
               minWidth: {
-                xs: '100%',
+                xs: '40%',
                 md: '1rem',
               },
               marginRight: {
@@ -183,9 +183,33 @@ function MappingsCard(props: Props) {
               color: ${currentTheme.palette.text.primary}
             `}
           >
-            Submit
+            {toneContext?.dub ? 'already dubbed' : 'dub'}
           </Button>
-          <Button onClick={(e) => handleSubmit(e, 'overdub')}>overdub</Button>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              minHeight: {
+                xs: '1rem',
+                md: '100%',
+              },
+              minWidth: {
+                xs: '40%',
+                md: '1rem',
+              },
+              marginRight: {
+                xs: 0,
+                md: '.25rem',
+              },
+            }}
+            css={css`
+              ${themedNeu.raised}
+              color: ${currentTheme.palette.text.primary}
+            `}
+            onClick={(e) => handleSubmit(e, 'overdub')}
+          >
+            {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
+          </Button>
         </Grid>
       </Paper>
     </>

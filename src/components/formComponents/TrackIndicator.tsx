@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+
 import { useMode } from '~/utils/hooks/useMode'
 
 import * as base from '../../styles/base'
@@ -19,6 +20,7 @@ function TrackIndicator() {
     <div>
       <div
         css={css`
+          ${themedNeu.raised}
           ${dubbed}
         `}
       />

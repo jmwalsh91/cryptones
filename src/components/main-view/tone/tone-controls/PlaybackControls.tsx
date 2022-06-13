@@ -5,9 +5,10 @@ import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
 import * as base from '../../../../styles/base'
 import * as neu from '../../../../styles/neu'
+import { dispose } from '../tone-utils/tone'
 
+import { useDispatch, useToneContext } from '~/services/ToneContextWrapper'
 import { audioControls } from '~/types/interfaces'
-
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
@@ -17,6 +18,15 @@ interface playbackProps {
 function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const toneContext = useToneContext()
+  const dispatch = useDispatch()
+
+  function handleDispose() {
+    //TODO: start transition and then user feedback, validate no events are scheduled before setting states to null
+    dispose(toneContext.dub, toneContext.overdub)
+    dispatch.setDub(null)
+    dispatch.setOverdub(null)
+  }
   return (
     <Paper
       variant="outlined"
@@ -31,11 +41,16 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="PlayArrow"
           color={color}
           size={iconSize}
-          onClick={() => controls.startPlayback()}
+          onClick={() => controls.startTransport()}
         >
           <PlayArrow fontSize="large" />
         </IconButton>
-        <IconButton aria-label="Pause" color={color} size={iconSize}>
+        <IconButton
+          aria-label="Pause"
+          color={color}
+          size={iconSize}
+          onClick={() => handleDispose()}
+        >
           <Pause fontSize="large" />
         </IconButton>
         <IconButton

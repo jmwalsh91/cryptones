@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import * as Tone from 'tone'
+
+import { newSynth } from '~/components/main-view/tone/tone-utils/tone'
 
 import {
   chartDataDispatcher,
@@ -9,21 +12,27 @@ import {
 type Props = {
   children: any
 }
-
-const ToneDataContext = createContext<toneDataContext | null>(null)
-const ToneDataDispatch = createContext<toneDataDispatcher | null>(null)
-const ChartDataDispatch = createContext<chartDataDispatcher | null>(null)
+//TODO: THIS FEELS HACKY. WRAP CONTEXT WITH SOMETHING TO HANDLE INITIAL UNDEFINED/NULL
+const ToneDataContext = createContext<toneDataContext>(undefined!)
+const ToneDataDispatch = createContext<toneDataDispatcher>(undefined!)
+const ChartDataDispatch = createContext<chartDataDispatcher>(undefined!)
 
 function ToneDataProvider({ children }: Props) {
+  const synth = newSynth()
   /*   const [source, setSource] = useState<string>('default') */
   /*   const [sensitivity, setSensitivity] = useState<number>(100) */
   const [dispatchedEndpoint, setDispatchedEndpoint] = useState<string>(
     '/api/ohlcv/btc/5min'
   )
 
-  //TODO: improve
-  const [notes, setNotes] = useState<(string | number | null)[]>([])
+  //TODO: These exist in the dom, so the only benefit to holding these in state appears to be in regards to scheduling. Examine if there's a better pattern with useRef and transition, here.
+  const [dub, setDub] = useState<Tone.Sequence | null>(null)
+  const [overdub, setOverdub] = useState<Tone.Sequence | null>(null)
 
+  useEffect(() => {
+    console.log(dub)
+    console.log(overdub)
+  }, [dub, overdub])
   /*   const toneDataContext: toneDataContext = useMemo(
     () => ({
       source: source,
@@ -38,13 +47,16 @@ function ToneDataProvider({ children }: Props) {
   const toneDataContext = {
     /*     source: source,
     sensitivity: sensitivity, */
+    synth: synth,
     dispatchedEndpoint: dispatchedEndpoint,
-    notes: notes,
+    dub: dub,
+    overdub: overdub,
   }
   const dispatchToneData = {
     /*     setSource: setSource,
     setSensitivity: setSensitivity, */
-    setNotes: setNotes,
+    setDub: setDub,
+    setOverdub: setOverdub,
   }
 
   const dispatchChartData = {

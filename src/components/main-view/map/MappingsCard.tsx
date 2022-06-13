@@ -6,7 +6,6 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-/* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
@@ -21,8 +20,6 @@ import {
   useDispatch,
   useToneContext,
 } from '../../../services/ToneContextWrapper'
-
-/* import * as Tone from 'tone' */
 
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
@@ -46,7 +43,6 @@ function MappingsCard(props: Props) {
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [prettierState, setPrettier] = useState<boolean>(false)
   const keyModeRef = useRef<HTMLInputElement>(null)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
@@ -56,9 +52,9 @@ function MappingsCard(props: Props) {
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
   //TODO: Add "target" arg to mapData... for sequence name.
   const handleSubmit = async (e: SyntheticEvent, target: string) => {
+    e.preventDefault()
     const updateTarget =
       target === 'dub' ? dispatchToneData?.setDub : dispatchToneData?.setOverdub
-    e.preventDefault()
     const keyMode = keyModeRef?.current?.value.split(',')
     let notesArray
     switch (source) {
@@ -68,7 +64,6 @@ function MappingsCard(props: Props) {
           updateTarget(mapDataToSequence(toneContext?.synth, notesArray))
         }
         if (prettierState && keyMode && toneContext) {
-          console.log(keyMode)
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
           const filtered = filterNotes(keyArr, notesArray)
           updateTarget(mapDataToSequence(toneContext?.synth, filtered))
@@ -121,8 +116,6 @@ function MappingsCard(props: Props) {
           {' '}
           Mapping
         </Typography>
-        {toneContext?.dub ? 'dub' : 'nodub'}
-        {toneContext?.overdub ? 'overdub' : 'noverdub'}
         <Grid container gap={3} sx={{ justifyContent: 'space-between' }}>
           <Grid
             item
@@ -160,56 +153,51 @@ function MappingsCard(props: Props) {
               keyModeRef={keyModeRef}
             />
           </Grid>
-          <Button
-            variant="contained"
-            size="large"
+          <Grid
+            item
+            md={2}
+            gap={2}
+            container
             sx={{
-              minHeight: {
-                xs: '1rem',
-                md: '100%',
-              },
-              minWidth: {
-                xs: '40%',
-                md: '1rem',
-              },
-              marginRight: {
-                xs: 0,
-                md: '.25rem',
-              },
+              justifyContent: { xs: 'space-evenly' },
+              direction: { xs: 'row', md: 'column' },
             }}
-            onClick={(e) => handleSubmit(e, 'dub')}
-            css={css`
-              ${themedNeu.raised}
-              color: ${currentTheme.palette.text.primary}
-            `}
           >
-            {toneContext?.dub ? 'already dubbed' : 'dub'}
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              minHeight: {
-                xs: '1rem',
-                md: '100%',
-              },
-              minWidth: {
-                xs: '40%',
-                md: '1rem',
-              },
-              marginRight: {
-                xs: 0,
-                md: '.25rem',
-              },
-            }}
-            css={css`
-              ${themedNeu.raised}
-              color: ${currentTheme.palette.text.primary}
-            `}
-            onClick={(e) => handleSubmit(e, 'overdub')}
-          >
-            {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
-          </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                minWidth: {
+                  xs: '40%',
+                  md: '6rem',
+                },
+              }}
+              onClick={(e) => handleSubmit(e, 'dub')}
+              css={css`
+                ${themedNeu.raised}
+                color: ${currentTheme.palette.text.primary}
+              `}
+            >
+              {toneContext?.dub ? 'already dubbed' : 'dub'}
+            </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                minWidth: {
+                  xs: '40%',
+                  md: '6rem',
+                },
+              }}
+              css={css`
+                ${themedNeu.raised}
+                color: ${currentTheme.palette.text.primary}
+              `}
+              onClick={(e) => handleSubmit(e, 'overdub')}
+            >
+              {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
     </>

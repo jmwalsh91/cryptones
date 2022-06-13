@@ -31,15 +31,9 @@ function sleep(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
-  console.log('useDispose')
-  console.log(seq?.length)
   seq?.clear()
   seq2?.clear()
-  Tone.Transport.cancel(0)
-  sleep(3000)
-  console.log(seq?.length)
-  console.log(seq2?.length)
-  console.log(Tone.getTransport())
+  return Tone.Transport.cancel(0)
 }
 
 export const transportControls: audioControls = {

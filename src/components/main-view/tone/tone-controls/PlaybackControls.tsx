@@ -7,7 +7,7 @@ import * as base from '../../../../styles/base'
 import * as neu from '../../../../styles/neu'
 import { dispose } from '../tone-utils/tone'
 
-import { useToneContext } from '~/services/ToneContextWrapper'
+import { useDispatch, useToneContext } from '~/services/ToneContextWrapper'
 import { audioControls } from '~/types/interfaces'
 interface playbackProps {
   color: 'primary' | 'secondary'
@@ -19,10 +19,14 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
   const toneContext = useToneContext()
+  const dispatch = useDispatch()
 
   function handleDispose() {
     console.log('handler')
+    //TODO: start transition and then user feedback
     dispose(toneContext.dub, toneContext.overdub)
+    dispatch.setDub(null)
+    dispatch.setOverdub(null)
   }
   return (
     <Paper

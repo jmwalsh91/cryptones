@@ -25,7 +25,7 @@ function ToneDataProvider({ children }: Props) {
     '/api/ohlcv/btc/5min'
   )
 
-  //TODO: improve
+  //TODO: These exist in the dom, so the only benefit to holding these in state appears to be in regards to scheduling. Examine if there's a better pattern with useRef and transition, here.
   const [dub, setDub] = useState<Tone.Sequence | null>(null)
   const [overdub, setOverdub] = useState<Tone.Sequence | null>(null)
 

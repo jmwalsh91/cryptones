@@ -1,4 +1,4 @@
-import Alert from '@mui/material/Alert'
+import Alert, { AlertColor } from '@mui/material/Alert'
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
@@ -12,7 +12,12 @@ const ToastAlert = forwardRef<HTMLDivElement, AlertProps>(function toast(
 ) {
   return <Alert elevation={4} ref={ref} {...props} />
 })
-export default function Toast() {
+
+interface ToastProps {
+  severity: AlertColor | undefined
+  message: string
+}
+export default function Toast({ severity, message }: ToastProps) {
   const [open, setOpen] = React.useState(false)
 
   const handleClick = () => {
@@ -38,10 +43,10 @@ export default function Toast() {
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <ToastAlert
           onClose={handleClose}
-          severity="success"
+          severity={severity}
           sx={{ width: '100%' }}
         >
-          This is a success message!
+          {message}
         </ToastAlert>
       </Snackbar>
       <Alert severity="error">This is an error message!</Alert>

@@ -28,9 +28,6 @@ export const stopPlayback = (/*callback?*/) => {
   Tone.Transport.stop(Tone.now())
 }
 
-function sleep(time: number) {
-  return new Promise((resolve) => setTimeout(resolve, time))
-}
 export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
   seq?.clear().dispose()
   seq2?.clear().dispose()

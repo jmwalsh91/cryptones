@@ -22,7 +22,6 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   const dispatch = useDispatch()
 
   function handleDispose() {
-    console.log('handler')
     //TODO: start transition and then user feedback, validate no events are scheduled before setting states to null
     dispose(toneContext.dub, toneContext.overdub)
     dispatch.setDub(null)

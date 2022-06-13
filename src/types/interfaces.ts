@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import * as Tone from 'tone'
 
 export type formattedOhlc = any[][]

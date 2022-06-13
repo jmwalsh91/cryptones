@@ -1,20 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Paper, Typography, useTheme } from '@mui/material'
-import { TransitionStartFunction, useState } from 'react'
+import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
-import { Timeline } from 'tone'
 
 import BPMSlider from '~/components/formComponents/BPM'
 import TrackIndicator from '~/components/formComponents/TrackIndicator'
 import VolumeSlider from '~/components/formComponents/VolumeSlider'
 import { useMode } from '~/utils/hooks/useMode'
 
-import { useToneContext } from '../../../services/ToneContextWrapper'
 import * as base from '../../../styles/base'
-import { audioControls } from '../../../types/interfaces'
 import PlaybackControls from './tone-controls/PlaybackControls'
-import { stopPlayback, transportControls } from './tone-utils/tone'
+import { transportControls } from './tone-utils/tone'
 
 //TODO: interface for data useable by tone.JS
 interface Props {
@@ -28,7 +25,6 @@ export const signal = new Tone.Signal().toDestination()
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const currentTheme = useTheme()
   const themedNeu = useMode()
-  const toneContext = useToneContext()
   const controls = transportControls
 
   //TODO: ERROR FEEDBACK

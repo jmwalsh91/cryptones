@@ -1,5 +1,5 @@
 import Alert, { AlertColor } from '@mui/material/Alert'
-import MuiAlert, { AlertProps } from '@mui/material/Alert'
+import { AlertProps } from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
 import Stack from '@mui/material/Stack'

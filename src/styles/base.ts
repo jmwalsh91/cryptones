@@ -54,6 +54,8 @@ export const playBackControls = css`
 export const focusBorder = css``
 
 export const onLight = css`
+  justify-self: center;
+  align-self: baseline;
   width: 1.5rem;
   height: 1.5rem;
   background-color: #abff00;
@@ -63,6 +65,8 @@ export const onLight = css`
 `
 
 export const offLight = css`
+  justify-self: center;
+  align-self: baseline;
   width: 1.5rem;
   height: 1.5rem;
   background-color: #d5484f;

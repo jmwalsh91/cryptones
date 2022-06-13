@@ -19,6 +19,11 @@ export const light = {
     background: #d9d9d9;
     box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
   `,
+  flat: css`
+  border-radius: 15px;
+  background:  #d9d9d9;
+  `,
+
   /*  token: css`
   display: block;
   padding: 1rem;
@@ -69,6 +74,10 @@ export const dark = {
     border-radius: 20px;
     background: #2f2c2c;
     box-shadow: inset 6px 6px 12px #181717, inset -6px -6px 12px #464141;
+  `,
+  flat: css`
+  border-radius: 15px;
+  background: #2f2c2c;
   `,
   /*  token: css`
   display: block;

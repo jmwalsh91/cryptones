@@ -43,6 +43,8 @@ function MappingsCard(props: Props) {
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const dubStatus = toneContext.dub ? themedNeu.flat : themedNeu.raised
+  const overdubStatus = toneContext.overdub ? themedNeu.flat : themedNeu.raised
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
@@ -170,11 +172,11 @@ function MappingsCard(props: Props) {
               }}
               onClick={(e) => handleSubmit(e, 'dub')}
               css={css`
-                ${themedNeu.raised}
-                color: ${currentTheme.palette.text.primary}
+                ${dubStatus};
+                color: ${currentTheme.palette.text.primary};
               `}
             >
-              {toneContext?.dub ? 'already dubbed' : 'dub'}
+              {toneContext?.dub ? 'Track Full' : 'DUB: 1'}
             </Button>
             <Button
               variant="contained"
@@ -186,12 +188,12 @@ function MappingsCard(props: Props) {
                 },
               }}
               css={css`
-                ${themedNeu.raised}
-                color: ${currentTheme.palette.text.primary}
+                ${overdubStatus};
+                color: ${currentTheme.palette.text.primary};
               `}
               onClick={(e) => handleSubmit(e, 'overdub')}
             >
-              {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
+              {toneContext?.overdub ? 'Track Full' : 'DUB: 2'}
             </Button>
           </Grid>
         </Grid>

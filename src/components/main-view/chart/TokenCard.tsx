@@ -9,8 +9,6 @@ import {
   useState,
 } from 'react'
 
-import { useMode } from '~/utils/hooks/useMode'
-
 /* import AlgorandLogo from '../../../public/algorand-algo-logo.svg'
  */
 import BitcoinLogo from '../../../public/bitcoin-btc-logo.svg'
@@ -19,6 +17,7 @@ import EthereumLogo from '../../../public/eth3.svg'
 import SolanaLogo from '../../../public/solana-sol-logo.svg' */
 import { useChartDataDispatch } from '../../../services/ToneContextWrapper'
 import { tokenObject } from '../../../types/interfaces'
+import { useMode } from '../../../utils/hooks/useMode'
 import TokenSelect from '../../formComponents/TokenSelect'
 import TokenLogo from './TokenLogo'
 

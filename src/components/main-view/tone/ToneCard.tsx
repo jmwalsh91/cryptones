@@ -4,12 +4,11 @@ import { Paper, Typography, useTheme } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
-import BPMSlider from '~/components/formComponents/BPM'
-import TrackIndicator from '~/components/formComponents/TrackIndicator'
-import VolumeSlider from '~/components/formComponents/VolumeSlider'
-import { useMode } from '~/utils/hooks/useMode'
-
+import BPMSlider from '../../../components/formComponents/BPM'
+import TrackIndicator from '../../../components/formComponents/TrackIndicator'
+import VolumeSlider from '../../../components/formComponents/VolumeSlider'
 import * as base from '../../../styles/base'
+import { useMode } from '../../../utils/hooks/useMode'
 import PlaybackControls from './tone-controls/PlaybackControls'
 import { transportControls } from './tone-utils/tone'
 

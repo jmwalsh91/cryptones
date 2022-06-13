@@ -1,9 +1,8 @@
 import { Key, Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
 
-import { Mode } from '~/components/formComponents/TransposeToggle'
-
-import { audioControls } from '~/types/interfaces'
+import { audioControls } from '../../../../types/interfaces'
+import { Mode } from '../../../formComponents/TransposeToggle'
 
 export const newSynth = () => {
   const reverb = new Tone.Reverb(2).toDestination()

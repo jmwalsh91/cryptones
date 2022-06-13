@@ -13,8 +13,8 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
-import { ModeContext } from '~/styles/ModeProvider'
-import { theme } from '~/styles/Theme'
+import { ModeContext } from '../../styles/ModeProvider'
+import { theme } from '../../styles/Theme'
 
 //TODO: Pages
 const pages = ['page']

@@ -3,12 +3,15 @@ import { css } from '@emotion/react'
 import { Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
+import {
+  useDispatch,
+  useToneContext,
+} from '../../../../services/ToneContextWrapper'
 import * as base from '../../../../styles/base'
 import * as neu from '../../../../styles/neu'
+import { audioControls } from '../../../../types/interfaces'
 import { dispose } from '../tone-utils/tone'
 
-import { useDispatch, useToneContext } from '~/services/ToneContextWrapper'
-import { audioControls } from '~/types/interfaces'
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'

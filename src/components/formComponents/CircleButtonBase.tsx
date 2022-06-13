@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { Button } from '@mui/material'
 import { ReactNode } from 'react'
 
-import { useMode } from '~/utils/hooks/useMode'
+import { useMode } from '../../utils/hooks/useMode'
 
 type Props = {
   children: string | ReactNode

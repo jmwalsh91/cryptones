@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import * as Tone from 'tone'
 
-import { newSynth } from '~/components/main-view/tone/tone-utils/tone'
-
+import { newSynth } from '../components/main-view/tone/tone-utils/tone'
 import {
   chartDataDispatcher,
   toneDataContext,

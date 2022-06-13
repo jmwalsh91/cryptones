@@ -1,4 +1,4 @@
-import { cryptonesApi } from '~/services/Axios'
+import { cryptonesApi } from '../../services/Axios'
 
 export const getOhlcv = async () => {
   const { resFormatted, volArr } = await cryptonesApi

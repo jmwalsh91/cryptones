@@ -9,18 +9,15 @@ import Typography from '@mui/material/Typography'
 import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
-import AlgoSelect from '~/components/formComponents/AlgoSelect'
+import AlgoSelect from '../../../components/formComponents/AlgoSelect'
 import {
   Mode,
   TransposeToggle,
-} from '~/components/formComponents/TransposeToggle'
-
-// eslint-disable-next-line import/order
+} from '../../../components/formComponents/TransposeToggle'
 import {
   useDispatch,
   useToneContext,
 } from '../../../services/ToneContextWrapper'
-
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
@@ -38,7 +35,6 @@ interface Props {
 }
 
 function MappingsCard(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [prettierState, setPrettier] = useState<boolean>(false)

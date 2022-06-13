@@ -2,11 +2,9 @@
 import { css } from '@emotion/react'
 import { useMediaQuery } from '@mui/material'
 
-import { useMode } from '~/utils/hooks/useMode'
-
 import * as base from '../../../styles/base'
-
-import * as interfaces from '~/types/interfaces'
+import * as interfaces from '../../../types/interfaces'
+import { useMode } from '../../../utils/hooks/useMode'
 
 type Props = {
   tokenLogo: interfaces.tokenObject['logo'] | undefined

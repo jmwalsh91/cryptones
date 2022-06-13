@@ -32,11 +32,6 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
   const controls = transportControls
 
   //TODO: ERROR FEEDBACK
-  const playSynth = () => {
-    console.log('play synth')
-    console.log(Tone.context.state)
-    Tone.Transport.start(Tone.now())
-  }
 
   return (
     <Paper
@@ -51,19 +46,22 @@ function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
         py: '.5rem',
       }}
     >
-      <Typography
-        variant="h2"
-        css={css`
-          font-weight: 700;
-          text-shadow: 10px 1px 12px ${currentTheme.palette.secondary.main},
-            5px 8px 12px ${currentTheme.palette.primary.main};
-          color: ${currentTheme.palette.background.default};
-        `}
-        sx={{ textAlign: 'center' }}
-      >
-        Output
-      </Typography>
-      <TrackIndicator />
+      <span>
+        <Typography
+          variant="h2"
+          css={css`
+            font-weight: 700;
+            text-shadow: 10px 1px 12px ${currentTheme.palette.secondary.main},
+              5px 8px 12px ${currentTheme.palette.primary.main};
+            color: ${currentTheme.palette.background.default};
+          `}
+          sx={{ textAlign: 'center' }}
+        >
+          Output
+        </Typography>
+        <TrackIndicator />
+      </span>
+
       <div
         css={css`
           ${base.playBackControls}

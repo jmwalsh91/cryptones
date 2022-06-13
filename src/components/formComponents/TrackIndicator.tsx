@@ -17,18 +17,30 @@ function TrackIndicator() {
   const overdubbed =
     overdub && overdub.length > 2 ? base.onLight : base.offLight
   return (
-    <div>
-      <div
-        css={css`
-          ${themedNeu.raised}
-          ${dubbed}
-        `}
-      />
-      <div
-        css={css`
-          ${overdubbed}
-        `}
-      />
+    <div
+      css={css`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      `}
+    >
+      <span>
+        Track 1
+        <div
+          css={css`
+            ${dubbed}
+          `}
+        />
+      </span>
+
+      <span>
+        Track 2
+        <div
+          css={css`
+            ${overdubbed}
+          `}
+        />
+      </span>
     </div>
   )
 }

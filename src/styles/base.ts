@@ -52,3 +52,23 @@ export const playBackControls = css`
   max-width: 100%;
 `
 export const focusBorder = css``
+
+export const onLight = css`
+  margin: 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #abff00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #89ff00 0 2px 12px;
+`
+
+export const offLight = css`
+  margin: 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #d5484f;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+  #D5484F 0 2px 12px;
+`

@@ -16,7 +16,7 @@ export interface tokenObject {
 
 export interface audioControls {
   stopPlayback: () => void
-  startPlayback: () => void
+  startTransport: () => void
   dispose: (sequence: Tone.Sequence | null, seq2: Tone.Sequence | null) => void
   //TODO: remove
   trigger?: any

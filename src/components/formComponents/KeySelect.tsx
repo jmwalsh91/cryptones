@@ -5,7 +5,7 @@ import Select from '@mui/material/Select'
 import * as React from 'react'
 
 type Props = {
-  root: any
+  root: string
   setRoot: any
   rootArr: string[]
   handler?: any

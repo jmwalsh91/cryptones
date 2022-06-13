@@ -6,7 +6,6 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-/* import { AxiosResponse } from 'axios' */
 import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
@@ -22,11 +21,10 @@ import {
   useToneContext,
 } from '../../../services/ToneContextWrapper'
 
-/* import * as Tone from 'tone' */
-
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
+import { mapDataToSequence } from '../tone/tone-utils/tone'
 import {
   deviationArray,
   differenceArray,
@@ -44,8 +42,7 @@ function MappingsCard(props: Props) {
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [prettierState, setPrettier] = useState<boolean>(false)
-  const keyModeRef = useRef<HTMLInputElement | null>(null)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const keyModeRef = useRef<HTMLInputElement>(null)
   const dispatchToneData = useDispatch()
   const toneContext = useToneContext()
   const currentTheme = useTheme()
@@ -53,32 +50,38 @@ function MappingsCard(props: Props) {
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
-  const handleSubmit = async (e: SyntheticEvent) => {
-    console.log(data)
+  //TODO: Add "target" arg to mapData... for sequence name.
+  const handleSubmit = async (e: SyntheticEvent, target: string) => {
     e.preventDefault()
+    const updateTarget =
+      target === 'dub' ? dispatchToneData?.setDub : dispatchToneData?.setOverdub
     const keyMode = keyModeRef?.current?.value.split(',')
     let notesArray
     switch (source) {
       case 'difference':
         notesArray = differenceArray(data.formattedOhlc, sensitivity)
-        if (!prettierState) {
-          dispatchToneData?.setNotes(notesArray)
+        if (!prettierState && toneContext) {
+          updateTarget(mapDataToSequence(toneContext?.synth, notesArray))
         }
-        if (prettierState && keyMode) {
-          console.log(keyMode)
+        if (prettierState && keyMode && toneContext) {
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
           const filtered = filterNotes(keyArr, notesArray)
-          dispatchToneData?.setNotes(filtered)
+          updateTarget(mapDataToSequence(toneContext?.synth, filtered))
         }
         break
       case 'deviation':
         notesArray = deviationArray(data.formattedOhlc, sensitivity)
-        if (!prettierState) {
-          dispatchToneData?.setNotes(notesArray)
+        if (!prettierState && toneContext) {
+          updateTarget(mapDataToSequence(toneContext?.synth, notesArray))
         }
-        if (prettierState && keyMode) {
+        if (prettierState && keyMode && toneContext) {
           const keyArr: keyFilter = keyArray(keyMode[0], keyMode[1] as Mode)
-          dispatchToneData?.setNotes(filterNotes(keyArr, notesArray))
+          updateTarget(
+            mapDataToSequence(
+              toneContext?.synth,
+              filterNotes(keyArr, notesArray)
+            )
+          )
         }
         break
     }
@@ -150,31 +153,51 @@ function MappingsCard(props: Props) {
               keyModeRef={keyModeRef}
             />
           </Grid>
-          <Button
-            variant="contained"
-            size="large"
+          <Grid
+            item
+            md={2}
+            gap={2}
+            container
             sx={{
-              minHeight: {
-                xs: '1rem',
-                md: '100%',
-              },
-              minWidth: {
-                xs: '100%',
-                md: '1rem',
-              },
-              marginRight: {
-                xs: 0,
-                md: '.25rem',
-              },
+              justifyContent: { xs: 'space-evenly' },
+              direction: { xs: 'row', md: 'column' },
             }}
-            onClick={(e) => handleSubmit(e)}
-            css={css`
-              ${themedNeu.raised}
-              color: ${currentTheme.palette.text.primary}
-            `}
           >
-            Submit
-          </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                minWidth: {
+                  xs: '40%',
+                  md: '6rem',
+                },
+              }}
+              onClick={(e) => handleSubmit(e, 'dub')}
+              css={css`
+                ${themedNeu.raised}
+                color: ${currentTheme.palette.text.primary}
+              `}
+            >
+              {toneContext?.dub ? 'already dubbed' : 'dub'}
+            </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                minWidth: {
+                  xs: '40%',
+                  md: '6rem',
+                },
+              }}
+              css={css`
+                ${themedNeu.raised}
+                color: ${currentTheme.palette.text.primary}
+              `}
+              onClick={(e) => handleSubmit(e, 'overdub')}
+            >
+              {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
     </>

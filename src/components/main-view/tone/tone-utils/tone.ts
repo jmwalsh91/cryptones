@@ -3,6 +3,8 @@ import * as Tone from 'tone'
 
 import { Mode } from '~/components/formComponents/TransposeToggle'
 
+import { audioControls } from '~/types/interfaces'
+
 export const newSynth = () => {
   const reverb = new Tone.Reverb(2).toDestination()
   const delay = new Tone.Delay(0.7).connect(reverb)
@@ -15,9 +17,27 @@ export const newSynth = () => {
   return fmSynth
 }
 
+const startTransport = () => {
+  console.log('play synth')
+  console.log(Tone.context.state)
+  Tone.Transport.start(Tone.now())
+}
+
 export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop(Tone.now())
+}
+
+export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
+  seq?.clear().dispose()
+  seq2?.clear().dispose()
+  return Tone.Transport.cancel(0)
+}
+
+export const transportControls: audioControls = {
+  stopPlayback: stopPlayback,
+  startTransport: startTransport,
+  dispose: dispose,
 }
 //TODO: update to accept types of each synth subclass that will be available to user
 //TODO: strengthen typing with notes.

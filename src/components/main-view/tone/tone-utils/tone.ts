@@ -16,6 +16,7 @@ export const newSynth = () => {
     .toDestination()
   return fmSynth
 }
+
 const startTransport = () => {
   console.log('play synth')
   console.log(Tone.context.state)
@@ -31,8 +32,8 @@ function sleep(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
-  seq?.clear()
-  seq2?.clear()
+  seq?.clear().dispose()
+  seq2?.clear().dispose()
   return Tone.Transport.cancel(0)
 }
 

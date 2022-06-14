@@ -3,7 +3,11 @@ import * as Tone from 'tone'
 
 import { audioControls } from '../../../../types/interfaces'
 import { Mode } from '../../../formComponents/TransposeToggle'
-
+/**
+ * instantiate new synthesizer object as default synth
+ * @todo multiple options, perhaps stored as in an enum.
+ * @returns new {@link Tone.FMSynth}
+ */
 export const newSynth = () => {
   const reverb = new Tone.Reverb(2).toDestination()
   const delay = new Tone.Delay(0.7).connect(reverb)
@@ -15,6 +19,9 @@ export const newSynth = () => {
     .toDestination()
   return fmSynth
 }
+/***********************************
+ * CONTEXT AND TRANSPORT FUNCTIONS *
+ ***********************************/
 /**
  * starts the transport
  * {@link Tone.Transport.start()}
@@ -56,15 +63,19 @@ export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
 /**
  * @type {audioControls}
  * contains:
- * @function stopPlayback
- * @function startTransport
- * @function pauseTransport
- * @function dispose
+ * @function {@link stopPlayback}
+ * @function {@link startTransport}
+ * @function {@link pauseTransport}
+ * @function {@link dispose}
  */
 export const transportControls: audioControls = {
+  /** stop audio playback */
   stopPlayback: stopPlayback,
+  /** start the transport / audio playback */
   startTransport: startTransport,
+  /** pause the transport / audio playback */
   pauseTransport: pauseTransport,
+  /** @function dispose */
   dispose: dispose,
 }
 /**
@@ -81,14 +92,18 @@ export function fourFour() {
 }
 
 /**
- *
- * @param {Tone.FMSynth | Tone.FMSynth} synth
+ * Creates new Sequence, accepts an instance of the {@link Tone.FMSynth} and an array of note values. Event in function body is called at each index as the global tone transport progresses along its timeline. 
+ * @param synth
  * @param notes
- * @returns
+ * @returns new {@link Tone.Sequence} instance
  */
+
+/******************************
+ * ALGORITHM & MAP FUNCTIONS  *
+ ******************************/
 export const mapDataToSequence = (
   synth: Tone.FMSynth | Tone.FMSynth,
-  notes: number[]
+  notes: any[]
 ) => {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
@@ -98,7 +113,6 @@ export const mapDataToSequence = (
   console.log(seq)
   return seq
 }
-
 /**
  * Should rightly be called "amplify value": multiplies value returned by algorithm to increase or decrease the 'spread' between note values and affects the pitch.
  * @param {number} sensitivity
@@ -164,9 +178,9 @@ export function deviationArray(data: any[], sensitivity: number): number[] {
   return devArray
 }
 
-/**
- * TONAL JS FUNCTIONS
- */
+/************************
+ * TONAL JS FUNCTIONS  *
+ ************************/
 
 /**
  * @function keyArray
@@ -201,7 +215,4 @@ export function filterNotes(
     } else return null
   })
 }
-/**
- * @function
- * @params
- */
+/*****************************/

@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useMediaQuery } from '@mui/material'
 
 import * as base from '../../../styles/base'
 import * as interfaces from '../../../types/interfaces'

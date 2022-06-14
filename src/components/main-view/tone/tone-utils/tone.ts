@@ -22,6 +22,10 @@ const startTransport = () => {
   Tone.Transport.start(Tone.now())
 }
 
+export function pauseTransport(callback?: any) {
+  Tone.Transport.pause()
+}
+
 export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop(Tone.now())
@@ -36,6 +40,7 @@ export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
 export const transportControls: audioControls = {
   stopPlayback: stopPlayback,
   startTransport: startTransport,
+  pauseTransport: pauseTransport,
   dispose: dispose,
 }
 

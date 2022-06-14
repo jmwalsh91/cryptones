@@ -21,7 +21,7 @@ import {
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { mapDataToSequence, threeFour } from '../tone/tone-utils/tone'
+import { fourFour, mapDataToSequence, threeFour } from '../tone/tone-utils/tone'
 import {
   deviationArray,
   differenceArray,
@@ -151,14 +151,14 @@ function MappingsCard(props: Props) {
               keyModeRef={keyModeRef}
             />
           </Grid>
-          <Grid
+          {/* <Grid
             item
             md={2}
             gap={2}
             container
             css={css`
               ${themedNeu.raised};
-              min-width: 10rem;
+              min-width: 5rem;
               align-items: center;
               justify-content: space-around;
             `}
@@ -169,8 +169,7 @@ function MappingsCard(props: Props) {
           >
             <Button onClick={() => threeFour()}>set 3/4</Button>
             <Button onClick={() => fourFour()}>set 4/4</Button>
-            
-          </Grid>
+          </Grid> */}
           <Grid
             item
             md={2}

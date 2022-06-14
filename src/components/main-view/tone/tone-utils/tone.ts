@@ -8,7 +8,7 @@ import { Mode } from '../../../formComponents/TransposeToggle'
  * @todo multiple options, perhaps stored as in an enum.
  * @returns new {@link Tone.FMSynth}
  */
-export const newSynth = () => {
+export function newSynth() {
   const reverb = new Tone.Reverb(2).toDestination()
   const delay = new Tone.Delay(0.7).connect(reverb)
   const fmSynth: Tone.FMSynth = new Tone.FMSynth({
@@ -26,7 +26,7 @@ export const newSynth = () => {
  * starts the transport
  * {@link Tone.Transport.start()}
  */
-const startTransport = () => {
+function startTransport() {
   Tone.Transport.start(Tone.now())
 }
 /**
@@ -44,7 +44,7 @@ export function pauseTransport(callback?: any) {
  * {@link Tone.Transport.stop}
  */
 
-export const stopPlayback = (/*callback?*/) => {
+export function stopPlayback(/*callback?*/) {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop(Tone.now())
 }
@@ -92,7 +92,7 @@ export function fourFour() {
 }
 
 /**
- * Creates new Sequence, accepts an instance of the {@link Tone.FMSynth} and an array of note values. Event in function body is called at each index as the global tone transport progresses along its timeline. 
+ * Creates new Sequence, accepts an instance of the {@link Tone.FMSynth} and an array of note values. Event in function body is called at each index as the global tone transport progresses along its timeline.
  * @param synth
  * @param notes
  * @returns new {@link Tone.Sequence} instance
@@ -101,10 +101,10 @@ export function fourFour() {
 /******************************
  * ALGORITHM & MAP FUNCTIONS  *
  ******************************/
-export const mapDataToSequence = (
+export function mapDataToSequence(
   synth: Tone.FMSynth | Tone.FMSynth,
   notes: any[]
-) => {
+) {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
@@ -122,10 +122,7 @@ export const mapDataToSequence = (
  * value 70 * sensitivity 4 = return 280
  * vs 70 * 1 = 70
  */
-export const applySensitivity = (
-  sensitivity: number,
-  value: number
-): number => {
+export function applySensitivity(sensitivity: number, value: number): number {
   return sensitivity * value
 }
 

@@ -38,6 +38,14 @@ export const transportControls: audioControls = {
   startTransport: startTransport,
   dispose: dispose,
 }
+
+export function threeFour() {
+  Tone.Transport.timeSignature = 3
+}
+export function fourFour() {
+  Tone.Transport.timeSignature = 4
+}
+
 //TODO: update to accept types of each synth subclass that will be available to user
 //TODO: strengthen typing with notes.
 export const mapDataToSequence = (

@@ -17,7 +17,7 @@ import { ModeContext } from '../../styles/ModeProvider'
 import { theme } from '../../styles/Theme'
 
 //TODO: Pages
-const pages = ['page']
+/* const pages = ['page'] */
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -54,8 +54,8 @@ const NavBar = () => {
             crypTones
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -89,7 +89,7 @@ const NavBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -109,7 +109,7 @@ const NavBar = () => {
           >
             crypTones
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -119,18 +119,20 @@ const NavBar = () => {
                 {page}
               </Button>
             ))}
+          </Box> */}
+          <Box sx={{ display: 'block', ml: 'auto', mr: '0' }}>
+            <IconButton
+              sx={{ ml: 1, alignSelf: 'right' }}
+              onClick={modeSetter.toggleColorMode}
+              color="inherit"
+            >
+              {theme.palette.mode === 'dark' ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
           </Box>
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={modeSetter.toggleColorMode}
-            color="inherit"
-          >
-            {theme.palette.mode === 'dark' ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>

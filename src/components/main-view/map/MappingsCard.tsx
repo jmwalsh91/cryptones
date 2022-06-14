@@ -95,7 +95,10 @@ function MappingsCard(props: Props) {
           ${base.mapCard};
         `}
         sx={{
-          minWidth: '30rem',
+          minWidth: {
+            xs: '100%',
+            md: '30rem',
+          },
           maxWidth: '100%',
           height: '100%',
           justifyContent: 'center',

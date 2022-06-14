@@ -72,15 +72,19 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
       css={css`
         ${themedNeu.depressed}
       `}
-      sx={{ height: { xs: '10rem', md: '100%' }, mb: { xs: '2rem', md: 0 } }}
+      sx={{
+        height: { xs: '10rem', md: '100%' },
+        mb: { xs: '2rem', md: 0 },
+        p: { xs: 0, md: 0 },
+      }}
     >
       <Stack
         spacing={3}
         sx={{
           flexDirection: { xs: 'row', md: 'column' },
           alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: { xs: 'space-between', md: 'space-around' },
-          padding: { xs: 2, md: 5 },
+          justifyContent: { xs: 'space-evenly', md: 'space-around' },
+          padding: { xs: 1, md: 5 },
           mb: { xs: '2rem', md: '0rem' },
         }}
       >
@@ -100,12 +104,12 @@ function TokenCard({ setEndpoint, startUpdate }: Props) {
               md: '1rem',
             },
             minWidth: {
-              xs: '1rem',
-              md: '100%',
+              xs: '1.2rem',
+              md: '80%',
             },
             maxWidth: {
-              xs: '1rem',
-              md: '100%',
+              xs: '2rem',
+              md: '80%',
             },
             marginTop: {
               xs: '0.5rem',

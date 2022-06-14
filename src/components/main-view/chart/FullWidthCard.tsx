@@ -5,9 +5,8 @@ import { Suspense, lazy, useState, useTransition } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import useSWR from 'swr'
 
-import { useMode } from '~/utils/hooks/useMode'
-
 import * as neu from '../../../styles/neu'
+import { useMode } from '../../../utils/hooks/useMode'
 import ErrorFallback from '../../err-and-feedback/ErrorFallback'
 import TokenCard from './TokenCard'
 

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { CheckRounded } from '@mui/icons-material'
 /* import { Button, Grid, Paper, Typography, useTheme } from '@mui/material' */
 import { useTheme } from '@mui/material'
 import Button from '@mui/material/Button'
@@ -9,18 +10,15 @@ import Typography from '@mui/material/Typography'
 import { ReactNode, SyntheticEvent, useRef, useState } from 'react'
 import useSWR from 'swr'
 
-import AlgoSelect from '~/components/formComponents/AlgoSelect'
+import AlgoSelect from '../../../components/formComponents/AlgoSelect'
 import {
   Mode,
   TransposeToggle,
-} from '~/components/formComponents/TransposeToggle'
-
-// eslint-disable-next-line import/order
+} from '../../../components/formComponents/TransposeToggle'
 import {
   useDispatch,
   useToneContext,
 } from '../../../services/ToneContextWrapper'
-
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
@@ -38,7 +36,6 @@ interface Props {
 }
 
 function MappingsCard(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [source, setSource] = useState<string>('difference')
   const [sensitivity, setSensitivity] = useState<number>(1)
   const [prettierState, setPrettier] = useState<boolean>(false)
@@ -47,6 +44,8 @@ function MappingsCard(props: Props) {
   const toneContext = useToneContext()
   const currentTheme = useTheme()
   const themedNeu = currentTheme.palette.mode === 'light' ? neu.light : neu.dark
+  const dubStatus = toneContext.dub ? themedNeu.flat : themedNeu.raised
+  const overdubStatus = toneContext.overdub ? themedNeu.flat : themedNeu.raised
   const { data } = useSWR(toneContext?.dispatchedEndpoint, { suspense: true })
 
   //TODO: Gauge relative benefit of moving into a useSubmitMap hook?
@@ -96,20 +95,18 @@ function MappingsCard(props: Props) {
           ${base.mapCard};
         `}
         sx={{
-          width: '100%',
+          minWidth: '30rem',
+          maxWidth: '100%',
           height: '100%',
           justifyContent: 'center',
-          px: '1rem',
+          p: '1.5rem',
         }}
         {...props}
       >
         <Typography
           variant="h2"
           css={css`
-            font-weight: 700;
-            text-shadow: 10px 1px 20px ${currentTheme.palette.primary.main},
-              5px 8px 10px ${currentTheme.palette.secondary.main};
-            color: ${currentTheme.palette.background.default};
+            ${themedNeu.titleGlow}
           `}
           sx={{ textAlign: { xs: 'center', md: 'left' }, mb: '1rem' }}
         >
@@ -153,6 +150,25 @@ function MappingsCard(props: Props) {
               keyModeRef={keyModeRef}
             />
           </Grid>
+          {/* <Grid
+            item
+            md={2}
+            gap={2}
+            container
+            css={css`
+              ${themedNeu.raised};
+              min-width: 5rem;
+              align-items: center;
+              justify-content: space-around;
+            `}
+            sx={{
+              justifyContent: { xs: 'space-evenly' },
+              direction: { xs: 'row', md: 'column' },
+            }}
+          >
+            <Button onClick={() => threeFour()}>set 3/4</Button>
+            <Button onClick={() => fourFour()}>set 4/4</Button>
+          </Grid> */}
           <Grid
             item
             md={2}
@@ -166,36 +182,48 @@ function MappingsCard(props: Props) {
             <Button
               variant="contained"
               size="large"
+              disabled={toneContext?.dub ? true : false}
               sx={{
-                minWidth: {
-                  xs: '40%',
+                width: {
+                  xs: '6rem',
+                },
+                height: {
+                  xs: '4rem',
                   md: '6rem',
                 },
               }}
               onClick={(e) => handleSubmit(e, 'dub')}
               css={css`
-                ${themedNeu.raised}
-                color: ${currentTheme.palette.text.primary}
+                ${dubStatus};
+                color: ${currentTheme.palette.text.primary};
               `}
             >
-              {toneContext?.dub ? 'already dubbed' : 'dub'}
+              <Typography variant="button">
+                {toneContext?.dub ? <CheckRounded /> : 'DUB: 1'}
+              </Typography>
             </Button>
             <Button
               variant="contained"
               size="large"
+              disabled={toneContext?.overdub ? true : false}
               sx={{
-                minWidth: {
-                  xs: '40%',
+                width: {
+                  xs: '6rem',
+                },
+                height: {
+                  xs: '4rem',
                   md: '6rem',
                 },
               }}
               css={css`
-                ${themedNeu.raised}
-                color: ${currentTheme.palette.text.primary}
+                ${overdubStatus};
+                color: ${currentTheme.palette.text.primary};
               `}
               onClick={(e) => handleSubmit(e, 'overdub')}
             >
-              {toneContext?.overdub ? 'already overdubbed' : 'overdub'}
+              <Typography variant="button">
+                {toneContext?.overdub ? <CheckRounded /> : 'DUB: 2'}
+              </Typography>
             </Button>
           </Grid>
         </Grid>

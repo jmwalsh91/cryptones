@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
+import { useToneContext } from '../../services/ToneContextWrapper'
 import * as base from '../../styles/base'
-
-import { useToneContext } from '~/services/ToneContextWrapper'
 
 /* 
 type Props = {} */

@@ -22,6 +22,22 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Smooch Sans',
+    fontSize: 18,
+    fontWeightMedium: 350,
+    fontWeightLight: 300,
+    fontWeightRegular: 300,
+    h2: {
+      fontSize: '3rem',
+    },
+    h5: {
+      fontSize: '1.8rem',
+      fontWeight: 500,
+      lineHeight: 1.03,
+    },
+    button: {
+      fontSize: '1.1rem',
+      fontWeight: 500,
+    },
   },
   components: {
     MuiTypography: {
@@ -61,6 +77,22 @@ export const darkTheme = createTheme({
   },
   typography: {
     fontFamily: 'Smooch Sans',
+    fontSize: 16,
+    fontWeightMedium: 350,
+    fontWeightLight: 300,
+    fontWeightRegular: 300,
+    h2: {
+      fontSize: '3rem',
+    },
+    h5: {
+      fontSize: '1.8rem',
+      fontWeight: 500,
+      lineHeight: 1.03,
+    },
+    button: {
+      fontSize: '1.3rem',
+      fontWeight: 500,
+    },
   },
   components: {
     MuiTypography: {

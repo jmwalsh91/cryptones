@@ -32,7 +32,9 @@ export default function AlgoSelect({ handler }: Props) {
       }}
     >
       <FormLabel id="SelectAlgorithm">
-        <Typography variant="h5">Algorithm</Typography>
+        <Typography variant="h5" sx={{ pr: { xs: '2rem', md: '0' } }}>
+          Algorithm
+        </Typography>
       </FormLabel>
       <RadioGroup
         aria-labelledby="Two Buttons for Select Algorithm"

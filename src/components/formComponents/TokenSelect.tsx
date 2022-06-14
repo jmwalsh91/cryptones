@@ -7,9 +7,8 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
-import { useMode } from '~/utils/hooks/useMode'
-
-import { tokenObject } from '~/types/interfaces'
+import { tokenObject } from '../../types/interfaces'
+import { useMode } from '../../utils/hooks/useMode'
 
 //Valid props for InputSelect
 export interface selectorProps {

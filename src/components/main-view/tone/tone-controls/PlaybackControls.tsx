@@ -1,14 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Pause, PlayArrow, Stop } from '@mui/icons-material'
+import { Eject, Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
+import {
+  useDispatch,
+  useToneContext,
+} from '../../../../services/ToneContextWrapper'
 import * as base from '../../../../styles/base'
 import * as neu from '../../../../styles/neu'
-import { dispose } from '../tone-utils/tone'
+import { audioControls } from '../../../../types/interfaces'
+import { dispose, stopPlayback } from '../tone-utils/tone'
 
-import { useDispatch, useToneContext } from '~/services/ToneContextWrapper'
-import { audioControls } from '~/types/interfaces'
 interface playbackProps {
   color: 'primary' | 'secondary'
   iconSize: 'small' | 'medium' | 'large'
@@ -24,16 +27,18 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   function handleDispose() {
     //TODO: start transition and then user feedback, validate no events are scheduled before setting states to null
     dispose(toneContext.dub, toneContext.overdub)
+    stopPlayback()
     dispatch.setDub(null)
     dispatch.setOverdub(null)
   }
   return (
     <Paper
       variant="outlined"
+      sx={{ display: 'flex' }}
       css={css`
         ${themedNeu.raised}
-        ${base.centerChildren}
         ${base.playBackControls}
+        justify-content: center;
       `}
     >
       <ButtonGroup>
@@ -49,7 +54,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           aria-label="Pause"
           color={color}
           size={iconSize}
-          onClick={() => handleDispose()}
+          onClick={() => controls.pauseTransport()}
         >
           <Pause fontSize="large" />
         </IconButton>
@@ -60,6 +65,14 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           onClick={() => controls.stopPlayback()}
         >
           <Stop fontSize="large" />
+        </IconButton>
+        <IconButton
+          aria-label="Clear"
+          color={color}
+          size={iconSize}
+          onClick={() => handleDispose()}
+        >
+          <Eject fontSize="large" />
         </IconButton>
       </ButtonGroup>
     </Paper>

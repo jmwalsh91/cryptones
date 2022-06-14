@@ -2,11 +2,10 @@
 import { css } from '@emotion/react'
 import { useState } from 'react'
 
-import { useMode } from '~/utils/hooks/useMode'
-
 import play from '../../public/play2.svg'
 import stop from '../../public/stop2.svg'
 import * as base from '../../styles/base'
+import { useMode } from '../../utils/hooks/useMode'
 
 function ActionToggle() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)

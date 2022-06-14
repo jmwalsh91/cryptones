@@ -15,47 +15,80 @@ export const newSynth = () => {
     .toDestination()
   return fmSynth
 }
-
+/**
+ * starts the transport
+ * {@link Tone.Transport.start()}
+ */
 const startTransport = () => {
-  console.log('play synth')
-  console.log(Tone.context.state)
   Tone.Transport.start(Tone.now())
 }
-
+/**
+ * pauses the transport (position along transport timeline is preserved)
+ * @param callback
+ * @todo determine if getTransport... belongs in return
+ *
+ * {@link Tone.Transport.pause}
+ */
 export function pauseTransport(callback?: any) {
   Tone.Transport.pause()
 }
+/**
+ * stops the transport, position along transport timeline is not preserved and playback will start at the event in the sequence.
+ * {@link Tone.Transport.stop}
+ */
 
 export const stopPlayback = (/*callback?*/) => {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop(Tone.now())
 }
 
+/**
+ * clears all events in each provided {@link Tone.Sequence}, then disposes each sequence so that state in browser is in sync with state within React, and then cancels all scheduled events in transport timeline.
+ * @param {Tone.Sequence | null} seq - Sequence to clear and dispose
+ * @param {Tone.Sequence | null} seq2 - Sequence to clear and dispose
+ * @returns void
+ */
 export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
   seq?.clear().dispose()
   seq2?.clear().dispose()
   return Tone.Transport.cancel(0)
 }
-
+/**
+ * @type {audioControls}
+ * contains:
+ * @function stopPlayback
+ * @function startTransport
+ * @function pauseTransport
+ * @function dispose
+ */
 export const transportControls: audioControls = {
   stopPlayback: stopPlayback,
   startTransport: startTransport,
   pauseTransport: pauseTransport,
   dispose: dispose,
 }
-
+/**
+ * sets the {@link Tone.Transport.timeSignature} to 3/4
+ */
 export function threeFour() {
   Tone.Transport.timeSignature = 3
 }
+/**
+ * sets the {@link Tone.Transport.timeSignature} to 4/4
+ */
 export function fourFour() {
   Tone.Transport.timeSignature = 4
 }
 
-//TODO: update to accept types of each synth subclass that will be available to user
-//TODO: strengthen typing with notes.
+/**
+ *
+ * @param {Tone.FMSynth | Tone.FMSynth} synth
+ * @param notes
+ * @returns
+ */
 export const mapDataToSequence = (
   synth: Tone.FMSynth | Tone.FMSynth,
-  notes: any[]
+  notes: number[]
 ) => {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
@@ -66,13 +99,14 @@ export const mapDataToSequence = (
   return seq
 }
 
-// apply sensitivity (multiply by %) to input value
-// so that a wide variety of input values can be transformed to values which are audible, perceptibly different, or pleasant.
 /**
- * @function applySensitivity
+ * Should rightly be called "amplify value": multiplies value returned by algorithm to increase or decrease the 'spread' between note values and affects the pitch.
  * @param {number} sensitivity
  * @param {number} value
  * @returns number
+ * @example
+ * value 70 * sensitivity 4 = return 280
+ * vs 70 * 1 = 70
  */
 export const applySensitivity = (
   sensitivity: number,

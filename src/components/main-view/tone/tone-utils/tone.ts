@@ -38,6 +38,7 @@ function startTransport() {
  */
 export function pauseTransport(callback?: any) {
   Tone.Transport.pause()
+  callback()
 }
 /**
  * stops the transport, position along transport timeline is not preserved and playback will start at the event in the sequence.
@@ -93,17 +94,16 @@ export function fourFour() {
   Tone.Transport.timeSignature = 4
 }
 
+/******************************
+ * ALGORITHM & MAP FUNCTIONS  *
+ ******************************/
+
 /**
  * Creates new Sequence, accepts an instance of the {@link Tone.FMSynth} and an array of note values. Event in function body is called at each index as the global tone transport progresses along its timeline.
  * @param synth
  * @param notes
  * @returns new {@link Tone.Sequence} instance
  */
-
-/******************************
- * ALGORITHM & MAP FUNCTIONS  *
- ******************************/
-
 export function mapDataToSequence(
   synth: Tone.FMSynth | Tone.FMSynth,
   notes: any[]

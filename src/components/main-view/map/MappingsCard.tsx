@@ -22,7 +22,7 @@ import {
 import * as base from '../../../styles/base'
 import * as neu from '../../../styles/neu'
 import SensitivitySlider from '../../formComponents/SensitivitySlider'
-import { fourFour, mapDataToSequence, threeFour } from '../tone/tone-utils/tone'
+import { mapDataToSequence } from '../tone/tone-utils/tone'
 import {
   deviationArray,
   differenceArray,

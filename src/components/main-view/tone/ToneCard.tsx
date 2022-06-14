@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Paper, Typography, useTheme } from '@mui/material'
+import { Paper, Typography } from '@mui/material'
 import { TransitionStartFunction } from 'react'
 import * as Tone from 'tone'
 
@@ -22,7 +22,6 @@ interface Props {
 export const signal = new Tone.Signal().toDestination()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ToneCard({ startUpdateToneContext, isToneContextUpdating }: Props) {
-  const currentTheme = useTheme()
   const themedNeu = useMode()
   const controls = transportControls
 

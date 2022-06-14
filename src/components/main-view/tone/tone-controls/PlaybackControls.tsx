@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Clear, Eject, Pause, PlayArrow, Stop } from '@mui/icons-material'
+import { Eject, Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
 import {
@@ -10,7 +10,7 @@ import {
 import * as base from '../../../../styles/base'
 import * as neu from '../../../../styles/neu'
 import { audioControls } from '../../../../types/interfaces'
-import { dispose } from '../tone-utils/tone'
+import { dispose, stopPlayback } from '../tone-utils/tone'
 
 interface playbackProps {
   color: 'primary' | 'secondary'
@@ -27,6 +27,7 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   function handleDispose() {
     //TODO: start transition and then user feedback, validate no events are scheduled before setting states to null
     dispose(toneContext.dub, toneContext.overdub)
+    stopPlayback()
     dispatch.setDub(null)
     dispatch.setOverdub(null)
   }

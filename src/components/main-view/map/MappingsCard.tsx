@@ -164,6 +164,7 @@ function MappingsCard(props: Props) {
             <Button
               variant="contained"
               size="large"
+              disabled={toneContext?.dub ? true : false}
               sx={{
                 minWidth: {
                   xs: '40%',
@@ -181,6 +182,7 @@ function MappingsCard(props: Props) {
             <Button
               variant="contained"
               size="large"
+              disabled={toneContext?.overdub ? true : false}
               sx={{
                 minWidth: {
                   xs: '40%',
@@ -189,7 +191,6 @@ function MappingsCard(props: Props) {
               }}
               css={css`
                 ${overdubStatus};
-                color: ${currentTheme.palette.text.primary};
               `}
               onClick={(e) => handleSubmit(e, 'overdub')}
             >

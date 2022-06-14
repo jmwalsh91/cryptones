@@ -2,7 +2,6 @@
 import { css } from '@emotion/react'
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import FormControl from '@mui/material/FormControl'
-import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
@@ -13,7 +12,7 @@ import { useMode } from '../../utils/hooks/useMode'
 //Valid props for InputSelect
 export interface selectorProps {
   values: string[]
-  helperText: string
+  helperText?: string
   handleTokenSelect: (val: string) => tokenObject | undefined
   selectedToken: tokenObject
 }
@@ -21,7 +20,6 @@ export interface selectorProps {
 //EXAMPLE: 'difference' routed to 'notevalue' translates the difference between sequential values (across time) to note values that can be 'played' by tone.JS
 export default function TokenSelect({
   values,
-  helperText,
   handleTokenSelect,
   selectedToken,
 }: selectorProps): ReactJSXElement {
@@ -55,7 +53,6 @@ export default function TokenSelect({
         >
           {dropdownValues}
         </Select>
-        <FormHelperText>{helperText}</FormHelperText>
       </FormControl>
     </div>
   )

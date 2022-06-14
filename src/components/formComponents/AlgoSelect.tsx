@@ -25,6 +25,8 @@ export default function AlgoSelect({ handler }: Props) {
     <FormControl
       sx={{
         alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
         flexDirection: {
           xs: 'row',
           md: 'column',
@@ -32,28 +34,24 @@ export default function AlgoSelect({ handler }: Props) {
       }}
     >
       <FormLabel id="SelectAlgorithm">
-        <Typography variant="h5" sx={{ pr: { xs: '2rem', md: '0' } }}>
+        <Typography variant="h5" sx={{ pr: { xs: '1.3rem', md: '0' } }}>
           Algorithm
         </Typography>
       </FormLabel>
       <RadioGroup
-        aria-labelledby="Two Buttons for Select Algorithm"
+        aria-labelledby="SelectAlgorithm"
         name="Select Algorithm"
         value={value}
         onChange={handleChange}
-        sx={{
-          flexDirection: {
-            xs: 'row',
-            md: 'column',
-          },
-        }}
       >
         <FormControlLabel
+          key="difference"
           value="difference"
           control={<Radio />}
           label="difference"
         />
         <FormControlLabel
+          key="deviation"
           value="deviation"
           control={<Radio />}
           label="deviation"

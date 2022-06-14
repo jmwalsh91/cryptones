@@ -104,10 +104,7 @@ function MappingsCard(props: Props) {
         <Typography
           variant="h2"
           css={css`
-            font-weight: 700;
-            text-shadow: 10px 1px 20px ${currentTheme.palette.primary.main},
-              5px 8px 10px ${currentTheme.palette.secondary.main};
-            color: ${currentTheme.palette.background.default};
+            ${themedNeu.titleGlow}
           `}
           sx={{ textAlign: { xs: 'center', md: 'left' }, mb: '1rem' }}
         >

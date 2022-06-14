@@ -78,12 +78,14 @@ export const transportControls: audioControls = {
   /** @function dispose */
   dispose: dispose,
 }
+
 /**
  * sets the {@link Tone.Transport.timeSignature} to 3/4
  */
 export function threeFour() {
   Tone.Transport.timeSignature = 3
 }
+
 /**
  * sets the {@link Tone.Transport.timeSignature} to 4/4
  */
@@ -101,6 +103,7 @@ export function fourFour() {
 /******************************
  * ALGORITHM & MAP FUNCTIONS  *
  ******************************/
+
 export function mapDataToSequence(
   synth: Tone.FMSynth | Tone.FMSynth,
   notes: any[]
@@ -113,6 +116,7 @@ export function mapDataToSequence(
   console.log(seq)
   return seq
 }
+
 /**
  * Should rightly be called "amplify value": multiplies value returned by algorithm to increase or decrease the 'spread' between note values and affects the pitch.
  * @param {number} sensitivity
@@ -135,6 +139,7 @@ export function applySensitivity(sensitivity: number, value: number): number {
  * TODO: strengthen data typing: Partial<something<something,something>>
 /**
  */
+
 export function differenceArray(
   data: Array<any>,
   sensitivity: number
@@ -160,6 +165,7 @@ export function differenceArray(
  * @param sensitivity
  * @returns
  */
+
 export function deviationArray(data: any[], sensitivity: number): number[] {
   const devArray: number[] = []
   data.reduce((_previousValue: number, _currentValue: number, _ind: number) => {
@@ -178,14 +184,13 @@ export function deviationArray(data: any[], sensitivity: number): number[] {
 /************************
  * TONAL JS FUNCTIONS  *
  ************************/
-
+export type keyFilter = readonly string[]
 /**
  * @function keyArray
  * @param {string} key name of key (see: https://en.wikipedia.org/wiki/Pitch_class)
  * @param {Mode} mode Currently, only "major" and "minor" are enumerated values, TODO: expand functionality to include other modes.
  * @return array of notes that corresponds to key and mode
  */
-export type keyFilter = readonly string[]
 
 export function keyArray(key: string, mode: Mode): keyFilter {
   if (mode === Mode.Minor) {

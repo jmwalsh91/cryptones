@@ -20,8 +20,8 @@ export const light = {
     box-shadow: inset 6px 6px 15px #cacaca, inset -6px -6px 15px #e8e8e8;
   `,
   flat: css`
-  border-radius: 15px;
-  background:  #d9d9d9;
+    border-radius: 15px;
+    background: #d9d9d9;
   `,
 
   /*  token: css`
@@ -62,6 +62,12 @@ export const light = {
         inset -3px 3px 15px 3px #65abba;
     }
   `,
+  titleGlow: css`
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #0ff;
+}`,
 }
 //dark mode literals
 export const dark = {
@@ -76,9 +82,10 @@ export const dark = {
     box-shadow: inset 6px 6px 12px #181717, inset -6px -6px 12px #464141;
   `,
   flat: css`
-  border-radius: 15px;
-  background: #2f2c2c;
+    border-radius: 15px;
+    background: #2f2c2c;
   `,
+
   /*  token: css`
   display: block;
   padding: 1rem;
@@ -118,4 +125,29 @@ export const dark = {
                 inset -3px 3px 15px 3px #65abba;
   }
 `,
+  titleGlow: css`
+  text-shadow:
+    0 0 1px #fff,
+    0 0 6px #0ff,
+    0 0 11px #0ff;
+}`,
 }
+
+/**********************
+ *    GRAVEYARD       *
+ * ********************
+ * 
+ * * MappingsCard title style w/ aurora * *
+ * font-weight: 700;
+            text-shadow: 10px 1px 20px ${currentTheme.palette.primary.main},
+              5px 8px 10px ${currentTheme.palette.secondary.main};
+            color: ${currentTheme.palette.background.default};
+          `}
+  *********************
+  * * ToneCard title style w/ aurora
+  font-weight: 700;
+            text-shadow: 10px 1px 12px ${currentTheme.palette.secondary.main},
+              5px 8px 12px ${currentTheme.palette.primary.main};
+            color: ${currentTheme.palette.background.default};
+          `
+ ***********************/

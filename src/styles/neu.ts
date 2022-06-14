@@ -65,8 +65,7 @@ export const light = {
   titleGlow: css`
   text-shadow:
     0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 20px #0ff;
+    0 0 16px #65ABBA;
 }`,
 }
 //dark mode literals

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { CheckRounded } from '@mui/icons-material'
 /* import { Button, Grid, Paper, Typography, useTheme } from '@mui/material' */
 import { useTheme } from '@mui/material'
 import Button from '@mui/material/Button'
@@ -182,8 +183,11 @@ function MappingsCard(props: Props) {
               size="large"
               disabled={toneContext?.dub ? true : false}
               sx={{
-                minWidth: {
-                  xs: '40%',
+                width: {
+                  xs: '6rem',
+                },
+                height: {
+                  xs: '4rem',
                   md: '6rem',
                 },
               }}
@@ -193,24 +197,32 @@ function MappingsCard(props: Props) {
                 color: ${currentTheme.palette.text.primary};
               `}
             >
-              {toneContext?.dub ? 'Track Full' : 'DUB: 1'}
+              <Typography>
+                {toneContext?.dub ? <CheckRounded /> : 'DUB: 1'}
+              </Typography>
             </Button>
             <Button
               variant="contained"
               size="large"
               disabled={toneContext?.overdub ? true : false}
               sx={{
-                minWidth: {
-                  xs: '40%',
+                width: {
+                  xs: '6rem',
+                },
+                height: {
+                  xs: '4rem',
                   md: '6rem',
                 },
               }}
               css={css`
                 ${overdubStatus};
+                color: ${currentTheme.palette.text.primary};
               `}
               onClick={(e) => handleSubmit(e, 'overdub')}
             >
-              {toneContext?.overdub ? 'Track Full' : 'DUB: 2'}
+              <Typography variant="button">
+                {toneContext?.overdub ? <CheckRounded /> : 'DUB: 2'}
+              </Typography>
             </Button>
           </Grid>
         </Grid>

@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react'
+/* import { Meta } from '@storybook/react'
 
 import MdLayout from '../layout/MdLayout'
 
@@ -10,3 +10,4 @@ const meta: Meta = {
 export default meta
 
 export const Default = () => <MdLayout />
+ */

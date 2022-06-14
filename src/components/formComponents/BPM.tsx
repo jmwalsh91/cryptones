@@ -6,7 +6,7 @@ import { Box, Slider, Stack, Typography } from '@mui/material'
 import { SyntheticEvent, useState } from 'react'
 import * as Tone from 'tone'
 
-import { useMode } from '~/utils/hooks/useMode'
+import { useMode } from '../../utils/hooks/useMode'
 
 //Valid props for SlideSelector
 interface BPMSelectorProps {

@@ -54,19 +54,30 @@ export const playBackControls = css`
 export const focusBorder = css``
 
 export const onLight = css`
+  justify-self: center;
+  align-self: baseline;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #abff00;
+  background: linear-gradient(
+    45deg,
+    hsla(80, 66%, 51%, 1) 30%,
+    hsla(139, 61%, 53%, 1) 99%
+  );
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
-    #89ff00 0 2px 12px;
+  box-shadow: #89ff00 0 2px 12px;
 `
 
 export const offLight = css`
+  justify-self: center;
+  align-self: baseline;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #d5484f;
+  background: linear-gradient(
+    45deg,
+    hsla(0, 72%, 48%, 1) 30%,
+    hsla(0, 79%, 30%, 1) 100%
+  );
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 4px 1px, inset #304701 0 -1px 4px,
     #d5484f 0 2px 12px;
 `

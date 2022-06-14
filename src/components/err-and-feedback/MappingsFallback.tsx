@@ -2,9 +2,8 @@
 import { css } from '@emotion/react'
 import { Paper } from '@mui/material'
 
-import { useMode } from '~/utils/hooks/useMode'
-
 import * as base from '../../styles/base'
+import { useMode } from '../../utils/hooks/useMode'
 
 function MappingsFallback() {
   const themedNeu = useMode()

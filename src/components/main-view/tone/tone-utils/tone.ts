@@ -1,11 +1,14 @@
 import { Key, Note } from '@tonaljs/tonal'
 import * as Tone from 'tone'
 
-import { Mode } from '~/components/formComponents/TransposeToggle'
-
-import { audioControls } from '~/types/interfaces'
-
-export const newSynth = () => {
+import { audioControls } from '../../../../types/interfaces'
+import { Mode } from '../../../formComponents/TransposeToggle'
+/**
+ * instantiate new synthesizer object as default synth
+ * @todo multiple options, perhaps stored as in an enum.
+ * @returns new {@link Tone.FMSynth}
+ */
+export function newSynth() {
   const reverb = new Tone.Reverb(2).toDestination()
   const delay = new Tone.Delay(0.7).connect(reverb)
   const fmSynth: Tone.FMSynth = new Tone.FMSynth({
@@ -16,35 +19,95 @@ export const newSynth = () => {
     .toDestination()
   return fmSynth
 }
-
-const startTransport = () => {
-  console.log('play synth')
-  console.log(Tone.context.state)
+/***********************************
+ * CONTEXT AND TRANSPORT FUNCTIONS *
+ ***********************************/
+/**
+ * starts the transport
+ * {@link Tone.Transport.start()}
+ */
+function startTransport() {
   Tone.Transport.start(Tone.now())
 }
+/**
+ * pauses the transport (position along transport timeline is preserved)
+ * @param callback
+ * @todo determine if getTransport... belongs in return
+ *
+ * {@link Tone.Transport.pause}
+ */
+export function pauseTransport(callback?: any) {
+  Tone.Transport.pause()
+  callback()
+}
+/**
+ * stops the transport, position along transport timeline is not preserved and playback will start at the event in the sequence.
+ * {@link Tone.Transport.stop}
+ */
 
-export const stopPlayback = (/*callback?*/) => {
+export function stopPlayback(/*callback?*/) {
   console.log(Tone.Transport.disposed)
   Tone.Transport.stop(Tone.now())
 }
 
+/**
+ * clears all events in each provided {@link Tone.Sequence}, then disposes each sequence so that state in browser is in sync with state within React, and then cancels all scheduled events in transport timeline.
+ * @param {Tone.Sequence | null} seq - Sequence to clear and dispose
+ * @param {Tone.Sequence | null} seq2 - Sequence to clear and dispose
+ * @returns void
+ */
 export function dispose(seq: Tone.Sequence | null, seq2: Tone.Sequence | null) {
   seq?.clear().dispose()
   seq2?.clear().dispose()
   return Tone.Transport.cancel(0)
 }
-
+/**
+ * @type {audioControls}
+ * contains:
+ * @function {@link stopPlayback}
+ * @function {@link startTransport}
+ * @function {@link pauseTransport}
+ * @function {@link dispose}
+ */
 export const transportControls: audioControls = {
+  /** stop audio playback */
   stopPlayback: stopPlayback,
+  /** start the transport / audio playback */
   startTransport: startTransport,
+  /** pause the transport / audio playback */
+  pauseTransport: pauseTransport,
+  /** @function dispose */
   dispose: dispose,
 }
-//TODO: update to accept types of each synth subclass that will be available to user
-//TODO: strengthen typing with notes.
-export const mapDataToSequence = (
+
+/**
+ * sets the {@link Tone.Transport.timeSignature} to 3/4
+ */
+export function threeFour() {
+  Tone.Transport.timeSignature = 3
+}
+
+/**
+ * sets the {@link Tone.Transport.timeSignature} to 4/4
+ */
+export function fourFour() {
+  Tone.Transport.timeSignature = 4
+}
+
+/******************************
+ * ALGORITHM & MAP FUNCTIONS  *
+ ******************************/
+
+/**
+ * Creates new Sequence, accepts an instance of the {@link Tone.FMSynth} and an array of note values. Event in function body is called at each index as the global tone transport progresses along its timeline.
+ * @param synth
+ * @param notes
+ * @returns new {@link Tone.Sequence} instance
+ */
+export function mapDataToSequence(
   synth: Tone.FMSynth | Tone.FMSynth,
   notes: any[]
-) => {
+) {
   //TODO: VELOCITY PARAM
   const seq = new Tone.Sequence((time, note) => {
     synth.triggerAttackRelease(note, 0.5, time)
@@ -54,18 +117,16 @@ export const mapDataToSequence = (
   return seq
 }
 
-// apply sensitivity (multiply by %) to input value
-// so that a wide variety of input values can be transformed to values which are audible, perceptibly different, or pleasant.
 /**
- * @function applySensitivity
+ * Should rightly be called "amplify value": multiplies value returned by algorithm to increase or decrease the 'spread' between note values and affects the pitch.
  * @param {number} sensitivity
  * @param {number} value
  * @returns number
+ * @example
+ * value 70 * sensitivity 4 = return 280
+ * vs 70 * 1 = 70
  */
-export const applySensitivity = (
-  sensitivity: number,
-  value: number
-): number => {
+export function applySensitivity(sensitivity: number, value: number): number {
   return sensitivity * value
 }
 
@@ -78,6 +139,7 @@ export const applySensitivity = (
  * TODO: strengthen data typing: Partial<something<something,something>>
 /**
  */
+
 export function differenceArray(
   data: Array<any>,
   sensitivity: number
@@ -103,6 +165,7 @@ export function differenceArray(
  * @param sensitivity
  * @returns
  */
+
 export function deviationArray(data: any[], sensitivity: number): number[] {
   const devArray: number[] = []
   data.reduce((_previousValue: number, _currentValue: number, _ind: number) => {
@@ -118,17 +181,16 @@ export function deviationArray(data: any[], sensitivity: number): number[] {
   return devArray
 }
 
-/**
- * TONAL JS FUNCTIONS
- */
-
+/************************
+ * TONAL JS FUNCTIONS  *
+ ************************/
+export type keyFilter = readonly string[]
 /**
  * @function keyArray
  * @param {string} key name of key (see: https://en.wikipedia.org/wiki/Pitch_class)
  * @param {Mode} mode Currently, only "major" and "minor" are enumerated values, TODO: expand functionality to include other modes.
  * @return array of notes that corresponds to key and mode
  */
-export type keyFilter = readonly string[]
 
 export function keyArray(key: string, mode: Mode): keyFilter {
   if (mode === Mode.Minor) {
@@ -155,7 +217,4 @@ export function filterNotes(
     } else return null
   })
 }
-/**
- * @function
- * @params
- */
+/*****************************/

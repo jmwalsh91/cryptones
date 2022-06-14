@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Clear, Pause, PlayArrow, Stop } from '@mui/icons-material'
+import { Clear, Eject, Pause, PlayArrow, Stop } from '@mui/icons-material'
 import { ButtonGroup, IconButton, Paper, useTheme } from '@mui/material'
 
 import {
@@ -57,20 +57,20 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
           <Pause fontSize="large" />
         </IconButton>
         <IconButton
-          aria-label="Clear"
-          color={color}
-          size={iconSize}
-          onClick={() => handleDispose()}
-        >
-          <Clear fontSize="large" />
-        </IconButton>
-        <IconButton
           aria-label="Stop"
           color={color}
           size={iconSize}
           onClick={() => controls.stopPlayback()}
         >
           <Stop fontSize="large" />
+        </IconButton>
+        <IconButton
+          aria-label="Clear"
+          color={color}
+          size={iconSize}
+          onClick={() => handleDispose()}
+        >
+          <Eject fontSize="large" />
         </IconButton>
       </ButtonGroup>
     </Paper>

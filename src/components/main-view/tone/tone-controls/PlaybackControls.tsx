@@ -33,10 +33,11 @@ function PlaybackControls({ color, iconSize, controls }: playbackProps) {
   return (
     <Paper
       variant="outlined"
+      sx={{ display: 'flex' }}
       css={css`
         ${themedNeu.raised}
-        ${base.centerChildren}
         ${base.playBackControls}
+        justify-content: center;
       `}
     >
       <ButtonGroup>

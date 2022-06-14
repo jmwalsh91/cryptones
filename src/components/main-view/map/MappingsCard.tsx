@@ -95,10 +95,11 @@ function MappingsCard(props: Props) {
           ${base.mapCard};
         `}
         sx={{
-          width: '100%',
+          minWidth: '30rem',
+          maxWidth: '100%',
           height: '100%',
           justifyContent: 'center',
-          px: '1rem',
+          p: '1.5rem',
         }}
         {...props}
       >
@@ -197,7 +198,7 @@ function MappingsCard(props: Props) {
                 color: ${currentTheme.palette.text.primary};
               `}
             >
-              <Typography>
+              <Typography variant="button">
                 {toneContext?.dub ? <CheckRounded /> : 'DUB: 1'}
               </Typography>
             </Button>

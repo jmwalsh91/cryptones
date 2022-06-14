@@ -55,7 +55,6 @@ export default function TokenSelect({
         >
           {dropdownValues}
         </Select>
-        <FormHelperText>{helperText}</FormHelperText>
       </FormControl>
     </div>
   )

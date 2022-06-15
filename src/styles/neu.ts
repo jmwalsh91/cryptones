@@ -69,20 +69,23 @@ export const light = {
 }`,
 }
 //dark mode literals
+// background:  background: linear-gradient(#1c1c1c, #161616);
+//linear-gradient(#1c1c1c, #121212);
+// background: linear-gradient(145deg, #1c1c1c, #121212);
 export const dark = {
   raised: css`
-    border-radius: 15px;
-    background: #2f2c2c;
-    box-shadow: 7px 7px 10px #1f1d1d, -7px -7px 10px #3f3b3b;
+    border-radius: 10px;
+    background: linear-gradient(123deg, #181818, #141414);
+    box-shadow: 5px 5px 17px #0e0e0e, -5px -5px 17px #1e1e1e;
   `,
   depressed: css`
-    border-radius: 20px;
-    background: #2f2c2c;
-    box-shadow: inset 6px 6px 12px #181717, inset -6px -6px 12px #464141;
+    border-radius: 12px;
+    background: #161616;
+    box-shadow: inset 8px 8px 16px #0f0f0f, inset -8px -8px 16px #1d1d1d;
   `,
   flat: css`
-    border-radius: 15px;
-    background: #2f2c2c;
+    border-radius: 8px;
+    background: linear-gradient(#1c1c1c, #161616);
   `,
 
   /*  token: css`
@@ -102,10 +105,10 @@ export const dark = {
     padding: 1rem;
     width: 6rem;
     height: 6rem;
+    border-radius: 50px 50px;
     background-position: 50% 50%;
-    border-radius: 100px;
-    background: #2f2c2c;
-    box-shadow: 8px 8px 15px #201e1e, -8px -8px 15px #3e3a3a;
+    background: linear-gradient(145deg, #181818, #141414);
+    box-shadow: 5px 5px 11px #0e0e0e, -5px -5px 11px #1e1e1e;
   `,
 
   actionHover: css`

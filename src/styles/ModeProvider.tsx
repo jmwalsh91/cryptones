@@ -13,7 +13,7 @@ export const ModeContext = createContext<{ toggleColorMode: () => void }>({
 })
 
 export function ModeProvider({ children }: Props) {
-  const [mode, setMode] = useState<PaletteMode>('light')
+  const [mode, setMode] = useState<PaletteMode>('dark')
 
   const colorMode = useMemo(
     () => ({

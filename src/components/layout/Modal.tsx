@@ -4,13 +4,13 @@ import {
   DialogContentText,
   DialogTitle,
   Stack,
+  useTheme,
 } from '@mui/material'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import { useState } from 'react'
 import * as Tone from 'tone'
 
-/* import * as neu from '../../styles/neu' */
 import CircleButtonBase from '../formComponents/CircleButtonBase'
 
 type Props = {
@@ -18,6 +18,7 @@ type Props = {
 }
 export default function Modal({ isOpen }: Props) {
   const [open, setOpen] = useState(isOpen)
+  const currentTheme = useTheme()
 
   const handleClose = async () => {
     await Tone.start()
@@ -33,7 +34,7 @@ export default function Modal({ isOpen }: Props) {
         open={open}
         onClose={handleClose}
         sx={{
-          bgcolor: 'black',
+          bgcolor: currentTheme.palette.background.paper,
         }}
       >
         <DialogActions>

@@ -128,6 +128,7 @@ function MappingsCard(props: Props) {
               justify-content: space-around;
             `}
           >
+            <img src="~/public/ogcryptonesimg.jpg" height={'100px'} />
             <AlgoSelect handler={setSource} />
           </Grid>
           <Grid

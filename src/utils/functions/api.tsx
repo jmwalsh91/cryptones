@@ -8,5 +8,6 @@ export const getOhlcv = async () => {
       const resFormatted = response.data.resFormatted
       return { resFormatted, volArr }
     })
+
   return { resFormatted, volArr }
 }

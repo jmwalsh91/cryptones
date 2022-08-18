@@ -39,3 +39,7 @@ export function App() {
     </SWRConfig>
   )
 }
+
+/**
+ * Testing deployment with railway
+ */

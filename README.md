@@ -45,3 +45,6 @@ TODO:
 - `storybook:build`: create the build version of storybook
 - `generate`: runs plop to generate component files
 
+
+
+Backend hosted with Railway.

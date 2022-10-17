@@ -18,7 +18,11 @@ export function App() {
         fetcher: (endpoint) => {
           console.log('global hit')
           return isClient
-            ? cryptonesApi(endpoint).then((res) => res.data)
+            ? cryptonesApi(endpoint)
+                .then((res) => res.data)
+                .catch((err) => {
+                  console.log(err)
+                })
             : new Promise(() => 0)
         },
         suspense: true,
@@ -39,3 +43,7 @@ export function App() {
     </SWRConfig>
   )
 }
+
+/**
+ * Testing deployment with railway
+ */

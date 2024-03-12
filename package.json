@@ -17,6 +17,9 @@
     "storybook",
     "typescript"
   ],
+  "engines": {
+    "node": "21.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

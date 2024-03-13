@@ -26,7 +26,6 @@ export default function Modal({ isOpen }: Props) {
     setOpen(false)
   }
 
-
   return (
     <>
       <Dialog
